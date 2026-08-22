@@ -1,0 +1,81 @@
+{
+  "profile_schema_version": "v1",
+  "profile": {
+    "machine_profile_id": "workstation-zeria-01",
+    "cpu_model": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "system_ram_gb": 93.7,
+    "gpu_model": "NVIDIA GeForce RTX 5080",
+    "gpu_vram_gb": 15.9,
+    "gpu_driver_version": "610.74",
+    "os_version": "Windows 10.0.26200",
+    "ollama_version": "0.32.14",
+    "local_intel_version": "0.1.0",
+    "storage_type": "SSD (NVMe) Samsung SSD 9100 PRO 4TB",
+    "power_profile": "High performance",
+    "cpu_cores": 16,
+    "cpu_threads": 32,
+    "model_store_path": "C:\\Users\\Zeria\\.ollama\\models"
+  },
+  "profile_hash": "b725633194a7841906100e3c7529dec0f5873531b10785659a4e28b8fc8c9ebf",
+  "environment": {
+    "installed_models": [
+      {
+        "name": "qwen3-coder-32k:latest",
+        "digest": "720a215260c54cf4e880b396d16c2afcabc445705c89e25c86b497883196e6fd",
+        "size_bytes": 18556700706,
+        "parameter_size": "30.5B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen3-coder:30b-a3b-q4_K_M",
+        "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+        "size_bytes": 18556700761,
+        "parameter_size": "30.5B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "nomic-embed-text:latest",
+        "digest": "0a109f422b47e3a30ba2b10eca18548e944e8a23073ee3f3e947efcf3c45e59f",
+        "size_bytes": 274302450,
+        "parameter_size": "137M",
+        "quantization_level": "F16"
+      },
+      {
+        "name": "qwen2.5-coder:14b",
+        "digest": "9ec8897f747e246e970bc5cfdda85d22f1123dc2e3d34978a010a75968716849",
+        "size_bytes": 8988124298,
+        "parameter_size": "14.8B",
+        "quantization_level": "Q4_K_M"
+      }
+    ],
+    "ollama_host": "http://localhost:11434",
+    "candidate_model_residency": [
+      {
+        "model": "qwen2.5-coder:14b",
+        "num_ctx": 32768,
+        "resident": true,
+        "request_served": true,
+        "total_size_bytes": 15746088302,
+        "vram_size_bytes": 14635572919,
+        "gpu_fraction": 0.9295,
+        "fully_on_gpu": false,
+        "cold_load_duration_ms": 3728.7057
+      },
+      {
+        "model": "qwen3-coder:30b-a3b-q4_K_M",
+        "num_ctx": 32768,
+        "resident": true,
+        "request_served": true,
+        "total_size_bytes": 22076142384,
+        "vram_size_bytes": 14605027900,
+        "gpu_fraction": 0.6616,
+        "fully_on_gpu": false,
+        "cold_load_duration_ms": 7234.7222
+      }
+    ]
+  },
+  "notes": [
+    "Captured for Phase 0 step 4. No evidence packets submitted; this is not a Phase 0 measurement run.",
+    "Residency probed at the frozen Phase 0 num_ctx. A model that does not fit in VRAM at this context size is measured as configured, not reconfigured to make it fit -- changing num_ctx would create a new candidate configuration under \u00a79."
+  ]
+}

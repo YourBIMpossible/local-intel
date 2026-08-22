@@ -22,6 +22,30 @@ bounded Ollama client with §14 telemetry, complete configuration identity
 passing. Verified end to end against `qwen2.5-coder:14b` on a synthetic log:
 schema-valid, in-range citations, `presentable=True`.
 
+**2026-08-22 — Phase 0 step 4: hardware profile captured.**
+`workstation-zeria-01`, profile hash `b725633194a78419...`. All §6 fields
+populated; written immutably to
+`hardware_profiles/workstation-zeria-01.json`.
+
+Material finding recorded with it: **neither candidate model fits entirely
+in VRAM at the required context size.** At `num_ctx=32768` on a 16 GB
+RTX 5080, `qwen2.5-coder:14b` sits 93.0% on GPU and
+`qwen3-coder:30b-a3b-q4_K_M` sits 66.2% on GPU; both spill the remainder to
+CPU. Cold load was 3.5 s and 11.0 s respectively.
+
+This is not a tuning problem to be worked around. §6 pre-commits
+`representative_view_size_tokens: 24000`, and 24 000 input plus reserved
+output tokens forces a context of this order — so the protocol's own frozen
+view size is what puts both models over this GPU's VRAM. Phase 0 will
+therefore measure both models *as configured*, spill included. Lowering
+`num_ctx` to make them fit would be tuning a candidate to pass its own kill
+gate, which is exactly what §6's pre-commitment discipline exists to
+prevent, and under §9 it would create a different candidate configuration
+rather than a faster version of this one.
+
+If both models miss the thresholds, that is a legitimate pre-committed
+outcome ("defer local model path"), not a defect to engineer around.
+
 ---
 
 ## Roadmap

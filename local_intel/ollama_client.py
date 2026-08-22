@@ -84,6 +84,52 @@ def get_model_digest(model_tag: str, host: str = DEFAULT_HOST) -> str | None:
     return None
 
 
+def get_ollama_version(host: str = DEFAULT_HOST) -> str | None:
+    """Ollama version for §6/§9 identity. Read from the running server, not
+    from the CLI on PATH: the server is what actually served the tokens."""
+    try:
+        req = urllib.request.Request(f"{host}/api/version", method="GET")
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            return json.loads(resp.read().decode("utf-8")).get("version")
+    except (urllib.error.URLError, OSError, TimeoutError, json.JSONDecodeError):
+        return None
+
+
+def get_installed_models(host: str = DEFAULT_HOST) -> list[dict]:
+    """Installed model inventory (tag, digest, size, quantization) for the
+    hardware-profile record."""
+    try:
+        req = urllib.request.Request(f"{host}/api/tags", method="GET")
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.URLError, OSError, TimeoutError, json.JSONDecodeError):
+        return []
+    models = []
+    for m in data.get("models", []):
+        details = m.get("details") or {}
+        models.append(
+            {
+                "name": m.get("name"),
+                "digest": m.get("digest"),
+                "size_bytes": m.get("size"),
+                "parameter_size": details.get("parameter_size"),
+                "quantization_level": details.get("quantization_level"),
+            }
+        )
+    return models
+
+
+def get_loaded_models(host: str = DEFAULT_HOST) -> list[dict]:
+    """Currently resident models and their VRAM/CPU split (`ollama ps`)."""
+    try:
+        req = urllib.request.Request(f"{host}/api/ps", method="GET")
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.URLError, OSError, TimeoutError, json.JSONDecodeError):
+        return []
+    return data.get("models", [])
+
+
 def unload_model(model_tag: str, host: str = DEFAULT_HOST) -> bool:
     """Force the model out of memory so the next call is a genuine cold
     measurement (§6 requires cold and warm numbers separately)."""

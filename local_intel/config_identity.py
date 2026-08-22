@@ -13,9 +13,11 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import platform
 import subprocess
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass
+from pathlib import Path
 from typing import Any
 
 
@@ -53,8 +55,21 @@ class HardwareProfile:
     os_version: str
     ollama_version: str
     local_intel_version: str
+    # §6 lists storage type as required "when material to load time". On this
+    # class of hardware a multi-GB model load is disk-bound when cold, so it
+    # is always recorded rather than judged material case by case.
     storage_type: str | None = None
     power_profile: str | None = None
+    cpu_cores: int | None = None
+    cpu_threads: int | None = None
+    model_store_path: str | None = None
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+    def profile_hash(self) -> str:
+        canonical = json.dumps(self.to_dict(), sort_keys=True, ensure_ascii=True)
+        return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
 @dataclass(frozen=True)
@@ -128,6 +143,14 @@ def detect_hardware_profile(
     gpu_model: str | None = None
     gpu_vram_gb: float | None = None
     gpu_driver_version: str | None = None
+    storage_type: str | None = None
+    power_profile: str | None = None
+    cpu_cores: int | None = None
+    cpu_threads: int | None = None
+
+    model_store_path = os.environ.get("OLLAMA_MODELS") or str(
+        Path.home() / ".ollama" / "models"
+    )
 
     if platform.system() == "Windows":
         ram_out = _run(
@@ -139,10 +162,34 @@ def detect_hardware_profile(
 
         cpu_out = _run(
             ["powershell", "-NonInteractive", "-Command",
-             "(Get-CimInstance Win32_Processor | Select-Object -First 1).Name"]
+             "$c=Get-CimInstance Win32_Processor|Select-Object -First 1;"
+             "\"$($c.Name)|$($c.NumberOfCores)|$($c.NumberOfLogicalProcessors)\""]
         )
-        if cpu_out:
-            cpu_model = cpu_out
+        if cpu_out and "|" in cpu_out:
+            name, cores, threads = (cpu_out.split("|") + ["", ""])[:3]
+            cpu_model = name.strip() or cpu_model
+            cpu_cores = int(cores) if cores.strip().isdigit() else None
+            cpu_threads = int(threads) if threads.strip().isdigit() else None
+
+        scheme = _run(["powercfg", "/getactivescheme"])
+        if scheme and "(" in scheme:
+            power_profile = scheme.rsplit("(", 1)[-1].rstrip(")").strip()
+
+        # Media type of the physical disk actually holding the model store,
+        # resolved through drive letter -> partition -> disk. A generic
+        # "first disk in the machine" answer would be worthless here: this
+        # box has three NVMe drives and the models sit on exactly one.
+        drive_letter = Path(model_store_path).drive.rstrip(":")
+        if drive_letter:
+            disk_out = _run(
+                ["powershell", "-NonInteractive", "-Command",
+                 f"$p=Get-Partition -DriveLetter {drive_letter};"
+                 "$d=Get-PhysicalDisk -DeviceNumber $p.DiskNumber;"
+                 "\"$($d.MediaType)|$($d.BusType)|$($d.FriendlyName)\""]
+            )
+            if disk_out and "|" in disk_out:
+                media, bus, friendly = (disk_out.split("|") + ["", ""])[:3]
+                storage_type = f"{media.strip()} ({bus.strip()}) {friendly.strip()}".strip()
 
     nvidia = _run(
         ["nvidia-smi",
@@ -170,4 +217,9 @@ def detect_hardware_profile(
         os_version=f"{platform.system()} {platform.version()}",
         ollama_version=ollama_version,
         local_intel_version=local_intel_version,
+        storage_type=storage_type,
+        power_profile=power_profile,
+        cpu_cores=cpu_cores,
+        cpu_threads=cpu_threads,
+        model_store_path=model_store_path,
     )
