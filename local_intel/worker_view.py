@@ -178,36 +178,56 @@ def build_worker_view(
 
     if estimate_tokens(full_text) > budget:
         truncated = True
-        header_budget_tokens = max(1, int(budget * config.retained_prefix_ratio))
-        body_budget_tokens = max(1, budget - header_budget_tokens)
+
+        # §7 step 4: 10% of the budget for prefix/environment context, 90%
+        # for trailing/terminal failures. The prefix share covers the header
+        # AND the earliest groups -- not the header alone. Spending it on the
+        # header only would discard whatever the header does not use and,
+        # worse, would delete the head of the log entirely, which is exactly
+        # where a root cause announced once at startup lives.
+        prefix_budget_tokens = max(1, int(budget * config.retained_prefix_ratio))
+        suffix_budget_tokens = max(1, budget - prefix_budget_tokens)
 
         header_text = header
-        if estimate_tokens(header_text) > header_budget_tokens:
-            header_text = header_text[: header_budget_tokens * 4]
+        header_tokens = estimate_tokens(header_text)
+        if header_tokens > prefix_budget_tokens:
+            header_text = header_text[: prefix_budget_tokens * 4]
+            header_tokens = estimate_tokens(header_text)
 
-        # Walk from the end, keeping the trailing (suffix) entries that fit.
-        kept_entries: list[str] = []
-        running_tokens = 0
-        cut_index = 0
-        for i in range(len(entries) - 1, -1, -1):
-            entry_tokens = estimate_tokens(entries[i])
-            if running_tokens + entry_tokens > body_budget_tokens:
-                cut_index = i + 1
+        # Fill the remaining prefix share with the earliest groups.
+        prefix_entries: list[str] = []
+        prefix_tokens = 0
+        prefix_end = 0  # exclusive index into `entries`
+        for i, entry in enumerate(entries):
+            entry_tokens = estimate_tokens(entry)
+            if header_tokens + prefix_tokens + entry_tokens > prefix_budget_tokens:
                 break
-            kept_entries.append(entries[i])
-            running_tokens += entry_tokens
-        kept_entries.reverse()
+            prefix_entries.append(entry)
+            prefix_tokens += entry_tokens
+            prefix_end = i + 1
 
-        if cut_index > 0:
-            omitted_groups = groups[:cut_index]
+        # Fill the suffix share with the latest groups, walking backwards.
+        suffix_entries: list[str] = []
+        suffix_tokens = 0
+        suffix_start = len(entries)  # inclusive index into `entries`
+        for i in range(len(entries) - 1, prefix_end - 1, -1):
+            entry_tokens = estimate_tokens(entries[i])
+            if suffix_tokens + entry_tokens > suffix_budget_tokens:
+                break
+            suffix_entries.append(entries[i])
+            suffix_tokens += entry_tokens
+            suffix_start = i
+        suffix_entries.reverse()
+
+        parts = list(prefix_entries)
+        if suffix_start > prefix_end:
+            omitted_groups = groups[prefix_end:suffix_start]
             first_line = omitted_groups[0].first_line_no
             last_line = omitted_groups[-1].occurrence_line_nos[-1]
-            marker = _omission_marker(packet.source_id, first_line, last_line)
-            body_text = marker + ("\n" + "\n".join(kept_entries) if kept_entries else "")
-        else:
-            body_text = "\n".join(kept_entries)
+            parts.append(_omission_marker(packet.source_id, first_line, last_line))
+        parts.extend(suffix_entries)
 
-        full_text = header_text + "\n" + body_text
+        full_text = header_text + "\n" + "\n".join(parts)
 
     worker_view_hash = hashlib.sha256(full_text.encode("utf-8")).hexdigest()
 

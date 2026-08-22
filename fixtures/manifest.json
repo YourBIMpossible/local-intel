@@ -1,0 +1,167 @@
+{
+  "fixture_set_version": "v1",
+  "generator": "generate_fixtures.py + fixtures/templates.py + fixtures/vocab.py",
+  "provenance": "SYNTHETIC. \u00a76 specifies five representative REAL test-log packets; these are deterministic synthetic logs matching realistic structure and size. Recorded as a deviation, not as satisfying \u00a76 verbatim.",
+  "worker_view_content_budget_tokens": 22200,
+  "eligibility": {
+    "min_lines": 4000,
+    "min_post_dedupe_chars": 100000
+  },
+  "fixtures": [
+    {
+      "fixture_id": "f01_repeated_assertion",
+      "stratum": "repeated_assertion",
+      "expected_classification": "cascade_from_single_root_cause",
+      "size_param": 6000,
+      "command": "pytest -q tests/validation --timeout=300",
+      "line_count": 12013,
+      "raw_chars": 703893,
+      "post_dedupe_chars": 441568,
+      "packet_content_hash": "02852d81d277ce673a91bd9eda4263782549e673cccbc58653dd73c677d44685",
+      "worker_view_hash": "05a208930006af5f9a6d8c816787abf8cb13596230c7dae5529488f4a8caac18",
+      "worker_view_estimated_tokens": 22079,
+      "worker_view_truncated": true,
+      "worker_view_group_count": 6015,
+      "worker_view_deduplicated_occurrences": 5998,
+      "eligible": true,
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d",
+        "redaction_output_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d",
+        "redaction_hits": {
+          "email": 0,
+          "ipv4": 0,
+          "uuid": 0,
+          "bearer_token": 0,
+          "windows_user_path": 0,
+          "posix_home_path": 0
+        }
+      }
+    },
+    {
+      "fixture_id": "f02_compiler_type",
+      "stratum": "compiler_type",
+      "expected_classification": "multiple_independent_failures",
+      "size_param": 3200,
+      "command": "npm run typecheck",
+      "line_count": 7474,
+      "raw_chars": 855103,
+      "post_dedupe_chars": 563384,
+      "packet_content_hash": "d4df7f51e48b623d27ec1b782e46cba94bc0df4a72942ea92b56bb0105e9dd34",
+      "worker_view_hash": "0a05793344f19fb2db90eaee31004a6399ad95c0b74b983c8aa9a615bfdbfadd",
+      "worker_view_estimated_tokens": 22107,
+      "worker_view_truncated": true,
+      "worker_view_group_count": 4476,
+      "worker_view_deduplicated_occurrences": 2998,
+      "eligible": true,
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "444f7b2ccd17d9ebcf535e5f806415b021c2b00a89dbf5a71d80eea4e332152e",
+        "redaction_output_hash": "7c35a5337f9a33d5f4a589cac5d22f39ed26ae5a66bb42ba06fb8665c11b9b9f",
+        "redaction_hits": {
+          "email": 1,
+          "ipv4": 0,
+          "uuid": 0,
+          "bearer_token": 0,
+          "windows_user_path": 0,
+          "posix_home_path": 0
+        }
+      }
+    },
+    {
+      "fixture_id": "f03_cascade_root_cause",
+      "stratum": "cascade_root_cause",
+      "expected_classification": "cascade_from_single_root_cause",
+      "size_param": 4200,
+      "command": "pytest -q tests/ --timeout=300",
+      "line_count": 14299,
+      "raw_chars": 903899,
+      "post_dedupe_chars": 279125,
+      "packet_content_hash": "1a51e812deed0d67079398c9e947e98ad98dad2ade461ba79800e0e0ea8a7d20",
+      "worker_view_hash": "34e3e79d7ad2aab1225f417cc411335c466b9609a46b12ee46aa7e07845047bf",
+      "worker_view_estimated_tokens": 22092,
+      "worker_view_truncated": true,
+      "worker_view_group_count": 4220,
+      "worker_view_deduplicated_occurrences": 10079,
+      "eligible": true,
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41",
+        "redaction_output_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41",
+        "redaction_hits": {
+          "email": 0,
+          "ipv4": 0,
+          "uuid": 0,
+          "bearer_token": 0,
+          "windows_user_path": 0,
+          "posix_home_path": 0
+        }
+      }
+    },
+    {
+      "fixture_id": "f04_multiple_independent",
+      "stratum": "multiple_independent",
+      "expected_classification": "multiple_independent_failures",
+      "size_param": 2100,
+      "command": "pytest -q -n 4 tests/ --timeout=300",
+      "line_count": 10511,
+      "raw_chars": 703812,
+      "post_dedupe_chars": 464055,
+      "packet_content_hash": "31b9f6ccbd32f92c49a9f006bffe3829250692f32eb2429b53fe67082c2011bf",
+      "worker_view_hash": "1a8689bd3358a2498539c184a94ce433b928e4922678333b34a9263f7c9329e5",
+      "worker_view_estimated_tokens": 22094,
+      "worker_view_truncated": true,
+      "worker_view_group_count": 6316,
+      "worker_view_deduplicated_occurrences": 4195,
+      "eligible": true,
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091",
+        "redaction_output_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091",
+        "redaction_hits": {
+          "email": 0,
+          "ipv4": 0,
+          "uuid": 0,
+          "bearer_token": 0,
+          "windows_user_path": 0,
+          "posix_home_path": 0
+        }
+      }
+    },
+    {
+      "fixture_id": "f05_environment_failure",
+      "stratum": "environment_failure",
+      "expected_classification": "environment_or_infrastructure_failure",
+      "size_param": 3000,
+      "command": "pytest -q tests/ --timeout=300",
+      "line_count": 6442,
+      "raw_chars": 393572,
+      "post_dedupe_chars": 196140,
+      "packet_content_hash": "9458883f38906728fc2eb9ecb43cae7e7dfa49ed2ff03595f23d2fea06c18e5b",
+      "worker_view_hash": "9a1e29268ea9dcb0057f45b4046a95537c76cc16c93715c262af46c1816c7b03",
+      "worker_view_estimated_tokens": 22090,
+      "worker_view_truncated": true,
+      "worker_view_group_count": 3014,
+      "worker_view_deduplicated_occurrences": 3428,
+      "eligible": true,
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d",
+        "redaction_output_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d",
+        "redaction_hits": {
+          "email": 0,
+          "ipv4": 0,
+          "uuid": 0,
+          "bearer_token": 0,
+          "windows_user_path": 0,
+          "posix_home_path": 0
+        }
+      }
+    }
+  ]
+}
