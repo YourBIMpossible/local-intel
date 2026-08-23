@@ -1,0 +1,68 @@
+[1/20] qwen2.5-coder:14b cold f01_repeated_assertion ...
+      total=902056ms valid=False cite=None class=None
+[2/20] qwen2.5-coder:14b cold f02_compiler_type ...
+      total=902057ms valid=False cite=None class=None
+[3/20] qwen2.5-coder:14b cold f03_cascade_root_cause ...
+      total=902062ms valid=False cite=None class=None
+[4/20] qwen2.5-coder:14b cold f04_multiple_independent ...
+      total=373705ms valid=True cite=True class=multiple_independent_failures
+[5/20] qwen2.5-coder:14b cold f05_environment_failure ...
+      total=301872ms valid=True cite=True class=environment_or_infrastructure_failure
+[6/20] qwen2.5-coder:14b warm f01_repeated_assertion ...
+      total=5631ms valid=True cite=True class=multiple_independent_failures
+[7/20] qwen2.5-coder:14b warm f02_compiler_type ...
+      total=380539ms valid=True cite=True class=multiple_independent_failures
+[8/20] qwen2.5-coder:14b warm f03_cascade_root_cause ...
+      total=359989ms valid=True cite=True class=cascade_from_single_root_cause
+[9/20] qwen2.5-coder:14b warm f04_multiple_independent ...
+      total=335037ms valid=True cite=True class=multiple_independent_failures
+[10/20] qwen2.5-coder:14b warm f05_environment_failure ...
+      total=285631ms valid=True cite=True class=environment_or_infrastructure_failure
+[11/20] qwen3-coder:30b-a3b-q4_K_M cold f01_repeated_assertion ...
+      total=201753ms valid=True cite=True class=cascade_from_single_root_cause
+[12/20] qwen3-coder:30b-a3b-q4_K_M cold f02_compiler_type ...
+      total=902044ms valid=False cite=None class=None
+[13/20] qwen3-coder:30b-a3b-q4_K_M cold f03_cascade_root_cause ...
+      total=902046ms valid=False cite=None class=None
+[14/20] qwen3-coder:30b-a3b-q4_K_M cold f04_multiple_independent ...
+      total=902058ms valid=False cite=None class=None
+[15/20] qwen3-coder:30b-a3b-q4_K_M cold f05_environment_failure ...
+      total=158725ms valid=True cite=True class=environment_or_infrastructure_failure
+[16/20] qwen3-coder:30b-a3b-q4_K_M warm f01_repeated_assertion ...
+      total=10565ms valid=True cite=True class=cascade_from_single_root_cause
+[17/20] qwen3-coder:30b-a3b-q4_K_M warm f02_compiler_type ...
+      total=185348ms valid=True cite=True class=cascade_from_single_root_cause
+[18/20] qwen3-coder:30b-a3b-q4_K_M warm f03_cascade_root_cause ...
+      total=172828ms valid=True cite=True class=cascade_from_single_root_cause
+[19/20] qwen3-coder:30b-a3b-q4_K_M warm f04_multiple_independent ...
+      total=169784ms valid=True cite=True class=multiple_independent_failures
+[20/20] qwen3-coder:30b-a3b-q4_K_M warm f05_environment_failure ...
+      total=143232ms valid=True cite=True class=environment_or_infrastructure_failure
+
+Wrote phase0_results\phase0_smoke_workstation-zeria-01.json
+
+=== §6 summary ===
+{
+  "model": "qwen2.5-coder:14b",
+  "warm_median_total_ms": 335037.0,
+  "cold_median_total_ms": 902055.6,
+  "warm_structural_validity": "5/5",
+  "cold_structural_validity": "2/5",
+  "citation_integrity": "7/7",
+  "gate_warm_latency": false,
+  "gate_cold_latency": false,
+  "gate_structural_validity": true,
+  "meets_all_thresholds": false
+}
+{
+  "model": "qwen3-coder:30b-a3b-q4_K_M",
+  "warm_median_total_ms": 169783.8,
+  "cold_median_total_ms": 902044.5,
+  "warm_structural_validity": "5/5",
+  "cold_structural_validity": "2/5",
+  "citation_integrity": "7/7",
+  "gate_warm_latency": false,
+  "gate_cold_latency": false,
+  "gate_structural_validity": true,
+  "meets_all_thresholds": false
+}

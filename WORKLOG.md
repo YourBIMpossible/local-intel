@@ -46,6 +46,31 @@ rather than a faster version of this one.
 If both models miss the thresholds, that is a legitimate pre-committed
 outcome ("defer local model path"), not a defect to engineer around.
 
+**2026-08-22 — Phase 0 step 5: smoke test executed, both models miss both
+latency gates.** Full report: `phase0_results/PHASE0_REPORT.md`; raw data:
+`phase0_results/phase0_smoke_workstation-zeria-01.json`. 20/20 invocations
+completed (5 fixtures × 2 models × cold/warm) against the frozen 24,000-token
+worker view.
+
+`qwen2.5-coder:14b`: warm median 335,223 ms, cold median dominated by three
+~902,057 ms timeout ceilings. `qwen3-coder:30b-a3b-q4_K_M`: warm median
+169,784 ms, cold median 902,046 ms (3 of 5 cold runs hit the timeout
+ceiling). Both blow past
+`warm_e2e_max_ms: 20000` and `cold_e2e_max_ms: 60000` by 7–45x. Both pass
+`structural_validity_min: 3/5` cleanly (5/5 warm each) and citation
+integrity is clean on every run that produced an artifact (7/7 each).
+Confirmed via live `nvidia-smi` during one timeout run (99% util, 88 W) that
+the GPU was genuinely computing, not hung — these are real durations under
+the VRAM-spill condition recorded at step 4, not a client defect.
+
+Two flags on the data: (1) each model's first recorded warm run (f01) is an
+artifact of the script's own unrecorded warm-priming call reusing an
+identical prompt — 5.6 s / 10.6 s vs. 143–380 s for the model's other warm
+runs. Does not change any gate verdict. (2) fixtures are synthetic
+(`fixture_provenance: SYNTHETIC`), not real BIMpossible test logs, so this
+is Phase 0 measured "as configured," not yet "at real worker-view sizes" in
+the strictest reading of §6's decision table — see "Needs your call" below.
+
 ---
 
 ## Roadmap
@@ -68,4 +93,22 @@ real Claude input tokens. Needs a real tokenizer before Phase 1b.
 
 ## Needs your call
 
-*(nothing outstanding)*
+**Phase 0 §6 decision: defer the local model path, or run one more pass on
+real fixtures first?**
+
+Per the pre-committed decision table (§6), the row that matches is: "Neither
+model meets the thresholds at real worker-view sizes → Stop before building
+the full harness; defer local model path." Both candidates fail both
+latency gates by 7–45x; neither is close. Structural validity and citation
+integrity are not the blocker.
+
+The one open question is the phrase "at real worker-view sizes": these
+fixtures are synthetic, sized to hit the 24,000-token target but not drawn
+from an actual BIMpossible test run. Given the size of the margin, a second
+pass on real logs is unlikely to change the outcome — but admitting/deferring
+is a human, versioned act (§17), not mine to render. Full data and reasoning
+in `phase0_results/PHASE0_REPORT.md`.
+
+Options: (a) defer the local model path now on this data: (b) generate one
+round of real-fixture packets from an actual BIMpossible test run and repeat
+step 5 before deciding; (c) something else.
