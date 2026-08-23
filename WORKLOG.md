@@ -71,6 +71,26 @@ runs. Does not change any gate verdict. (2) fixtures are synthetic
 is Phase 0 measured "as configured," not yet "at real worker-view sizes" in
 the strictest reading of §6's decision table — see "Needs your call" below.
 
+**2026-08-22 — Phase 0 decision: `DEFER_LOCAL_MODEL_PATH`.** Human call,
+recorded per §17. Scope: the frozen 24K-worker-view / 32K-context
+synchronous configuration measured in step 5, on the synthetic fixture set —
+no second real-fixture Phase 0 pass, no model/context tuning of this
+candidate. Both models missed both latency gates by 7–45x; the margin is
+large enough that the synthetic-vs-real fixture question does not change
+the outcome. Local model triage inference is closed for this candidate
+configuration.
+
+Evidence set preserved as-is, nothing further to add to it: raw results
+(`phase0_results/phase0_smoke_workstation-zeria-01.json`), report with its
+exclusions (`phase0_results/PHASE0_REPORT.md`), hardware profile
+(`hardware_profiles/workstation-zeria-01.json`), fixture provenance
+(`fixtures/manifest.json`), and commits `9e9948b`…`897b5ed`.
+
+A distinct future candidate — deterministic compressor-only evaluation
+(Arm A: worker-view compression, Arm B: raw log) with no local model
+inference in scope — is out of scope for this mission and not opened here;
+it needs its own north-star record if pursued.
+
 ---
 
 ## Roadmap
@@ -93,22 +113,4 @@ real Claude input tokens. Needs a real tokenizer before Phase 1b.
 
 ## Needs your call
 
-**Phase 0 §6 decision: defer the local model path, or run one more pass on
-real fixtures first?**
-
-Per the pre-committed decision table (§6), the row that matches is: "Neither
-model meets the thresholds at real worker-view sizes → Stop before building
-the full harness; defer local model path." Both candidates fail both
-latency gates by 7–45x; neither is close. Structural validity and citation
-integrity are not the blocker.
-
-The one open question is the phrase "at real worker-view sizes": these
-fixtures are synthetic, sized to hit the 24,000-token target but not drawn
-from an actual BIMpossible test run. Given the size of the margin, a second
-pass on real logs is unlikely to change the outcome — but admitting/deferring
-is a human, versioned act (§17), not mine to render. Full data and reasoning
-in `phase0_results/PHASE0_REPORT.md`.
-
-Options: (a) defer the local model path now on this data: (b) generate one
-round of real-fixture packets from an actual BIMpossible test run and repeat
-step 5 before deciding; (c) something else.
+*(nothing outstanding — Phase 0 decision recorded above)*
