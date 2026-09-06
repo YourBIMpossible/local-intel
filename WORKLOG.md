@@ -71,7 +71,10 @@ runs. Does not change any gate verdict. (2) fixtures are synthetic
 is Phase 0 measured "as configured," not yet "at real worker-view sizes" in
 the strictest reading of §6's decision table — see "Needs your call" below.
 
-**2026-08-22 — Phase 0 decision: `DEFER_LOCAL_MODEL_PATH`.** Human call,
+**2026-08-22 — Phase 0 decision: `DEFER_LOCAL_MODEL_PATH`.** *(Revised
+2026-09-06 to warm-session-only — see
+`decisions/2026-09-06-defer-revision-warm-session-only.md`; text below
+preserved as originally recorded.)* Human call,
 recorded per §17. Scope: the frozen 24K-worker-view / 32K-context
 synchronous configuration measured in step 5, on the synthetic fixture set —
 no second real-fixture Phase 0 pass, no model/context tuning of this
@@ -126,6 +129,17 @@ disk-cold. Report: `phase0_results/PHASE0_OPERATIONAL_REPORT_2026-09-06.md`;
 results JSON, telemetry CSVs, and server-log segments alongside. Persistent
 `OLLAMA_KEEP_ALIVE=30m` set and verified from the server banner; runtime
 identity amendment committed (`b4c9f59`). DEFER, §6/§9/§13 untouched.
+
+**2026-09-06 — DEFER revised to warm-session-only (human ruling, §17).**
+Recommendation B accepted. Local models approved for normal active use with
+flash attention on and 30-minute keep-alive; cold/process-cold first use
+can still take up to ~1 minute, so cold-start responsiveness is not
+guaranteed and stays deferred. `qwen3.5:9b` 0/5 recorded as a
+benchmark-output-handling limitation (thinking output in `thinking`, harness
+read `response`), not a model failure; retest requires top-level
+`think: false` or dual-field validation. No further tests or hardware/driver
+investigation opened. Record:
+`decisions/2026-09-06-defer-revision-warm-session-only.md`.
 
 ## Roadmap
 
@@ -229,7 +243,7 @@ DEFER picture without cleanly overturning it, so DEFER stands until you rule:
    draft.
 
 **2026-09-06 — Ruling on `DEFER_LOCAL_MODEL_PATH` after the operational
-batch.** Evidence says LOCAL PATH WORKS for active warm-session use and the
+batch.** *(RESOLVED 2026-09-06: B accepted — see Done.)* Evidence says LOCAL PATH WORKS for active warm-session use and the
 cold-start gate passes (process-cold). Recommendation: **B — revise DEFER
 to warm-session-only.** Runners-up: A keep DEFER (ignores a clean pass),
 C reopen candidate selection (not needed; the 9B control only fails on a

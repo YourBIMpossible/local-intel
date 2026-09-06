@@ -88,3 +88,7 @@ None triggered. Batch ran 18:05:33Z → 18:22:46Z (17 min 13 s), exit 0, Ollama 
 ## 8. Recommendation (exactly one)
 
 **B — revise DEFER to warm-session-only.** Both candidates pass every §6 gate under FA-on + 30 m keep-alive when resident; cold also passes but with 20–60 s first-load exposure and no disk-cold measurement, so the local path should be scoped to sessions where the model is kept warm. Reopening candidate selection (C) is not needed on this evidence; keeping DEFER unchanged (A) would ignore a clean pass.
+
+## 9. Disposition (added 2026-09-06, after human ruling)
+
+Recommendation B accepted. See `decisions/2026-09-06-defer-revision-warm-session-only.md`. The `qwen3.5:9b` 0/5 validity is recorded there as a benchmark-output-handling limitation (thinking output in the `thinking` field, harness validated `response`), not a model failure.
