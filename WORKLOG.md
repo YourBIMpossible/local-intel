@@ -114,6 +114,19 @@ does not reverse DEFER or admit any model — those remain human §17 acts.
 
 ---
 
+**2026-09-06 — Phase 0 operational follow-up (FA on, keep-alive 30 m):
+both candidates pass every §6 gate; cold gate passes.** One unattended
+batch, 30 requests (3 models × cold/warm × 5 fixtures), 17 min, no stop
+condition, 0 flagged Windows events, no runner-crash markers. 14B: cold
+median 23.8 s / warm 18.0 s, 5/5 valid; 30B-A3B: cold 25.1 s / warm 16.4 s,
+5/5 valid. `qwen3.5:9b` control: fastest (warm 8.4 s) but 0/5 valid because
+it is a thinking model and the harness passes no `think` flag (diagnostic
+confirmed `think:false` yields valid JSON). Cold is process-cold, not
+disk-cold. Report: `phase0_results/PHASE0_OPERATIONAL_REPORT_2026-09-06.md`;
+results JSON, telemetry CSVs, and server-log segments alongside. Persistent
+`OLLAMA_KEEP_ALIVE=30m` set and verified from the server banner; runtime
+identity amendment committed (`b4c9f59`). DEFER, §6/§9/§13 untouched.
+
 ## Roadmap
 
 **Coherence between `status` and hypothesis text is unmeasured.** In the
@@ -214,3 +227,12 @@ DEFER picture without cleanly overturning it, so DEFER stands until you rule:
    fully GPU-resident, would likely dodge both the spill and the cold-load
    penalty. No amendment drafted into protocol form; the draft remains a
    draft.
+
+**2026-09-06 — Ruling on `DEFER_LOCAL_MODEL_PATH` after the operational
+batch.** Evidence says LOCAL PATH WORKS for active warm-session use and the
+cold-start gate passes (process-cold). Recommendation: **B — revise DEFER
+to warm-session-only.** Runners-up: A keep DEFER (ignores a clean pass),
+C reopen candidate selection (not needed; the 9B control only fails on a
+harness think-flag gap, which would itself need a §9 edit). Human-only
+decision (§17); nothing modified. If B: it needs a dated, versioned decision
+record before any Phase 1a work.
