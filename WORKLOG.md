@@ -91,6 +91,27 @@ A distinct future candidate — deterministic compressor-only evaluation
 inference in scope — is out of scope for this mission and not opened here;
 it needs its own north-star record if pursued.
 
+**2026-09-06 — Flash attention made permanent; FA-on Phase 0 re-measure
+executed.** At user request. (1) `OLLAMA_FLASH_ATTENTION=1` set in the
+Windows User environment (persistent) and Ollama restarted;
+`server.log` confirms `OLLAMA_FLASH_ATTENTION:true`; large-prompt prefill on
+the main instance verified at 6,335 tok/s (was ~1.9 tok/s FA-off). (2) Both
+original candidates re-measured through the frozen harness with only the FA
+flag changed — new driver [`run_phase0_smoke_fa.py`](run_phase0_smoke_fa.py),
+results [`phase0_results/phase0_smoke_workstation-zeria-01_fa-on_2026-09-06.json`](phase0_results/phase0_smoke_workstation-zeria-01_fa-on_2026-09-06.json),
+report [`phase0_results/PHASE0_REPORT_FA-ON_2026-09-06.md`](phase0_results/PHASE0_REPORT_FA-ON_2026-09-06.md).
+The canonical FA-off DEFER evidence was preserved byte-for-byte.
+
+Outcome (medians): **both models now PASS the warm latency gate**
+(14B 17,449 ms, 30B 15,579 ms; gate 20,000 ms) — previously missed by
+8–17×. Warm end-to-end fell 19× / 11×, driven by a 14–28× prefill speedup.
+Structural validity 5/5 and citation integrity 10/10 for both (quality was
+never the issue). **Both still FAIL the cold gate**, but the cause changed
+entirely: FA-on cold *inference* is healthy (~23–25 s); the cold failure is
+now **model load time** (56 s / 75 s), which alone exceeds the 60 s gate.
+`meets_all_thresholds` remains `false` for both. This run **measures**; it
+does not reverse DEFER or admit any model — those remain human §17 acts.
+
 ---
 
 ## Roadmap
@@ -113,4 +134,83 @@ real Claude input tokens. Needs a real tokenizer before Phase 1b.
 
 ## Needs your call
 
-*(nothing outstanding — Phase 0 decision recorded above)*
+**2026-09-01 — Reopen local-model path with new/smaller candidates?** Two
+documents drafted at your request, read-only pass, nothing executed:
+`phase1-protocol-amendment.draft.md` (proposed protocol changes to add
+`qwen3.5:9b` — 6.6 GB weights, ~13GB smaller than the 14B candidate — and/or
+KV-cache quantization as a new lever) and `phase0-reconsideration.md` (fresh
+read on the Phase 0 result: the failure was VRAM residency at 32K context,
+not model output quality — structural validity and citation integrity both
+passed cleanly for both original candidates). `DEFER_LOCAL_MODEL_PATH`
+stands unchanged; nothing here reverses it. Needs a ruling on whether to
+run the suggested non-binding residency probe, and if so which candidate(s)
+to formalize into a dated protocol amendment.
+
+**2026-09-05 — Flash attention was OFF during Phase 0; it accounts for most
+of the measured latency.** Non-binding hardware diagnostic (no evidence
+packets, no protocol action), run at user request while chasing a reported
+system freeze. Findings on `workstation-zeria-01` with `qwen3.5:9b`
+(6.6 GB, Q4_K_M) at `num_ctx=32768`, **fully GPU-resident** (34/34 layers,
+6.58 GB VRAM, no spill):
+
+- Ollama's server default is `OLLAMA_FLASH_ATTENTION:false`. With it off,
+  **prompt-eval (prefill) ran at 1.9 tok/s**; token *generation* was fine at
+  109 tok/s. The GPU sat at 2–31% util / 36–49 W during prefill — stalling on
+  a slow path, not computing.
+- With `OLLAMA_FLASH_ATTENTION=1` (isolated test server on :11435, main
+  instance untouched), **prefill jumped to ~288 tok/s (≈150×)**, total
+  round-trip 51.8 s → 4.4 s, and the GPU ramped to 87% util / 226 W / full
+  clocks. Generation unchanged (~120 tok/s).
+
+Why this matters for the DEFER basis: at 1.9 tok/s prefill, a 24,000-token
+worker view would take ~3.5 h just to ingest — which is the order of the
+335,000 ms / 902,000 ms latencies Phase 0 recorded. Phase 0 ran with flash
+attention off (server default), so the recorded latencies are very likely
+**dominated by a disabled serving-layer flag, not purely by VRAM spill** as
+the step-4 hardware note concluded. This is a *hypothesis for the original
+two candidates* — only `qwen3.5:9b` was re-measured here, not
+`qwen2.5-coder:14b` / `qwen3-coder:30b`. It does not reverse DEFER.
+
+Needs your call: (a) whether flash attention (and possibly
+`OLLAMA_KV_CACHE_TYPE`) should be added to §9/§14 as part of configuration
+identity before any reopened Phase 0 pass — a re-measure with FA off would
+be measuring the wrong thing; (b) whether to re-measure the original two
+candidates with FA on before treating DEFER as resting on a fully explored
+space. Ties directly into `phase1-protocol-amendment.draft.md` (which flagged
+KV-cache quantization as an untested lever but did **not** catch that flash
+attention itself was off).
+
+**2026-09-06 — FA-on re-measure is in; four decisions now sit with you.**
+The re-measure requested above (item b) is done — see Done (2026-09-06) and
+`phase0_results/PHASE0_REPORT_FA-ON_2026-09-06.md`. It materially changes the
+DEFER picture without cleanly overturning it, so DEFER stands until you rule:
+
+1. **Does this revise the basis of `DEFER_LOCAL_MODEL_PATH`?** The DEFER
+   record attributes the failure to latency under VRAM spill. The evidence
+   now shows the *warm* latency failure was dominated by a disabled
+   serving-layer flag: with FA on, both candidates pass the warm gate and
+   all quality gates. DEFER is not automatically wrong — the cold gate still
+   fails — but its stated rationale is no longer the whole story. Whether to
+   annotate/supersede the DEFER record is your call (§17), not mine.
+
+2. **The cold gate now fails on a model-load anomaly, not inference.** Cold
+   load was 56 s / 75 s in this run vs 5 s / 11 s in the original FA-off run
+   — 10× worse, and FA cannot cause that (it does not touch weight loading).
+   Likely environmental (cold OS cache after the Ollama restart + five
+   back-to-back full reloads per model under mmap-disabled Windows+CUDA).
+   Options: re-run the cold pass against a warm OS cache; investigate the
+   mmap-disabled load path; or decide the cold gate should be measured under
+   sustained-warm (`keep_alive`) operation, which is how the tool would
+   actually run. Each is a distinct choice; none taken.
+
+3. **Formalize flash attention (± `OLLAMA_KV_CACHE_TYPE`) into §9/§14
+   configuration identity.** Still open from 2026-09-05, now with force: the
+   FA-on and FA-off runs currently share an `invocation_configuration_id`
+   because v3 does not encode the flag. A dated, versioned protocol edit
+   (human-only) would close this before any reopened Phase 0 pass.
+
+4. **If you reopen Phase 0, which candidate set?** The `qwen3.5:9b` line
+   from `phase1-protocol-amendment.draft.md` is still on the table and, being
+   fully GPU-resident, would likely dodge both the spill and the cold-load
+   penalty. No amendment drafted into protocol form; the draft remains a
+   draft.
