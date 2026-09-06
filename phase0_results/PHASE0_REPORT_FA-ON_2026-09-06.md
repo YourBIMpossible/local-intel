@@ -74,7 +74,7 @@ gate before a single token is processed.
 This is the one metric that got *worse*, and flash attention cannot explain
 it — FA does not touch weight loading. In the **original FA-off** run these
 same cold loads were 5.3 s (14B) and 10.9 s (30B) — NVMe-plausible on the
-recorded store (Samsung 9100 PRO 4TB, `C:\Users\Zeria\.ollama\models`). In
+recorded store (Samsung 9100 PRO 4TB, `<HOME>\.ollama\models`). In
 this run they were 10× that.
 
 Most likely environmental, specific to how this run was staged, not a

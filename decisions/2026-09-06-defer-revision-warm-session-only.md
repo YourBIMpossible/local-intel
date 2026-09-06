@@ -44,3 +44,12 @@ confirmed `think: false` yields valid schema-conforming JSON.
 
 Admission to Phase 1a, candidate selection, and any §6/§9/§13 edit remain
 separate, versioned human decisions.
+
+## Corrective note (2026-09-06, post-review; added by the corrective commit, ruling text above left as written)
+
+Two statements in the ruling and limitation paragraphs above are not supported by the committed evidence as written. The ruling text is human-owned and is left unedited; the corrections are recorded here for the human decision-maker to adopt or reword.
+
+1. Ruling 1 says `OLLAMA_KEEP_ALIVE=30m` was "in effect (verified from the server banner)". The server environment did carry 30m0s, but every measured request sent `keep_alive=10m` in its body, which overrides the server value; the effective residency window during the batch was 10 minutes (every condition's `ps_after.expires_at` = end + ~10 min). A 30-minute client operating condition was not measured. "30 m keep-alive" should be read as configured server policy, not as a measured condition.
+2. The thinking-field explanation for `qwen3.5:9b` (tokens written to a top-level `thinking` field; `think: false` diagnostic "confirmed") has no committed evidence: the harness recorded only the JSON-decode error, and the diagnostic was not saved. The explanation is unverified. The classification "not a model failure" is retained as a non-classification; it is not evidence of a pass.
+
+Neither correction changes the measured latencies, the §6 pass/fail table for the two candidates, or the scope of this ruling. No Phase 1a admission is made by this note or by the corrective commit.

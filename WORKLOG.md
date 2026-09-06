@@ -117,26 +117,43 @@ does not reverse DEFER or admit any model — those remain human §17 acts.
 
 ---
 
-**2026-09-06 — Phase 0 operational follow-up (FA on, keep-alive 30 m):
-both candidates pass every §6 gate; cold gate passes.** One unattended
+**2026-09-06 — Phase 0 operational follow-up (FA on, server keep-alive 30 m,
+requests sent keep_alive=10m — see correction below):
+both candidates pass every §6 gate on 5-run medians; cold gate passes.** One unattended
 batch, 30 requests (3 models × cold/warm × 5 fixtures), 17 min, no stop
 condition, 0 flagged Windows events, no runner-crash markers. 14B: cold
 median 23.8 s / warm 18.0 s, 5/5 valid; 30B-A3B: cold 25.1 s / warm 16.4 s,
 5/5 valid. `qwen3.5:9b` control: fastest (warm 8.4 s) but 0/5 valid because
-it is a thinking model and the harness passes no `think` flag (diagnostic
-confirmed `think:false` yields valid JSON). Cold is process-cold, not
+the harness recorded `unparseable` responses (thinking-field explanation
+unverified; no committed diagnostic). Cold is process-cold, not
 disk-cold. Report: `phase0_results/PHASE0_OPERATIONAL_REPORT_2026-09-06.md`;
 results JSON, telemetry CSVs, and server-log segments alongside. Persistent
 `OLLAMA_KEEP_ALIVE=30m` set and verified from the server banner; runtime
 identity amendment committed (`b4c9f59`). DEFER, §6/§9/§13 untouched.
 
+**2026-09-06 — Corrective commit after `/review-all` (evidence-and-decision
+PR prep).** Corrections: the batch ran with per-request `keep_alive=10m`
+(overrides the 30 m server env; effective window 10 min, `ps_after.expires_at`
+confirms); the 14B warm margin was overstated — genuine warm runs (excluding
+the f01 prompt-cache hit) 20,336 / 21,175 / 17,977 / 16,364 ms, median
+19,157 ms, 2 of 4 over the gate; the `qwen3.5:9b` thinking-field explanation
+is unverified (no committed diagnostic). Runner hardened: partial results and
+in-flight sampler CSV preserved on exception/Ctrl-C with abort reason,
+None-safe formatting on timeout, per-batch run id with overwrite guards,
+`request_keep_alive` in `RuntimeIdentity` (2026-09-06.2), `<HOME>` redaction
+of committed server-log segments/JSON/report. 20 new focused tests
+(`tests/test_operational_runner.py`, `tests/test_redact_paths.py`); 82 pass.
+No benchmark rerun. NORTHSTAR, §6/§9/§13, candidates, and the admission
+decision untouched. **No Phase 1a admission has been made.**
+
 **2026-09-06 — DEFER revised to warm-session-only (human ruling, §17).**
 Recommendation B accepted. Local models approved for normal active use with
-flash attention on and 30-minute keep-alive; cold/process-cold first use
+flash attention on and 30-minute server keep-alive (measured with 10 m
+request keep_alive — see corrective note in the decision record); cold/process-cold first use
 can still take up to ~1 minute, so cold-start responsiveness is not
 guaranteed and stays deferred. `qwen3.5:9b` 0/5 recorded as a
-benchmark-output-handling limitation (thinking output in `thinking`, harness
-read `response`), not a model failure; retest requires top-level
+benchmark-output-handling limitation (thinking-field explanation unverified),
+not a model failure; retest requires top-level
 `think: false` or dual-field validation. No further tests or hardware/driver
 investigation opened. Record:
 `decisions/2026-09-06-defer-revision-warm-session-only.md`.

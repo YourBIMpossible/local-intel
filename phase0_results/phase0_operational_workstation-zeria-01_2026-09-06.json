@@ -44,7 +44,7 @@
     "power_profile": "High performance",
     "cpu_cores": 16,
     "cpu_threads": 32,
-    "model_store_path": "C:\\Users\\Zeria\\.ollama\\models"
+    "model_store_path": "<HOME>\\.ollama\\models"
   },
   "hardware_profile_hash": "b725633194a7841906100e3c7529dec0f5873531b10785659a4e28b8fc8c9ebf",
   "fixture_set_version": "v1",

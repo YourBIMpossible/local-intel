@@ -26,7 +26,7 @@ from typing import Any
 DEFAULT_HOST = "http://localhost:11434"
 SERVER_LOG = Path.home() / "AppData" / "Local" / "Ollama" / "server.log"
 
-RUNTIME_IDENTITY_VERSION = "2026-09-06.1"
+RUNTIME_IDENTITY_VERSION = "2026-09-06.2"
 
 
 def _get_json(url: str, payload: dict | None = None, timeout_s: float = 10) -> dict:
@@ -55,7 +55,8 @@ class ServerEnvironment:
 
     ollama_version: str | None
     flash_attention: str | None      # "true"/"false" as logged
-    keep_alive: str | None           # e.g. "30m0s"
+    keep_alive: str | None           # e.g. "30m0s"; server DEFAULT only -- a
+                                     # request-body `keep_alive` overrides it
     kv_cache_type: str | None        # "" means server default (f16)
     max_loaded_models: str | None
     log_banner_line_no: int | None
@@ -238,6 +239,11 @@ class RuntimeIdentity:
     residency_after: ResidencyObservation
     prompt_eval_count: int | None     # actual input tokens counted by server
     eval_count: int | None            # actual output tokens
+    # Added 2026-09-06.2. The per-request `keep_alive` sent in the
+    # /api/generate body overrides the server's OLLAMA_KEEP_ALIVE for that
+    # load, so it -- not `server.keep_alive` -- is the effective residency
+    # window of the measured request. None means "not recorded" (pre-.2).
+    request_keep_alive: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

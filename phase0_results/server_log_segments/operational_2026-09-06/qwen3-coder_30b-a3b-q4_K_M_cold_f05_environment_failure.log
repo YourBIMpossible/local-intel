@@ -1,11 +1,11 @@
 [GIN] 2026/09/06 - 11:15:00 | 200 |     19.5857ms |       127.0.0.1 | POST     "/api/generate"
 [GIN] 2026/09/06 - 11:15:00 | 200 |      1.0209ms |       127.0.0.1 | GET      "/api/tags"
-time=2026-09-06T11:15:03.810-07:00 level=INFO source=sched.go:1147 msg="disabling mmap for llama-server load by default" model=C:\Users\Zeria\.ollama\models\blobs\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a reason=windows_cuda
-time=2026-09-06T11:15:03.810-07:00 level=INFO source=server.go:109 msg="using llama-server for model" model=C:\Users\Zeria\.ollama\models\blobs\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a
-time=2026-09-06T11:15:03.822-07:00 level=INFO source=llama_server.go:433 msg="starting llama-server" cmd="C:\\Users\\Zeria\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe --model C:\\Users\\Zeria\\.ollama\\models\\blobs\\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a --port 62252 --host 127.0.0.1 --no-webui --offline -c 32768 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --load-mode none --flash-attn on -b 512 -ub 512 --context-shift --keep 4"
+time=2026-09-06T11:15:03.810-07:00 level=INFO source=sched.go:1147 msg="disabling mmap for llama-server load by default" model=<HOME>\.ollama\models\blobs\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a reason=windows_cuda
+time=2026-09-06T11:15:03.810-07:00 level=INFO source=server.go:109 msg="using llama-server for model" model=<HOME>\.ollama\models\blobs\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a
+time=2026-09-06T11:15:03.822-07:00 level=INFO source=llama_server.go:433 msg="starting llama-server" cmd="<HOME>\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe --model <HOME>\\.ollama\\models\\blobs\\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a --port 62252 --host 127.0.0.1 --no-webui --offline -c 32768 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --load-mode none --flash-attn on -b 512 -ub 512 --context-shift --keep 4"
 time=2026-09-06T11:15:03.825-07:00 level=INFO source=sched.go:613 msg="system memory" total="93.7 GiB" free="53.3 GiB" free_swap="58.8 GiB"
 time=2026-09-06T11:15:03.825-07:00 level=INFO source=sched.go:620 msg="gpu memory" id=0 library=CUDA available="14.2 GiB" free="14.6 GiB" minimum="457.0 MiB" overhead="0 B"
-time=2026-09-06T11:15:03.825-07:00 level=INFO source=llama_server.go:1048 msg="loading model via llama-server" model=C:\Users\Zeria\.ollama\models\blobs\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a
+time=2026-09-06T11:15:03.825-07:00 level=INFO source=llama_server.go:1048 msg="loading model via llama-server" model=<HOME>\.ollama\models\blobs\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a
 time=2026-09-06T11:15:03.825-07:00 level=INFO source=llama_server.go:1295 msg="waiting for llama-server to start responding"
 time=2026-09-06T11:15:03.827-07:00 level=INFO source=llama_server.go:1350 msg="waiting for llama-server to become available" status="llm server error"
 cmn  common_param: common_params_print_info: build 1 (7e4c0a968) with Clang 18.1.8 for Windows AMD64
@@ -23,8 +23,8 @@ srv  llama_server: this can be a security risk (cross-origin attacks)
 srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
 srv  llama_server: -----------------
 srv         start: binding port with default address family
-srv    load_model: loading model 'C:\Users\Zeria\.ollama\models\blobs\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a'
-srv    load_model: local path 'C:\Users\Zeria\.ollama\models\blobs\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a'
+srv    load_model: loading model '<HOME>\.ollama\models\blobs\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a'
+srv    load_model: local path '<HOME>\.ollama\models\blobs\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a'
 cmn  common_init_: fitting params to device memory ...
 cmn  common_init_: (for bugs during this step try to reproduce them with -fit off, or provide --verbose logs if the bug only occurs with -fit on)
 common_params_fit_impl: getting device memory data for initial parameters:
@@ -88,7 +88,7 @@ common_params_fit_impl: id=0, n_layer=49, n_part=21, overflow_type=3, mem= 14037
 common_params_fit_impl:   - CUDA0 (NVIDIA GeForce RTX 5080): 49 layers (21 overflowing),  13928 MiB used,   1056 MiB free
 common_fit_params: successfully fit params to free device memory
 common_fit_params: fitting params to free memory took 1.84 seconds
-llama_model_loader: loaded meta data with 35 key-value pairs and 579 tensors from C:\Users\Zeria\.ollama\models\blobs\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a (version GGUF V3 (latest))
+llama_model_loader: loaded meta data with 35 key-value pairs and 579 tensors from <HOME>\.ollama\models\blobs\sha256-1194192cf2a187eb02722edcc3f77b11d21f537048ce04b67ccf8ba78863006a (version GGUF V3 (latest))
 llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
 llama_model_loader: - kv   0:                       general.architecture str              = qwen3moe
 llama_model_loader: - kv   1:                           general.basename str              = Qwen3-Coder

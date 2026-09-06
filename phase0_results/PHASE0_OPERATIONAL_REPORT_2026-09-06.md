@@ -16,7 +16,8 @@ Governance: §6 thresholds, §9 parameters, §13 discipline, the DEFER decision,
 | GPU / driver | NVIDIA GeForce RTX 5080, 616.56 | nvidia-smi |
 | VRAM total / used / free at batch start | 16,303 / 4,715 / 11,263 MiB | nvidia-smi |
 | OLLAMA_FLASH_ATTENTION effective | true (`flash_attn = enabled` in every load segment) | server.log banner + load segments |
-| OLLAMA_KEEP_ALIVE effective | 30m0s | server.log banner |
+| OLLAMA_KEEP_ALIVE (server environment) | 30m0s | server.log banner |
+| Request `keep_alive` sent (effective for every measured load) | 10m | `run_one` request body; every condition's `ps_after.expires_at` = condition end + ~10 min |
 | KV cache type | server default, f16/f16 in every load | load segments |
 | num_ctx | 32768 requested and logged | §9 / load segments |
 | Output cap | 1800 (§9) | — |
@@ -39,7 +40,7 @@ Note: 14B is not fully GPU-resident at this VRAM budget (2 layers on CPU) becaus
 | qwen3-coder:30b-a3b | 25,126 ms | PASS | 16,369 ms | PASS | 5/5 / 5/5 | 10/10 | **PASS** |
 | qwen3.5:9b (control) | 16,393 ms | PASS | 8,403 ms | PASS | 0/5 / 0/5 | 0/0 | FAIL (validity) |
 
-Contrast with the earlier FA-on smoke (`PHASE0_REPORT_FA-ON_2026-09-06.md`) and the FA-off original, which both missed the gates: the difference this time is a warm server with FA confirmed on and keep-alive 30m, plus load time measured separately.
+Contrast with the earlier FA-on smoke (`PHASE0_REPORT_FA-ON_2026-09-06.md`) and the FA-off original, which both missed the gates: the difference this time is a warm server with FA confirmed on (server `OLLAMA_KEEP_ALIVE` 30m0s, requests sent `keep_alive=10m`), plus load time measured separately.
 
 ## 3. Breakdown (medians; per-run table in the JSON)
 
@@ -50,10 +51,10 @@ Contrast with the earlier FA-on smoke (`PHASE0_REPORT_FA-ON_2026-09-06.md`) and 
 | 9B control | 3,709 ms | 12,684 ms | 5,267 / 5,278 | 89.5 | 650 | 8,349 | 298 W / 60 °C |
 
 Observations:
-- **Prefill dominates.** At ~27k prompt tokens, prefill is 10–14 s for both candidates. Warm totals sit 2–4 s under the 20 s gate; a longer worker view would breach it.
+- **Prefill dominates.** At ~27k prompt tokens, prefill is 10–14 s for both candidates. The warm margin is thin and was overstated in the first version of this report (see §10): excluding the prompt-cache-hit f01 run, 14B genuine warm totals are 20,336 / 21,175 / 17,977 / 16,364 ms (median 19,157 ms; 2 of 4 over the 20 s gate, margin under 1 s on the median), 30B-A3B 17,086 / 16,369 / 19,567 / 14,915 ms (median 16,728 ms; 0 over). A longer worker view would breach the gate for 14B.
 - **First cold load of each model is 2–4× the later ones** (14B 22.0 s, 30B 16.6 s, 9B 17.8 s) even with the page cache warm. Worst single cold total: 58.0 s (14B, run 1), inside but close to the 60 s gate.
-- **Warm f01 runs prefilled in 32–71 ms** — a prompt-cache hit from the unrecorded preload (same fixture). Excluded from nothing, but the warm medians are driven by f02–f05.
-- **9B control:** latency fine; 0/5 validity is a harness incompatibility, not a model failure. `qwen3.5` is a thinking model; with no `think` flag the tokens land in the `thinking` field and `response` is empty → `unparseable`. A one-request diagnostic after the batch confirmed `think:false` returns valid JSON. The harness passes no think flag (§9 doesn't define one), so this was run as-is per the directive.
+- **Warm f01 runs prefilled in 32–71 ms** — a prompt-cache hit from the unrecorded preload (same fixture). The reported warm medians in §2 and in the JSON summaries include that run (14B 17,977 ms is the f04 value, which becomes the 5-run median because f01 pulls the low end); the genuine 4-run figures are in the bullet above. The runner now tags such runs with `prompt_cache_note`.
+- **9B control:** latency fine; 0/5 validity recorded as `unparseable` (empty or non-JSON `response`). The committed evidence records only the JSON-decode error: the harness captures neither the raw `response` nor a `thinking` field, and the post-batch `think:false` diagnostic mentioned in the first version of this report was not committed. The explanation that the output landed in a `thinking` field is therefore **unverified**. The 0/5 is not treated as a model failure and not treated as a model pass; it is an open output-handling question. The harness passes no think flag (§9 doesn't define one), so this was run as-is per the directive.
 - **Classification accuracy** (not a §6 gate): 14B 8/10 on expected class (misses f01 both times), 30B 8/10 (misses f02 both times).
 
 ## 4. Telemetry and system-event findings
@@ -87,8 +88,18 @@ None triggered. Batch ran 18:05:33Z → 18:22:46Z (17 min 13 s), exit 0, Ollama 
 
 ## 8. Recommendation (exactly one)
 
-**B — revise DEFER to warm-session-only.** Both candidates pass every §6 gate under FA-on + 30 m keep-alive when resident; cold also passes but with 20–60 s first-load exposure and no disk-cold measurement, so the local path should be scoped to sessions where the model is kept warm. Reopening candidate selection (C) is not needed on this evidence; keeping DEFER unchanged (A) would ignore a clean pass.
+**B — revise DEFER to warm-session-only.** Both candidates pass every §6 gate on the 5-run medians under FA-on when resident (server env keep-alive 30m0s, requests sent `keep_alive=10m`); cold also passes but with 20–60 s first-load exposure and no disk-cold measurement, so the local path should be scoped to sessions where the model is kept warm. Reopening candidate selection (C) is not needed on this evidence; keeping DEFER unchanged (A) would ignore a clean pass.
 
 ## 9. Disposition (added 2026-09-06, after human ruling)
 
-Recommendation B accepted. See `decisions/2026-09-06-defer-revision-warm-session-only.md`. The `qwen3.5:9b` 0/5 validity is recorded there as a benchmark-output-handling limitation (thinking output in the `thinking` field, harness validated `response`), not a model failure.
+Recommendation B accepted. See `decisions/2026-09-06-defer-revision-warm-session-only.md`. The `qwen3.5:9b` 0/5 validity is recorded there as a benchmark-output-handling limitation, not a model failure; the specific thinking-field explanation is unverified (see §10).
+
+## 10. Corrections (2026-09-06, post-review; corrective commit)
+
+Made after a converged code/security review of the branch. The measured latencies, validity counts, and the pass/fail table are unchanged. Three statements were wrong or unsupported and are corrected above:
+
+1. **Keep-alive.** The server environment had `OLLAMA_KEEP_ALIVE=30m0s`, but every request in this batch carried `keep_alive=10m` in its body (`run_phase0_smoke.run_one`), and the request value overrides the server value for the load it triggers. All six conditions' `ps_after.expires_at` sit ~10 min after the condition ended. No 30-minute client operating condition was measured. `RuntimeIdentity` (version 2026-09-06.2) now records `request_keep_alive` separately from `server.keep_alive`.
+2. **14B warm margin.** "2–4 s under the 20 s gate" was computed on 5-run medians that include the warm f01 prompt-cache hit (prefill 71 ms). The genuine warm figures are given in §3; the 14B margin on the median of the four genuine runs is under 1 s, and two of those four runs exceed the gate.
+3. **qwen3.5:9b explanation.** The thinking-field diagnosis and the `think:false` diagnostic are not in the committed evidence and are marked unverified. The model is neither classified as failed nor as passing structural validity.
+
+Also in the same commit: local account paths in the committed server-log segments, results JSON, and the companion FA-on report were redacted to `<HOME>`; the operational runner now preserves partial results and the in-flight sampler CSV on any exception or Ctrl-C, formats missing durations without crashing, keys every artifact by a per-batch run id, and refuses to overwrite existing outputs. The hardware profile hash in the JSON was computed over the unredacted profile.

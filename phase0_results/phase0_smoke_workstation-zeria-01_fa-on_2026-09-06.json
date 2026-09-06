@@ -7,7 +7,7 @@
   "serving_config": {
     "flash_attention_enabled": true,
     "flash_attention_source": "OLLAMA_FLASH_ATTENTION=1 (Windows User env, persistent)",
-    "flash_attention_verified_from": "C:\\Users\\Zeria\\AppData\\Local\\Ollama\\server.log",
+    "flash_attention_verified_from": "<HOME>\\AppData\\Local\\Ollama\\server.log",
     "flash_attention_log_value": "true"
   },
   "config_identity_note": "invocation_configuration_id (\u00a79) does NOT encode the flash-attention flag in protocol v3, so these FA-on runs carry the same config-id as the FA-off DEFER runs. The FA distinction is recorded here out-of-band. Whether flash attention becomes part of \u00a79/\u00a714 configuration identity is an open human call (WORKLOG 2026-09-05).",
@@ -34,7 +34,7 @@
     "power_profile": "High performance",
     "cpu_cores": 16,
     "cpu_threads": 32,
-    "model_store_path": "C:\\Users\\Zeria\\.ollama\\models"
+    "model_store_path": "<HOME>\\.ollama\\models"
   },
   "hardware_profile_hash": "b725633194a7841906100e3c7529dec0f5873531b10785659a4e28b8fc8c9ebf",
   "fixture_set_version": "v1",

@@ -1,11 +1,11 @@
 [GIN] 2026/09/06 - 11:20:05 | 200 |     29.7514ms |       127.0.0.1 | POST     "/api/generate"
 [GIN] 2026/09/06 - 11:20:05 | 200 |      1.5415ms |       127.0.0.1 | GET      "/api/tags"
-time=2026-09-06T11:20:08.495-07:00 level=INFO source=sched.go:1147 msg="disabling mmap for llama-server load by default" model=C:\Users\Zeria\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c reason=windows_cuda
-time=2026-09-06T11:20:08.495-07:00 level=INFO source=server.go:109 msg="using llama-server for model" model=C:\Users\Zeria\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c
-time=2026-09-06T11:20:08.505-07:00 level=INFO source=llama_server.go:433 msg="starting llama-server" cmd="C:\\Users\\Zeria\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe --model C:\\Users\\Zeria\\.ollama\\models\\blobs\\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c --port 51805 --host 127.0.0.1 --no-webui --offline -c 32768 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --mmproj C:\\Users\\Zeria\\.ollama\\models\\blobs\\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c --load-mode none --flash-attn on -b 1024 -ub 1024 --context-shift --keep 4"
+time=2026-09-06T11:20:08.495-07:00 level=INFO source=sched.go:1147 msg="disabling mmap for llama-server load by default" model=<HOME>\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c reason=windows_cuda
+time=2026-09-06T11:20:08.495-07:00 level=INFO source=server.go:109 msg="using llama-server for model" model=<HOME>\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c
+time=2026-09-06T11:20:08.505-07:00 level=INFO source=llama_server.go:433 msg="starting llama-server" cmd="<HOME>\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe --model <HOME>\\.ollama\\models\\blobs\\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c --port 51805 --host 127.0.0.1 --no-webui --offline -c 32768 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --mmproj <HOME>\\.ollama\\models\\blobs\\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c --load-mode none --flash-attn on -b 1024 -ub 1024 --context-shift --keep 4"
 time=2026-09-06T11:20:08.509-07:00 level=INFO source=sched.go:613 msg="system memory" total="93.7 GiB" free="53.1 GiB" free_swap="58.8 GiB"
 time=2026-09-06T11:20:08.509-07:00 level=INFO source=sched.go:620 msg="gpu memory" id=0 library=CUDA available="14.2 GiB" free="14.6 GiB" minimum="457.0 MiB" overhead="0 B"
-time=2026-09-06T11:20:08.509-07:00 level=INFO source=llama_server.go:1048 msg="loading model via llama-server" model=C:\Users\Zeria\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c
+time=2026-09-06T11:20:08.509-07:00 level=INFO source=llama_server.go:1048 msg="loading model via llama-server" model=<HOME>\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c
 time=2026-09-06T11:20:08.509-07:00 level=INFO source=llama_server.go:1295 msg="waiting for llama-server to start responding"
 time=2026-09-06T11:20:08.509-07:00 level=INFO source=llama_server.go:1350 msg="waiting for llama-server to become available" status="llm server error"
 cmn  common_param: common_params_print_info: build 1 (7e4c0a968) with Clang 18.1.8 for Windows AMD64
@@ -23,8 +23,8 @@ srv  llama_server: this can be a security risk (cross-origin attacks)
 srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
 srv  llama_server: -----------------
 srv         start: binding port with default address family
-srv    load_model: loading model 'C:\Users\Zeria\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c'
-srv    load_model: local path 'C:\Users\Zeria\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c'
+srv    load_model: loading model '<HOME>\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c'
+srv    load_model: local path '<HOME>\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c'
 handle_qwen35_like_clip: detected Ollama-format qwen35 GGUF used as mmproj; translating
 time=2026-09-06T11:20:08.760-07:00 level=INFO source=llama_server.go:1350 msg="waiting for llama-server to become available" status="llm server loading model"
 srv    load_model: [mtmd] estimated worst-case memory usage of mmproj is 1286.40 MiB (took 73.33 ms)
@@ -40,7 +40,7 @@ common_fit_params: successfully fit params to free device memory
 common_fit_params: fitting params to free memory took 0.44 seconds
 handle_qwen35: detected Ollama-format qwen35 GGUF; applying compatibility fixes
 compat patch disabled mmap for transformed text tensors
-llama_model_loader: loaded meta data with 53 key-value pairs and 442 tensors from C:\Users\Zeria\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c (version GGUF V3 (latest))
+llama_model_loader: loaded meta data with 53 key-value pairs and 442 tensors from <HOME>\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c (version GGUF V3 (latest))
 llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
 llama_model_loader: - kv   0:                       general.architecture str              = qwen35
 llama_model_loader: - kv   1:                          general.file_type u32              = 15
@@ -350,7 +350,7 @@ reserve_compute_meta:      CUDA0 compute buffer size =   248.10 MiB
 reserve_compute_meta:        CPU compute buffer size =    24.93 MiB
 reserve_compute_meta: graph splits = 1, nodes = 823
 warmup: flash attention is enabled
-srv    load_model: loaded multimodal model, 'C:\Users\Zeria\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c'
+srv    load_model: loaded multimodal model, '<HOME>\.ollama\models\blobs\sha256-dec52a44569a2a25341c4e4d3fee25846eed4f6f0b936278e3a3c900bb99d37c'
 cmn  common_conte: the context does not support partial sequence removal
 srv    load_model: speculative decoding will use checkpoints
 srv    load_model: initializing, n_slots = 1, n_ctx_slot = 32768, kv_unified = 'false'

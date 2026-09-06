@@ -72,8 +72,14 @@ def residency_snapshot(model_tag: str) -> dict:
     }
 
 
+# Per-request residency window sent in every /api/generate body. This value
+# OVERRIDES the server's OLLAMA_KEEP_ALIVE for the load it triggers; the
+# server setting only governs clients that omit the field.
+REQUEST_KEEP_ALIVE = "10m"
+
+
 def run_one(spec, model_tag: str, digest: str, profile_id: str, ollama_version: str,
-            state: str) -> dict:
+            state: str, keep_alive: str = REQUEST_KEEP_ALIVE) -> dict:
     lines, redaction = build_fixture(spec)
     packet = packet_for(spec, lines)
 
@@ -89,7 +95,7 @@ def run_one(spec, model_tag: str, digest: str, profile_id: str, ollama_version: 
         generation=GenerationParameters(),
         view_config=WorkerViewConfig(),
         timeout_ms=INVOCATION_TIMEOUT_MS,
-        keep_alive="10m",
+        keep_alive=keep_alive,
         model_load_state=state,
     )
 

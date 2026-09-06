@@ -48,6 +48,7 @@ from pathlib import Path
 from local_intel import __version__
 from local_intel.config_identity import GenerationParameters
 from local_intel.hardware import load_profile
+from local_intel.redact_paths import redact_local_paths
 from local_intel.ollama_client import (
     get_model_digest,
     get_ollama_version,
@@ -95,6 +96,12 @@ def main() -> int:
             f"(saw {fa_state!r}). Refusing to run an FA-on re-measure against a "
             "server that is not demonstrably FA-on."
         )
+        return 1
+
+    # Refuse to overwrite BEFORE spending an hour measuring (was checked after).
+    out = RESULTS_DIR / f"phase0_smoke_{profile_id}_fa-on_{RUN_DATE}.json"
+    if out.exists():
+        print(f"FATAL: {out} already exists; refusing to overwrite a prior FA-on run.")
         return 1
 
     profile_doc = load_profile(profile_id)
@@ -176,11 +183,7 @@ def main() -> int:
     }
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    out = RESULTS_DIR / f"phase0_smoke_{profile_id}_fa-on_{RUN_DATE}.json"
-    if out.exists():
-        print(f"FATAL: {out} already exists; refusing to overwrite a prior FA-on run.")
-        return 1
-    out.write_text(json.dumps(document, indent=2) + "\n", encoding="utf-8")
+    out.write_text(redact_local_paths(json.dumps(document, indent=2)) + "\n", encoding="utf-8")
     print(f"\nWrote {out}")
 
     print("\n=== §6 summary (FA-ON) ===")

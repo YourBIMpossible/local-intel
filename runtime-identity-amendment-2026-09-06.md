@@ -23,7 +23,8 @@ inferred; unreadable fields are `null`.
 | context length requested (`num_ctx`) / native context | `GenerationParameters.num_ctx`; `/api/show` |
 | GPU layers offloaded / total, overflowing layers | server.log load segment: `offloaded N/M layers to GPU`, `(k overflowing)` |
 | `OLLAMA_FLASH_ATTENTION` effective | server.log startup banner + `flash_attn = …` in load segment |
-| `OLLAMA_KEEP_ALIVE` effective | server.log startup banner |
+| `OLLAMA_KEEP_ALIVE` (server default) | server.log startup banner |
+| request-level `keep_alive` (overrides the server default for the load it triggers; the effective residency window) | driver constant `REQUEST_KEEP_ALIVE`, recorded as `RuntimeIdentity.request_keep_alive` (added 2026-09-06.2) |
 | KV-cache type | server.log: `K (type)`, `V (type)`; banner `OLLAMA_KV_CACHE_TYPE` |
 | vision projector | `/api/show` capabilities (`vision`) + load-segment projector markers |
 | benchmark condition | driver-declared `true-cold` / `warm-resident`, with `disk_cache_condition` stated in words |
@@ -32,6 +33,8 @@ inferred; unreadable fields are `null`.
 **Effective values on `workstation-zeria-01` as of this amendment** (from
 the running server's banner, not the shell): `OLLAMA_FLASH_ATTENTION:true`,
 `OLLAMA_KEEP_ALIVE:30m0s`, `OLLAMA_KV_CACHE_TYPE:` (server default, f16).
+The 2026-09-06 batches sent `keep_alive=10m` per request, so 10 m — not
+30 m — was the residency window actually in force during measurement.
 Both flags are also persisted as Windows User environment variables
 (`setx`). Note for reproducers: a process launched from a shell opened
 before `setx` inherits the stale environment — the first restart today did
