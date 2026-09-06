@@ -1,0 +1,4618 @@
+{
+  "phase": "0",
+  "protocol_version": "v3",
+  "run_label": "operational validation batch (warm-resident + process-cold), FA on, keep_alive 30m",
+  "run_date": "2026-09-06",
+  "started_utc": "2026-09-06T18:05:33.935568+00:00",
+  "ended_utc": "2026-09-06T18:22:46.608447+00:00",
+  "local_intel_version": "0.1.0",
+  "runtime_identity_version": "2026-09-06.1",
+  "server_environment": {
+    "ollama_version": "0.32.14",
+    "flash_attention": "true",
+    "keep_alive": "30m0s",
+    "kv_cache_type": "",
+    "max_loaded_models": "0",
+    "log_banner_line_no": 1
+  },
+  "gpu_at_start": {
+    "name": "NVIDIA GeForce RTX 5080",
+    "driver_version": "616.56",
+    "vram_total_mib": 16303,
+    "vram_used_mib_at_start": 4715,
+    "vram_free_mib_at_start": 11263
+  },
+  "kill_thresholds": {
+    "version": "v3",
+    "representative_view_size_tokens": 24000,
+    "warm_e2e_max_ms": 20000,
+    "cold_e2e_max_ms": 60000,
+    "structural_validity_min_numerator": 3,
+    "structural_validity_min_denominator": 5
+  },
+  "hardware_profile": {
+    "machine_profile_id": "workstation-zeria-01",
+    "cpu_model": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "system_ram_gb": 93.7,
+    "gpu_model": "NVIDIA GeForce RTX 5080",
+    "gpu_vram_gb": 15.9,
+    "gpu_driver_version": "610.74",
+    "os_version": "Windows 10.0.26200",
+    "ollama_version": "0.32.14",
+    "local_intel_version": "0.1.0",
+    "storage_type": "SSD (NVMe) Samsung SSD 9100 PRO 4TB",
+    "power_profile": "High performance",
+    "cpu_cores": 16,
+    "cpu_threads": 32,
+    "model_store_path": "<HOME>\\.ollama\\models"
+  },
+  "hardware_profile_hash": "b725633194a7841906100e3c7529dec0f5873531b10785659a4e28b8fc8c9ebf",
+  "fixture_set_version": "v1",
+  "generation_parameters": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "top_k": 1,
+    "seed": 0,
+    "num_ctx": 32768,
+    "max_output_tokens": 1800
+  },
+  "invocation_timeout_ms": 900000,
+  "stop_conditions": {
+    "min_available_ram_mb": 4096,
+    "max_sampler_gap_s": 60.0,
+    "runner_crash_markers": [
+      "exit status",
+      "CUDA error",
+      "panic:",
+      "SIGSEGV",
+      "signal: ",
+      "runner process has terminated"
+    ]
+  },
+  "aborted": null,
+  "conditions": [
+    {
+      "model": "qwen2.5-coder:14b",
+      "state": "cold",
+      "ps_before": [],
+      "started_utc": "2026-09-06T18:05:58.643422+00:00",
+      "ps_after": [
+        {
+          "name": "qwen2.5-coder:14b",
+          "size": 15746088302,
+          "size_vram": 14635572919,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:19:25.7762825-07:00"
+        }
+      ],
+      "ended_utc": "2026-09-06T18:09:31.921794+00:00"
+    },
+    {
+      "model": "qwen2.5-coder:14b",
+      "state": "warm",
+      "ps_before": [
+        {
+          "name": "qwen2.5-coder:14b",
+          "size": 15746088302,
+          "size_vram": 14635572919,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:19:25.7762825-07:00"
+        }
+      ],
+      "started_utc": "2026-09-06T18:09:33.968605+00:00",
+      "preload_load_observation": {
+        "offloaded_layers": 47,
+        "total_layers": 49,
+        "overflowing_layers": 0,
+        "flash_attn_logged": "enabled",
+        "kv_cache_k_type": "f16",
+        "kv_cache_v_type": "f16",
+        "kv_cache_mib": 6144.0,
+        "n_ctx": 32768,
+        "projector_loaded": false,
+        "segment_chars": 31301
+      },
+      "ps_after": [
+        {
+          "name": "qwen2.5-coder:14b",
+          "size": 15746088302,
+          "size_vram": 14635572919,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:21:56.9006267-07:00"
+        }
+      ],
+      "ended_utc": "2026-09-06T18:12:03.070161+00:00"
+    },
+    {
+      "model": "qwen3-coder:30b-a3b-q4_K_M",
+      "state": "cold",
+      "ps_before": [],
+      "started_utc": "2026-09-06T18:12:09.271746+00:00",
+      "ps_after": [
+        {
+          "name": "qwen3-coder:30b-a3b-q4_K_M",
+          "size": 22076142384,
+          "size_vram": 14605027900,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:25:24.6374059-07:00"
+        }
+      ],
+      "ended_utc": "2026-09-06T18:15:30.821469+00:00"
+    },
+    {
+      "model": "qwen3-coder:30b-a3b-q4_K_M",
+      "state": "warm",
+      "ps_before": [
+        {
+          "name": "qwen3-coder:30b-a3b-q4_K_M",
+          "size": 22076142384,
+          "size_vram": 14605027900,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:25:24.6374059-07:00"
+        }
+      ],
+      "started_utc": "2026-09-06T18:15:32.865749+00:00",
+      "preload_load_observation": {
+        "offloaded_layers": 49,
+        "total_layers": 49,
+        "overflowing_layers": 21,
+        "flash_attn_logged": "enabled",
+        "kv_cache_k_type": "f16",
+        "kv_cache_v_type": "f16",
+        "kv_cache_mib": 3072.0,
+        "n_ctx": 32768,
+        "projector_loaded": false,
+        "segment_chars": 34883
+      },
+      "ps_after": [
+        {
+          "name": "qwen3-coder:30b-a3b-q4_K_M",
+          "size": 22076142384,
+          "size_vram": 14605027900,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:27:53.8717025-07:00"
+        }
+      ],
+      "ended_utc": "2026-09-06T18:18:00.004641+00:00"
+    },
+    {
+      "model": "qwen3.5:9b",
+      "state": "cold",
+      "ps_before": [],
+      "started_utc": "2026-09-06T18:18:06.166103+00:00",
+      "ps_after": [
+        {
+          "name": "qwen3.5:9b",
+          "size": 6584805620,
+          "size_vram": 6584805620,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:30:41.5789341-07:00"
+        }
+      ],
+      "ended_utc": "2026-09-06T18:20:47.731106+00:00"
+    },
+    {
+      "model": "qwen3.5:9b",
+      "state": "warm",
+      "ps_before": [
+        {
+          "name": "qwen3.5:9b",
+          "size": 6584805620,
+          "size_vram": 6584805620,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:30:41.5789341-07:00"
+        }
+      ],
+      "started_utc": "2026-09-06T18:20:49.775809+00:00",
+      "preload_load_observation": {
+        "offloaded_layers": 34,
+        "total_layers": 34,
+        "overflowing_layers": 0,
+        "flash_attn_logged": "enabled",
+        "kv_cache_k_type": "f16",
+        "kv_cache_v_type": "f16",
+        "kv_cache_mib": 1024.0,
+        "n_ctx": 32768,
+        "projector_loaded": true,
+        "segment_chars": 39119
+      },
+      "ps_after": [
+        {
+          "name": "qwen3.5:9b",
+          "size": 6584805620,
+          "size_vram": 6584805620,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:32:36.3093285-07:00"
+        }
+      ],
+      "ended_utc": "2026-09-06T18:22:42.494100+00:00"
+    }
+  ],
+  "summaries": [
+    {
+      "model": "qwen2.5-coder:14b",
+      "warm_median_total_ms": 17977.4,
+      "cold_median_total_ms": 23767.6,
+      "warm_structural_validity": "5/5",
+      "cold_structural_validity": "5/5",
+      "citation_integrity": "10/10",
+      "gate_warm_latency": true,
+      "gate_cold_latency": true,
+      "gate_structural_validity": true,
+      "meets_all_thresholds": true,
+      "cold_median_load_ms": 4107.8,
+      "cold_median_inference_only_ms": 19365.0,
+      "cold_median_prefill_tok_s": 2042.4,
+      "warm_median_prefill_tok_s": 2142.6,
+      "warm_median_decode_tok_s": 30.1,
+      "median_prompt_tokens": 27329,
+      "median_output_tokens": 125,
+      "warm_gpu_util_max_pct": 99.0,
+      "warm_gpu_mem_max_mib": 15001.0,
+      "warm_gpu_power_max_w": 335.9,
+      "warm_gpu_temp_max_c": 64.0,
+      "cold_gpu_mem_max_mib": 15837.0,
+      "max_sampler_gap_s": 2.108,
+      "min_ram_available_mb": 44351
+    },
+    {
+      "model": "qwen3-coder:30b-a3b-q4_K_M",
+      "warm_median_total_ms": 16369.5,
+      "cold_median_total_ms": 25125.7,
+      "warm_structural_validity": "5/5",
+      "cold_structural_validity": "5/5",
+      "citation_integrity": "10/10",
+      "gate_warm_latency": true,
+      "gate_cold_latency": true,
+      "gate_structural_validity": true,
+      "meets_all_thresholds": true,
+      "cold_median_load_ms": 7864.6,
+      "cold_median_inference_only_ms": 17790.6,
+      "cold_median_prefill_tok_s": 2143.7,
+      "warm_median_prefill_tok_s": 2231.2,
+      "warm_median_decode_tok_s": 54.0,
+      "median_prompt_tokens": 27308,
+      "median_output_tokens": 192,
+      "warm_gpu_util_max_pct": 96.0,
+      "warm_gpu_mem_max_mib": 14977.0,
+      "warm_gpu_power_max_w": 243.5,
+      "warm_gpu_temp_max_c": 58.0,
+      "cold_gpu_mem_max_mib": 14977.0,
+      "max_sampler_gap_s": 1.45,
+      "min_ram_available_mb": 38707
+    },
+    {
+      "model": "qwen3.5:9b",
+      "warm_median_total_ms": 8402.9,
+      "cold_median_total_ms": 16392.6,
+      "warm_structural_validity": "0/5",
+      "cold_structural_validity": "0/5",
+      "citation_integrity": "0/0",
+      "gate_warm_latency": true,
+      "gate_cold_latency": true,
+      "gate_structural_validity": false,
+      "meets_all_thresholds": false,
+      "cold_median_load_ms": 3709.1,
+      "cold_median_inference_only_ms": 12683.5,
+      "cold_median_prefill_tok_s": 5267.4,
+      "warm_median_prefill_tok_s": 5277.7,
+      "warm_median_decode_tok_s": 89.5,
+      "median_prompt_tokens": 27334,
+      "median_output_tokens": 650,
+      "warm_gpu_util_max_pct": 99.0,
+      "warm_gpu_mem_max_mib": 8349.0,
+      "warm_gpu_power_max_w": 297.8,
+      "warm_gpu_temp_max_c": 60.0,
+      "cold_gpu_mem_max_mib": 8349.0,
+      "max_sampler_gap_s": 1.23,
+      "min_ram_available_mb": 48933
+    }
+  ],
+  "runs": [
+    {
+      "fixture_id": "f01_repeated_assertion",
+      "stratum": "repeated_assertion",
+      "model": "qwen2.5-coder:14b",
+      "model_load_state": "cold",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a71409ed1de3d0527e982a7387d56396f33d1ca29ea3e6a832d776dc2a0da820",
+      "worker_view_hash": "05a208930006af5f9a6d8c816787abf8cb13596230c7dae5529488f4a8caac18",
+      "worker_view_input_tokens_estimated": 22079,
+      "worker_view_size_chars": 88313,
+      "worker_view_truncated": true,
+      "packet_content_hash": "02852d81d277ce673a91bd9eda4263782549e673cccbc58653dd73c677d44685",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d",
+        "redaction_output_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d"
+      },
+      "preflight_duration_ms": 506.3883999828249,
+      "model_load_duration_ms": 22001.6961,
+      "prompt_prefill_duration_ms": 28035.275,
+      "generation_duration_ms": 7951.214,
+      "local_total_duration_ms": 58043.9466,
+      "prompt_eval_count": 27329,
+      "generated_output_tokens": 125,
+      "classification": "multiple_independent_failures",
+      "expected_classification": "cascade_from_single_root_cause",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 15746088302,
+        "vram_size_bytes": 14635572919,
+        "gpu_fraction": 0.9295,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 4727,
+          "vram_free_mib_at_start": 11251
+        },
+        "model": {
+          "tag": "qwen2.5-coder:14b",
+          "digest": "9ec8897f747e246e970bc5cfdda85d22f1123dc2e3d34978a010a75968716849",
+          "family": "qwen2",
+          "parameter_size": "14.8B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 8988124298,
+          "total_layers": 48,
+          "native_context_length": 32768,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools",
+            "insert"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 47,
+          "total_layers": 49,
+          "overflowing_layers": 0,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 6144.0,
+          "n_ctx": 32768,
+          "projector_loaded": false,
+          "segment_chars": 33642
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 15746088302,
+          "size_vram_bytes": 14635572919,
+          "gpu_fraction": 0.9295,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:17:05.5935097-07:00"
+        },
+        "prompt_eval_count": 27329,
+        "eval_count": 125
+      },
+      "client_wall_ms": 64834.4,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen2.5-coder_14b_cold_f01_repeated_assertion.csv",
+        "samples": 57,
+        "max_sample_gap_s": 2.108,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 100.0,
+          "mean": 26.8,
+          "min": 0.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 15837.0,
+          "mean": 13774.9,
+          "min": 4727.0
+        },
+        "gpu_power_w": {
+          "max": 328.31,
+          "mean": 101.7,
+          "min": 29.98
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 1697.5,
+          "min": 255.0
+        },
+        "gpu_temp_c": {
+          "max": 55.0,
+          "mean": 35.5,
+          "min": 30.0
+        },
+        "cpu_util_pct": {
+          "max": 69.0,
+          "mean": 22.2,
+          "min": 8.8
+        },
+        "ram_available_mb": {
+          "max": 50781,
+          "mean": 48967.7,
+          "min": 44351
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 974.8,
+        "decode_tok_s": 15.7,
+        "inference_only_ms": 36042.3
+      }
+    },
+    {
+      "fixture_id": "f02_compiler_type",
+      "stratum": "compiler_type",
+      "model": "qwen2.5-coder:14b",
+      "model_load_state": "cold",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a71409ed1de3d0527e982a7387d56396f33d1ca29ea3e6a832d776dc2a0da820",
+      "worker_view_hash": "0a05793344f19fb2db90eaee31004a6399ad95c0b74b983c8aa9a615bfdbfadd",
+      "worker_view_input_tokens_estimated": 22107,
+      "worker_view_size_chars": 88426,
+      "worker_view_truncated": true,
+      "packet_content_hash": "d4df7f51e48b623d27ec1b782e46cba94bc0df4a72942ea92b56bb0105e9dd34",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "444f7b2ccd17d9ebcf535e5f806415b021c2b00a89dbf5a71d80eea4e332152e",
+        "redaction_output_hash": "7c35a5337f9a33d5f4a589cac5d22f39ed26ae5a66bb42ba06fb8665c11b9b9f"
+      },
+      "preflight_duration_ms": 510.0935000227764,
+      "model_load_duration_ms": 4622.2588,
+      "prompt_prefill_duration_ms": 14703.992,
+      "generation_duration_ms": 4597.19,
+      "local_total_duration_ms": 23987.2218,
+      "prompt_eval_count": 28795,
+      "generated_output_tokens": 122,
+      "classification": "multiple_independent_failures",
+      "expected_classification": "multiple_independent_failures",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 15746088302,
+        "vram_size_bytes": 14635572919,
+        "gpu_fraction": 0.9295,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 746,
+          "vram_free_mib_at_start": 15232
+        },
+        "model": {
+          "tag": "qwen2.5-coder:14b",
+          "digest": "9ec8897f747e246e970bc5cfdda85d22f1123dc2e3d34978a010a75968716849",
+          "family": "qwen2",
+          "parameter_size": "14.8B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 8988124298,
+          "total_layers": 48,
+          "native_context_length": 32768,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools",
+            "insert"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 47,
+          "total_layers": 49,
+          "overflowing_layers": 0,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 6144.0,
+          "n_ctx": 32768,
+          "projector_loaded": false,
+          "segment_chars": 31834
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 15746088302,
+          "size_vram_bytes": 14635572919,
+          "gpu_fraction": 0.9295,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:17:42.641544-07:00"
+        },
+        "prompt_eval_count": 28795,
+        "eval_count": 122
+      },
+      "client_wall_ms": 30786.6,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen2.5-coder_14b_cold_f02_compiler_type.csv",
+        "samples": 28,
+        "max_sample_gap_s": 1.227,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 56.1,
+          "min": 1.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14983.0,
+          "mean": 11097.4,
+          "min": 746.0
+        },
+        "gpu_power_w": {
+          "max": 323.61,
+          "mean": 185.3,
+          "min": 43.83
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2887.0,
+          "mean": 2717.1,
+          "min": 1860.0
+        },
+        "gpu_temp_c": {
+          "max": 56.0,
+          "mean": 43.8,
+          "min": 33.0
+        },
+        "cpu_util_pct": {
+          "max": 68.3,
+          "mean": 23.4,
+          "min": 7.1
+        },
+        "ram_available_mb": {
+          "max": 52225,
+          "mean": 51121.9,
+          "min": 50701
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 1958.3,
+        "decode_tok_s": 26.5,
+        "inference_only_ms": 19365.0
+      }
+    },
+    {
+      "fixture_id": "f03_cascade_root_cause",
+      "stratum": "cascade_root_cause",
+      "model": "qwen2.5-coder:14b",
+      "model_load_state": "cold",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a71409ed1de3d0527e982a7387d56396f33d1ca29ea3e6a832d776dc2a0da820",
+      "worker_view_hash": "34e3e79d7ad2aab1225f417cc411335c466b9609a46b12ee46aa7e07845047bf",
+      "worker_view_input_tokens_estimated": 22092,
+      "worker_view_size_chars": 88366,
+      "worker_view_truncated": true,
+      "packet_content_hash": "1a51e812deed0d67079398c9e947e98ad98dad2ade461ba79800e0e0ea8a7d20",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41",
+        "redaction_output_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41"
+      },
+      "preflight_duration_ms": 516.961999994237,
+      "model_load_duration_ms": 3887.9372,
+      "prompt_prefill_duration_ms": 13550.12,
+      "generation_duration_ms": 6269.96,
+      "local_total_duration_ms": 23767.6252,
+      "prompt_eval_count": 27675,
+      "generated_output_tokens": 188,
+      "classification": "cascade_from_single_root_cause",
+      "expected_classification": "cascade_from_single_root_cause",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 15746088302,
+        "vram_size_bytes": 14635572919,
+        "gpu_fraction": 0.9295,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 746,
+          "vram_free_mib_at_start": 15232
+        },
+        "model": {
+          "tag": "qwen2.5-coder:14b",
+          "digest": "9ec8897f747e246e970bc5cfdda85d22f1123dc2e3d34978a010a75968716849",
+          "family": "qwen2",
+          "parameter_size": "14.8B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 8988124298,
+          "total_layers": 48,
+          "native_context_length": 32768,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools",
+            "insert"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 47,
+          "total_layers": 49,
+          "overflowing_layers": 0,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 6144.0,
+          "n_ctx": 32768,
+          "projector_loaded": false,
+          "segment_chars": 31390
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 15746088302,
+          "size_vram_bytes": 14635572919,
+          "gpu_fraction": 0.9295,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:18:19.4611278-07:00"
+        },
+        "prompt_eval_count": 27675,
+        "eval_count": 188
+      },
+      "client_wall_ms": 30602.1,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen2.5-coder_14b_cold_f03_cascade_root_cause.csv",
+        "samples": 28,
+        "max_sample_gap_s": 1.314,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 100.0,
+          "mean": 57.0,
+          "min": 11.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14983.0,
+          "mean": 11210.0,
+          "min": 746.0
+        },
+        "gpu_power_w": {
+          "max": 329.04,
+          "mean": 187.4,
+          "min": 44.09
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2708.9,
+          "min": 1807.0
+        },
+        "gpu_temp_c": {
+          "max": 59.0,
+          "mean": 46.4,
+          "min": 35.0
+        },
+        "cpu_util_pct": {
+          "max": 70.0,
+          "mean": 26.2,
+          "min": 5.7
+        },
+        "ram_available_mb": {
+          "max": 52432,
+          "mean": 51197.9,
+          "min": 50679
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2042.4,
+        "decode_tok_s": 30.0,
+        "inference_only_ms": 19879.7
+      }
+    },
+    {
+      "fixture_id": "f04_multiple_independent",
+      "stratum": "multiple_independent",
+      "model": "qwen2.5-coder:14b",
+      "model_load_state": "cold",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a71409ed1de3d0527e982a7387d56396f33d1ca29ea3e6a832d776dc2a0da820",
+      "worker_view_hash": "1a8689bd3358a2498539c184a94ce433b928e4922678333b34a9263f7c9329e5",
+      "worker_view_input_tokens_estimated": 22094,
+      "worker_view_size_chars": 88374,
+      "worker_view_truncated": true,
+      "packet_content_hash": "31b9f6ccbd32f92c49a9f006bffe3829250692f32eb2429b53fe67082c2011bf",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091",
+        "redaction_output_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091"
+      },
+      "preflight_duration_ms": 516.0205999854952,
+      "model_load_duration_ms": 4105.6758,
+      "prompt_prefill_duration_ms": 12762.974,
+      "generation_duration_ms": 4132.639,
+      "local_total_duration_ms": 21053.9942,
+      "prompt_eval_count": 26715,
+      "generated_output_tokens": 124,
+      "classification": "multiple_independent_failures",
+      "expected_classification": "multiple_independent_failures",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 15746088302,
+        "vram_size_bytes": 14635572919,
+        "gpu_fraction": 0.9295,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 746,
+          "vram_free_mib_at_start": 15232
+        },
+        "model": {
+          "tag": "qwen2.5-coder:14b",
+          "digest": "9ec8897f747e246e970bc5cfdda85d22f1123dc2e3d34978a010a75968716849",
+          "family": "qwen2",
+          "parameter_size": "14.8B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 8988124298,
+          "total_layers": 48,
+          "native_context_length": 32768,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools",
+            "insert"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 47,
+          "total_layers": 49,
+          "overflowing_layers": 0,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 6144.0,
+          "n_ctx": 32768,
+          "projector_loaded": false,
+          "segment_chars": 31079
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 15746088302,
+          "size_vram_bytes": 14635572919,
+          "gpu_fraction": 0.9295,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:18:53.5150625-07:00"
+        },
+        "prompt_eval_count": 26715,
+        "eval_count": 124
+      },
+      "client_wall_ms": 27794.3,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen2.5-coder_14b_cold_f04_multiple_independent.csv",
+        "samples": 26,
+        "max_sample_gap_s": 1.178,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 55.5,
+          "min": 6.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14983.0,
+          "mean": 10919.1,
+          "min": 746.0
+        },
+        "gpu_power_w": {
+          "max": 328.65,
+          "mean": 184.4,
+          "min": 43.52
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2689.7,
+          "min": 1665.0
+        },
+        "gpu_temp_c": {
+          "max": 61.0,
+          "mean": 47.7,
+          "min": 37.0
+        },
+        "cpu_util_pct": {
+          "max": 70.6,
+          "mean": 22.6,
+          "min": 9.9
+        },
+        "ram_available_mb": {
+          "max": 52321,
+          "mean": 51213.2,
+          "min": 50688
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2093.2,
+        "decode_tok_s": 30.0,
+        "inference_only_ms": 16948.3
+      }
+    },
+    {
+      "fixture_id": "f05_environment_failure",
+      "stratum": "environment_failure",
+      "model": "qwen2.5-coder:14b",
+      "model_load_state": "cold",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a71409ed1de3d0527e982a7387d56396f33d1ca29ea3e6a832d776dc2a0da820",
+      "worker_view_hash": "9a1e29268ea9dcb0057f45b4046a95537c76cc16c93715c262af46c1816c7b03",
+      "worker_view_input_tokens_estimated": 22090,
+      "worker_view_size_chars": 88357,
+      "worker_view_truncated": true,
+      "packet_content_hash": "9458883f38906728fc2eb9ecb43cae7e7dfa49ed2ff03595f23d2fea06c18e5b",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d",
+        "redaction_output_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d"
+      },
+      "preflight_duration_ms": 506.80100003955886,
+      "model_load_duration_ms": 4107.8358,
+      "prompt_prefill_duration_ms": 10680.34,
+      "generation_duration_ms": 4470.887,
+      "local_total_duration_ms": 19318.1852,
+      "prompt_eval_count": 24397,
+      "generated_output_tokens": 142,
+      "classification": "environment_or_infrastructure_failure",
+      "expected_classification": "environment_or_infrastructure_failure",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 15746088302,
+        "vram_size_bytes": 14635572919,
+        "gpu_fraction": 0.9295,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 746,
+          "vram_free_mib_at_start": 15232
+        },
+        "model": {
+          "tag": "qwen2.5-coder:14b",
+          "digest": "9ec8897f747e246e970bc5cfdda85d22f1123dc2e3d34978a010a75968716849",
+          "family": "qwen2",
+          "parameter_size": "14.8B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 8988124298,
+          "total_layers": 48,
+          "native_context_length": 32768,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools",
+            "insert"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 47,
+          "total_layers": 49,
+          "overflowing_layers": 0,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 6144.0,
+          "n_ctx": 32768,
+          "projector_loaded": false,
+          "segment_chars": 29969
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 15746088302,
+          "size_vram_bytes": 14635572919,
+          "gpu_fraction": 0.9295,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:19:25.7762825-07:00"
+        },
+        "prompt_eval_count": 24397,
+        "eval_count": 142
+      },
+      "client_wall_ms": 26080.9,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen2.5-coder_14b_cold_f05_environment_failure.csv",
+        "samples": 24,
+        "max_sample_gap_s": 1.165,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 56.0,
+          "min": 7.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14983.0,
+          "mean": 10580.6,
+          "min": 746.0
+        },
+        "gpu_power_w": {
+          "max": 330.45,
+          "mean": 177.4,
+          "min": 44.62
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2683.2,
+          "min": 1815.0
+        },
+        "gpu_temp_c": {
+          "max": 60.0,
+          "mean": 48.0,
+          "min": 38.0
+        },
+        "cpu_util_pct": {
+          "max": 71.3,
+          "mean": 23.8,
+          "min": 5.2
+        },
+        "ram_available_mb": {
+          "max": 52406,
+          "mean": 51245.9,
+          "min": 50690
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2284.3,
+        "decode_tok_s": 31.8,
+        "inference_only_ms": 15210.3
+      }
+    },
+    {
+      "fixture_id": "f01_repeated_assertion",
+      "stratum": "repeated_assertion",
+      "model": "qwen2.5-coder:14b",
+      "model_load_state": "warm",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a71409ed1de3d0527e982a7387d56396f33d1ca29ea3e6a832d776dc2a0da820",
+      "worker_view_hash": "05a208930006af5f9a6d8c816787abf8cb13596230c7dae5529488f4a8caac18",
+      "worker_view_input_tokens_estimated": 22079,
+      "worker_view_size_chars": 88313,
+      "worker_view_truncated": true,
+      "packet_content_hash": "02852d81d277ce673a91bd9eda4263782549e673cccbc58653dd73c677d44685",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d",
+        "redaction_output_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d"
+      },
+      "preflight_duration_ms": 503.26839997433126,
+      "model_load_duration_ms": 129.7051,
+      "prompt_prefill_duration_ms": 70.744,
+      "generation_duration_ms": 4255.582,
+      "local_total_duration_ms": 4511.924,
+      "prompt_eval_count": 27329,
+      "generated_output_tokens": 125,
+      "classification": "multiple_independent_failures",
+      "expected_classification": "cascade_from_single_root_cause",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 15746088302,
+        "vram_size_bytes": 14635572919,
+        "gpu_fraction": 0.9295,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 14996,
+          "vram_free_mib_at_start": 982
+        },
+        "model": {
+          "tag": "qwen2.5-coder:14b",
+          "digest": "9ec8897f747e246e970bc5cfdda85d22f1123dc2e3d34978a010a75968716849",
+          "family": "qwen2",
+          "parameter_size": "14.8B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 8988124298,
+          "total_layers": 48,
+          "native_context_length": 32768,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools",
+            "insert"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 15746088302,
+          "size_vram_bytes": 14635572919,
+          "gpu_fraction": 0.9295,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:20:13.6466302-07:00"
+        },
+        "prompt_eval_count": 27329,
+        "eval_count": 125
+      },
+      "client_wall_ms": 9216.6,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen2.5-coder_14b_warm_f01_repeated_assertion.csv",
+        "samples": 9,
+        "max_sample_gap_s": 1.194,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 69.0,
+          "mean": 27.1,
+          "min": 5.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14996.0,
+          "mean": 14996.0,
+          "min": 14996.0
+        },
+        "gpu_power_w": {
+          "max": 154.84,
+          "mean": 86.9,
+          "min": 40.67
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2212.4,
+          "min": 900.0
+        },
+        "gpu_temp_c": {
+          "max": 45.0,
+          "mean": 41.2,
+          "min": 39.0
+        },
+        "cpu_util_pct": {
+          "max": 66.8,
+          "mean": 34.2,
+          "min": 8.5
+        },
+        "ram_available_mb": {
+          "max": 50857,
+          "mean": 50815.7,
+          "min": 50771
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 386308.4,
+        "decode_tok_s": 29.4,
+        "inference_only_ms": 4382.2
+      }
+    },
+    {
+      "fixture_id": "f02_compiler_type",
+      "stratum": "compiler_type",
+      "model": "qwen2.5-coder:14b",
+      "model_load_state": "warm",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a71409ed1de3d0527e982a7387d56396f33d1ca29ea3e6a832d776dc2a0da820",
+      "worker_view_hash": "0a05793344f19fb2db90eaee31004a6399ad95c0b74b983c8aa9a615bfdbfadd",
+      "worker_view_input_tokens_estimated": 22107,
+      "worker_view_size_chars": 88426,
+      "worker_view_truncated": true,
+      "packet_content_hash": "d4df7f51e48b623d27ec1b782e46cba94bc0df4a72942ea92b56bb0105e9dd34",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "444f7b2ccd17d9ebcf535e5f806415b021c2b00a89dbf5a71d80eea4e332152e",
+        "redaction_output_hash": "7c35a5337f9a33d5f4a589cac5d22f39ed26ae5a66bb42ba06fb8665c11b9b9f"
+      },
+      "preflight_duration_ms": 532.6651000068523,
+      "model_load_duration_ms": 125.2815,
+      "prompt_prefill_duration_ms": 14473.337,
+      "generation_duration_ms": 4193.640999,
+      "local_total_duration_ms": 20335.6965,
+      "prompt_eval_count": 28795,
+      "generated_output_tokens": 122,
+      "classification": "multiple_independent_failures",
+      "expected_classification": "multiple_independent_failures",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 15746088302,
+        "vram_size_bytes": 14635572919,
+        "gpu_fraction": 0.9295,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 14996,
+          "vram_free_mib_at_start": 982
+        },
+        "model": {
+          "tag": "qwen2.5-coder:14b",
+          "digest": "9ec8897f747e246e970bc5cfdda85d22f1123dc2e3d34978a010a75968716849",
+          "family": "qwen2",
+          "parameter_size": "14.8B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 8988124298,
+          "total_layers": 48,
+          "native_context_length": 32768,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools",
+            "insert"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 15746088302,
+          "size_vram_bytes": 14635572919,
+          "gpu_fraction": 0.9295,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:20:40.8485959-07:00"
+        },
+        "prompt_eval_count": 28795,
+        "eval_count": 122
+      },
+      "client_wall_ms": 25102.8,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen2.5-coder_14b_warm_f02_compiler_type.csv",
+        "samples": 23,
+        "max_sample_gap_s": 1.177,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 65.1,
+          "min": 2.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14996.0,
+          "mean": 14996.0,
+          "min": 14996.0
+        },
+        "gpu_power_w": {
+          "max": 335.95,
+          "mean": 214.6,
+          "min": 37.89
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2464.6,
+          "min": 802.0
+        },
+        "gpu_temp_c": {
+          "max": 62.0,
+          "mean": 51.7,
+          "min": 38.0
+        },
+        "cpu_util_pct": {
+          "max": 68.2,
+          "mean": 23.9,
+          "min": 9.1
+        },
+        "ram_available_mb": {
+          "max": 50838,
+          "mean": 46415.8,
+          "min": 45587
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 1989.5,
+        "decode_tok_s": 29.1,
+        "inference_only_ms": 20210.4
+      }
+    },
+    {
+      "fixture_id": "f03_cascade_root_cause",
+      "stratum": "cascade_root_cause",
+      "model": "qwen2.5-coder:14b",
+      "model_load_state": "warm",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a71409ed1de3d0527e982a7387d56396f33d1ca29ea3e6a832d776dc2a0da820",
+      "worker_view_hash": "34e3e79d7ad2aab1225f417cc411335c466b9609a46b12ee46aa7e07845047bf",
+      "worker_view_input_tokens_estimated": 22092,
+      "worker_view_size_chars": 88366,
+      "worker_view_truncated": true,
+      "packet_content_hash": "1a51e812deed0d67079398c9e947e98ad98dad2ade461ba79800e0e0ea8a7d20",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41",
+        "redaction_output_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41"
+      },
+      "preflight_duration_ms": 517.2408999642357,
+      "model_load_duration_ms": 117.5397,
+      "prompt_prefill_duration_ms": 13428.99,
+      "generation_duration_ms": 6239.243,
+      "local_total_duration_ms": 21174.8377,
+      "prompt_eval_count": 27675,
+      "generated_output_tokens": 188,
+      "classification": "cascade_from_single_root_cause",
+      "expected_classification": "cascade_from_single_root_cause",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 15746088302,
+        "vram_size_bytes": 14635572919,
+        "gpu_fraction": 0.9295,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 14996,
+          "vram_free_mib_at_start": 982
+        },
+        "model": {
+          "tag": "qwen2.5-coder:14b",
+          "digest": "9ec8897f747e246e970bc5cfdda85d22f1123dc2e3d34978a010a75968716849",
+          "family": "qwen2",
+          "parameter_size": "14.8B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 8988124298,
+          "total_layers": 48,
+          "native_context_length": 32768,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools",
+            "insert"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 15746088302,
+          "size_vram_bytes": 14635572919,
+          "gpu_fraction": 0.9295,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:21:08.9308127-07:00"
+        },
+        "prompt_eval_count": 27675,
+        "eval_count": 188
+      },
+      "client_wall_ms": 25908.6,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen2.5-coder_14b_warm_f03_cascade_root_cause.csv",
+        "samples": 24,
+        "max_sample_gap_s": 1.169,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 65.2,
+          "min": 2.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14996.0,
+          "mean": 14996.0,
+          "min": 14996.0
+        },
+        "gpu_power_w": {
+          "max": 334.13,
+          "mean": 213.0,
+          "min": 38.9
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2511.7,
+          "min": 1057.0
+        },
+        "gpu_temp_c": {
+          "max": 62.0,
+          "mean": 52.1,
+          "min": 39.0
+        },
+        "cpu_util_pct": {
+          "max": 70.8,
+          "mean": 26.7,
+          "min": 10.8
+        },
+        "ram_available_mb": {
+          "max": 48862,
+          "mean": 45604.6,
+          "min": 45335
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2060.8,
+        "decode_tok_s": 30.1,
+        "inference_only_ms": 21057.3
+      }
+    },
+    {
+      "fixture_id": "f04_multiple_independent",
+      "stratum": "multiple_independent",
+      "model": "qwen2.5-coder:14b",
+      "model_load_state": "warm",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a71409ed1de3d0527e982a7387d56396f33d1ca29ea3e6a832d776dc2a0da820",
+      "worker_view_hash": "1a8689bd3358a2498539c184a94ce433b928e4922678333b34a9263f7c9329e5",
+      "worker_view_input_tokens_estimated": 22094,
+      "worker_view_size_chars": 88374,
+      "worker_view_truncated": true,
+      "packet_content_hash": "31b9f6ccbd32f92c49a9f006bffe3829250692f32eb2429b53fe67082c2011bf",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091",
+        "redaction_output_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091"
+      },
+      "preflight_duration_ms": 510.82409999798983,
+      "model_load_duration_ms": 122.297,
+      "prompt_prefill_duration_ms": 12468.566,
+      "generation_duration_ms": 4108.456,
+      "local_total_duration_ms": 17977.4088,
+      "prompt_eval_count": 26715,
+      "generated_output_tokens": 124,
+      "classification": "multiple_independent_failures",
+      "expected_classification": "multiple_independent_failures",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 15746088302,
+        "vram_size_bytes": 14635572919,
+        "gpu_fraction": 0.9295,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 14996,
+          "vram_free_mib_at_start": 982
+        },
+        "model": {
+          "tag": "qwen2.5-coder:14b",
+          "digest": "9ec8897f747e246e970bc5cfdda85d22f1123dc2e3d34978a010a75968716849",
+          "family": "qwen2",
+          "parameter_size": "14.8B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 8988124298,
+          "total_layers": 48,
+          "native_context_length": 32768,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools",
+            "insert"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 15746088302,
+          "size_vram_bytes": 14635572919,
+          "gpu_fraction": 0.9295,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:21:33.725019-07:00"
+        },
+        "prompt_eval_count": 26715,
+        "eval_count": 124
+      },
+      "client_wall_ms": 22715.9,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen2.5-coder_14b_warm_f04_multiple_independent.csv",
+        "samples": 21,
+        "max_sample_gap_s": 1.157,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 65.0,
+          "min": 3.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 15001.0,
+          "mean": 14996.7,
+          "min": 14996.0
+        },
+        "gpu_power_w": {
+          "max": 331.85,
+          "mean": 215.2,
+          "min": 38.34
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2521.6,
+          "min": 997.0
+        },
+        "gpu_temp_c": {
+          "max": 64.0,
+          "mean": 52.8,
+          "min": 39.0
+        },
+        "cpu_util_pct": {
+          "max": 67.6,
+          "mean": 24.1,
+          "min": 8.4
+        },
+        "ram_available_mb": {
+          "max": 47944,
+          "mean": 45685.0,
+          "min": 45388
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2142.6,
+        "decode_tok_s": 30.2,
+        "inference_only_ms": 17855.1
+      }
+    },
+    {
+      "fixture_id": "f05_environment_failure",
+      "stratum": "environment_failure",
+      "model": "qwen2.5-coder:14b",
+      "model_load_state": "warm",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a71409ed1de3d0527e982a7387d56396f33d1ca29ea3e6a832d776dc2a0da820",
+      "worker_view_hash": "9a1e29268ea9dcb0057f45b4046a95537c76cc16c93715c262af46c1816c7b03",
+      "worker_view_input_tokens_estimated": 22090,
+      "worker_view_size_chars": 88357,
+      "worker_view_truncated": true,
+      "packet_content_hash": "9458883f38906728fc2eb9ecb43cae7e7dfa49ed2ff03595f23d2fea06c18e5b",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d",
+        "redaction_output_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d"
+      },
+      "preflight_duration_ms": 508.814100001473,
+      "model_load_duration_ms": 122.1049,
+      "prompt_prefill_duration_ms": 10703.669,
+      "generation_duration_ms": 4329.458,
+      "local_total_duration_ms": 16363.8612,
+      "prompt_eval_count": 24397,
+      "generated_output_tokens": 142,
+      "classification": "environment_or_infrastructure_failure",
+      "expected_classification": "environment_or_infrastructure_failure",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 15746088302,
+        "vram_size_bytes": 14635572919,
+        "gpu_fraction": 0.9295,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 15001,
+          "vram_free_mib_at_start": 977
+        },
+        "model": {
+          "tag": "qwen2.5-coder:14b",
+          "digest": "9ec8897f747e246e970bc5cfdda85d22f1123dc2e3d34978a010a75968716849",
+          "family": "qwen2",
+          "parameter_size": "14.8B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 8988124298,
+          "total_layers": 48,
+          "native_context_length": 32768,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools",
+            "insert"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 15746088302,
+          "size_vram_bytes": 14635572919,
+          "gpu_fraction": 0.9295,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:21:56.9006267-07:00"
+        },
+        "prompt_eval_count": 24397,
+        "eval_count": 142
+      },
+      "client_wall_ms": 21056.7,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen2.5-coder_14b_warm_f05_environment_failure.csv",
+        "samples": 20,
+        "max_sample_gap_s": 1.184,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 60.8,
+          "min": 3.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 15001.0,
+          "mean": 15001.0,
+          "min": 15001.0
+        },
+        "gpu_power_w": {
+          "max": 332.01,
+          "mean": 201.0,
+          "min": 38.04
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2419.7,
+          "min": 562.0
+        },
+        "gpu_temp_c": {
+          "max": 62.0,
+          "mean": 51.5,
+          "min": 39.0
+        },
+        "cpu_util_pct": {
+          "max": 62.4,
+          "mean": 23.5,
+          "min": 9.1
+        },
+        "ram_available_mb": {
+          "max": 47890,
+          "mean": 45897.6,
+          "min": 45571
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2279.3,
+        "decode_tok_s": 32.8,
+        "inference_only_ms": 16241.8
+      }
+    },
+    {
+      "fixture_id": "f01_repeated_assertion",
+      "stratum": "repeated_assertion",
+      "model": "qwen3-coder:30b-a3b-q4_K_M",
+      "model_load_state": "cold",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a353b721c5f02a5399964ca63a86d2d4d07947eb5613122f688305ff3f576c30",
+      "worker_view_hash": "05a208930006af5f9a6d8c816787abf8cb13596230c7dae5529488f4a8caac18",
+      "worker_view_input_tokens_estimated": 22079,
+      "worker_view_size_chars": 88313,
+      "worker_view_truncated": true,
+      "packet_content_hash": "02852d81d277ce673a91bd9eda4263782549e673cccbc58653dd73c677d44685",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d",
+        "redaction_output_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d"
+      },
+      "preflight_duration_ms": 508.45409999601543,
+      "model_load_duration_ms": 16645.3877,
+      "prompt_prefill_duration_ms": 12821.218,
+      "generation_duration_ms": 7249.298,
+      "local_total_duration_ms": 36770.0492,
+      "prompt_eval_count": 27308,
+      "generated_output_tokens": 400,
+      "classification": "cascade_from_single_root_cause",
+      "expected_classification": "cascade_from_single_root_cause",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 22076142384,
+        "vram_size_bytes": 14605027900,
+        "gpu_fraction": 0.6616,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 764,
+          "vram_free_mib_at_start": 15214
+        },
+        "model": {
+          "tag": "qwen3-coder:30b-a3b-q4_K_M",
+          "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+          "family": "qwen3moe",
+          "parameter_size": "30.5B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 18556700761,
+          "total_layers": 48,
+          "native_context_length": 262144,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 49,
+          "total_layers": 49,
+          "overflowing_layers": 21,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 3072.0,
+          "n_ctx": 32768,
+          "projector_loaded": false,
+          "segment_chars": 35018
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 22076142384,
+          "size_vram_bytes": 14605027900,
+          "gpu_fraction": 0.6616,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:22:54.9339768-07:00"
+        },
+        "prompt_eval_count": 27308,
+        "eval_count": 400
+      },
+      "client_wall_ms": 43542.5,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3-coder_30b-a3b-q4_K_M_cold_f01_repeated_assertion.csv",
+        "samples": 40,
+        "max_sample_gap_s": 1.266,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 97.0,
+          "mean": 37.6,
+          "min": 0.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14977.0,
+          "mean": 11866.0,
+          "min": 764.0
+        },
+        "gpu_power_w": {
+          "max": 227.71,
+          "mean": 101.6,
+          "min": 36.13
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2314.8,
+          "min": 705.0
+        },
+        "gpu_temp_c": {
+          "max": 58.0,
+          "mean": 42.3,
+          "min": 37.0
+        },
+        "cpu_util_pct": {
+          "max": 66.0,
+          "mean": 22.5,
+          "min": 6.3
+        },
+        "ram_available_mb": {
+          "max": 52381,
+          "mean": 46092.8,
+          "min": 44444
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2129.9,
+        "decode_tok_s": 55.2,
+        "inference_only_ms": 20124.7
+      }
+    },
+    {
+      "fixture_id": "f02_compiler_type",
+      "stratum": "compiler_type",
+      "model": "qwen3-coder:30b-a3b-q4_K_M",
+      "model_load_state": "cold",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a353b721c5f02a5399964ca63a86d2d4d07947eb5613122f688305ff3f576c30",
+      "worker_view_hash": "0a05793344f19fb2db90eaee31004a6399ad95c0b74b983c8aa9a615bfdbfadd",
+      "worker_view_input_tokens_estimated": 22107,
+      "worker_view_size_chars": 88426,
+      "worker_view_truncated": true,
+      "packet_content_hash": "d4df7f51e48b623d27ec1b782e46cba94bc0df4a72942ea92b56bb0105e9dd34",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "444f7b2ccd17d9ebcf535e5f806415b021c2b00a89dbf5a71d80eea4e332152e",
+        "redaction_output_hash": "7c35a5337f9a33d5f4a589cac5d22f39ed26ae5a66bb42ba06fb8665c11b9b9f"
+      },
+      "preflight_duration_ms": 518.3053000364453,
+      "model_load_duration_ms": 7865.1156,
+      "prompt_prefill_duration_ms": 13422.611,
+      "generation_duration_ms": 2813.039,
+      "local_total_duration_ms": 24162.0382,
+      "prompt_eval_count": 28774,
+      "generated_output_tokens": 139,
+      "classification": "cascade_from_single_root_cause",
+      "expected_classification": "multiple_independent_failures",
+      "hypothesis_count": 1,
+      "abstention_reason": "insufficient_evidence",
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 22076142384,
+        "vram_size_bytes": 14605027900,
+        "gpu_fraction": 0.6616,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 764,
+          "vram_free_mib_at_start": 15214
+        },
+        "model": {
+          "tag": "qwen3-coder:30b-a3b-q4_K_M",
+          "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+          "family": "qwen3moe",
+          "parameter_size": "30.5B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 18556700761,
+          "total_layers": 48,
+          "native_context_length": 262144,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 49,
+          "total_layers": 49,
+          "overflowing_layers": 21,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 3072.0,
+          "n_ctx": 32768,
+          "projector_loaded": false,
+          "segment_chars": 35371
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 22076142384,
+          "size_vram_bytes": 14605027900,
+          "gpu_fraction": 0.6616,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:23:32.1057583-07:00"
+        },
+        "prompt_eval_count": 28774,
+        "eval_count": 139
+      },
+      "client_wall_ms": 30968.3,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3-coder_30b-a3b-q4_K_M_cold_f02_compiler_type.csv",
+        "samples": 28,
+        "max_sample_gap_s": 1.212,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 95.0,
+          "mean": 47.0,
+          "min": 4.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14977.0,
+          "mean": 10513.8,
+          "min": 764.0
+        },
+        "gpu_power_w": {
+          "max": 244.08,
+          "mean": 124.5,
+          "min": 42.73
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2872.0,
+          "mean": 2690.8,
+          "min": 1620.0
+        },
+        "gpu_temp_c": {
+          "max": 54.0,
+          "mean": 43.8,
+          "min": 38.0
+        },
+        "cpu_util_pct": {
+          "max": 66.4,
+          "mean": 20.7,
+          "min": 5.9
+        },
+        "ram_available_mb": {
+          "max": 52397,
+          "mean": 47221.5,
+          "min": 44405
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2143.7,
+        "decode_tok_s": 49.4,
+        "inference_only_ms": 16296.9
+      }
+    },
+    {
+      "fixture_id": "f03_cascade_root_cause",
+      "stratum": "cascade_root_cause",
+      "model": "qwen3-coder:30b-a3b-q4_K_M",
+      "model_load_state": "cold",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a353b721c5f02a5399964ca63a86d2d4d07947eb5613122f688305ff3f576c30",
+      "worker_view_hash": "34e3e79d7ad2aab1225f417cc411335c466b9609a46b12ee46aa7e07845047bf",
+      "worker_view_input_tokens_estimated": 22092,
+      "worker_view_size_chars": 88366,
+      "worker_view_truncated": true,
+      "packet_content_hash": "1a51e812deed0d67079398c9e947e98ad98dad2ade461ba79800e0e0ea8a7d20",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41",
+        "redaction_output_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41"
+      },
+      "preflight_duration_ms": 518.1389999925159,
+      "model_load_duration_ms": 7335.1031,
+      "prompt_prefill_duration_ms": 14502.345,
+      "generation_duration_ms": 3234.263,
+      "local_total_duration_ms": 25125.6884,
+      "prompt_eval_count": 27654,
+      "generated_output_tokens": 174,
+      "classification": "cascade_from_single_root_cause",
+      "expected_classification": "cascade_from_single_root_cause",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 22076142384,
+        "vram_size_bytes": 14605027900,
+        "gpu_fraction": 0.6616,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 764,
+          "vram_free_mib_at_start": 15214
+        },
+        "model": {
+          "tag": "qwen3-coder:30b-a3b-q4_K_M",
+          "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+          "family": "qwen3moe",
+          "parameter_size": "30.5B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 18556700761,
+          "total_layers": 48,
+          "native_context_length": 262144,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 49,
+          "total_layers": 49,
+          "overflowing_layers": 21,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 3072.0,
+          "n_ctx": 32768,
+          "projector_loaded": false,
+          "segment_chars": 35016
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 22076142384,
+          "size_vram_bytes": 14605027900,
+          "gpu_fraction": 0.6616,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:24:10.2498132-07:00"
+        },
+        "prompt_eval_count": 27654,
+        "eval_count": 174
+      },
+      "client_wall_ms": 31923.7,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3-coder_30b-a3b-q4_K_M_cold_f03_cascade_root_cause.csv",
+        "samples": 29,
+        "max_sample_gap_s": 1.292,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 96.0,
+          "mean": 47.3,
+          "min": 1.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14977.0,
+          "mean": 11072.6,
+          "min": 764.0
+        },
+        "gpu_power_w": {
+          "max": 225.43,
+          "mean": 117.3,
+          "min": 43.55
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2701.4,
+          "min": 1747.0
+        },
+        "gpu_temp_c": {
+          "max": 56.0,
+          "mean": 43.3,
+          "min": 38.0
+        },
+        "cpu_util_pct": {
+          "max": 64.4,
+          "mean": 20.4,
+          "min": 7.1
+        },
+        "ram_available_mb": {
+          "max": 54551,
+          "mean": 48821.9,
+          "min": 46654
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 1906.9,
+        "decode_tok_s": 53.8,
+        "inference_only_ms": 17790.6
+      }
+    },
+    {
+      "fixture_id": "f04_multiple_independent",
+      "stratum": "multiple_independent",
+      "model": "qwen3-coder:30b-a3b-q4_K_M",
+      "model_load_state": "cold",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a353b721c5f02a5399964ca63a86d2d4d07947eb5613122f688305ff3f576c30",
+      "worker_view_hash": "1a8689bd3358a2498539c184a94ce433b928e4922678333b34a9263f7c9329e5",
+      "worker_view_input_tokens_estimated": 22094,
+      "worker_view_size_chars": 88374,
+      "worker_view_truncated": true,
+      "packet_content_hash": "31b9f6ccbd32f92c49a9f006bffe3829250692f32eb2429b53fe67082c2011bf",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091",
+        "redaction_output_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091"
+      },
+      "preflight_duration_ms": 509.4152000383474,
+      "model_load_duration_ms": 7864.6303,
+      "prompt_prefill_duration_ms": 12293.79,
+      "generation_duration_ms": 6553.516,
+      "local_total_duration_ms": 26781.2717,
+      "prompt_eval_count": 26694,
+      "generated_output_tokens": 369,
+      "classification": "multiple_independent_failures",
+      "expected_classification": "multiple_independent_failures",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 22076142384,
+        "vram_size_bytes": 14605027900,
+        "gpu_fraction": 0.6616,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 764,
+          "vram_free_mib_at_start": 15214
+        },
+        "model": {
+          "tag": "qwen3-coder:30b-a3b-q4_K_M",
+          "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+          "family": "qwen3moe",
+          "parameter_size": "30.5B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 18556700761,
+          "total_layers": 48,
+          "native_context_length": 262144,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 49,
+          "total_layers": 49,
+          "overflowing_layers": 21,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 3072.0,
+          "n_ctx": 32768,
+          "projector_loaded": false,
+          "segment_chars": 34661
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 22076142384,
+          "size_vram_bytes": 14605027900,
+          "gpu_fraction": 0.6616,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:24:50.0700723-07:00"
+        },
+        "prompt_eval_count": 26694,
+        "eval_count": 369
+      },
+      "client_wall_ms": 33560.7,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3-coder_30b-a3b-q4_K_M_cold_f04_multiple_independent.csv",
+        "samples": 31,
+        "max_sample_gap_s": 1.313,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 95.0,
+          "mean": 48.7,
+          "min": 10.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14977.0,
+          "mean": 11276.0,
+          "min": 764.0
+        },
+        "gpu_power_w": {
+          "max": 228.4,
+          "mean": 118.6,
+          "min": 44.79
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2715.8,
+          "min": 1882.0
+        },
+        "gpu_temp_c": {
+          "max": 55.0,
+          "mean": 42.9,
+          "min": 38.0
+        },
+        "cpu_util_pct": {
+          "max": 61.8,
+          "mean": 23.1,
+          "min": 6.0
+        },
+        "ram_available_mb": {
+          "max": 54549,
+          "mean": 48720.3,
+          "min": 46718
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2171.3,
+        "decode_tok_s": 56.3,
+        "inference_only_ms": 18916.6
+      }
+    },
+    {
+      "fixture_id": "f05_environment_failure",
+      "stratum": "environment_failure",
+      "model": "qwen3-coder:30b-a3b-q4_K_M",
+      "model_load_state": "cold",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a353b721c5f02a5399964ca63a86d2d4d07947eb5613122f688305ff3f576c30",
+      "worker_view_hash": "9a1e29268ea9dcb0057f45b4046a95537c76cc16c93715c262af46c1816c7b03",
+      "worker_view_input_tokens_estimated": 22090,
+      "worker_view_size_chars": 88357,
+      "worker_view_truncated": true,
+      "packet_content_hash": "9458883f38906728fc2eb9ecb43cae7e7dfa49ed2ff03595f23d2fea06c18e5b",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d",
+        "redaction_output_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d"
+      },
+      "preflight_duration_ms": 517.8008999791928,
+      "model_load_duration_ms": 7616.481,
+      "prompt_prefill_duration_ms": 11054.054,
+      "generation_duration_ms": 2861.341,
+      "local_total_duration_ms": 21600.0735,
+      "prompt_eval_count": 24376,
+      "generated_output_tokens": 155,
+      "classification": "environment_or_infrastructure_failure",
+      "expected_classification": "environment_or_infrastructure_failure",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 22076142384,
+        "vram_size_bytes": 14605027900,
+        "gpu_fraction": 0.6616,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 764,
+          "vram_free_mib_at_start": 15214
+        },
+        "model": {
+          "tag": "qwen3-coder:30b-a3b-q4_K_M",
+          "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+          "family": "qwen3moe",
+          "parameter_size": "30.5B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 18556700761,
+          "total_layers": 48,
+          "native_context_length": 262144,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 49,
+          "total_layers": 49,
+          "overflowing_layers": 21,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 3072.0,
+          "n_ctx": 32768,
+          "projector_loaded": false,
+          "segment_chars": 33507
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 22076142384,
+          "size_vram_bytes": 14605027900,
+          "gpu_fraction": 0.6616,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:25:24.6374059-07:00"
+        },
+        "prompt_eval_count": 24376,
+        "eval_count": 155
+      },
+      "client_wall_ms": 28379.7,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3-coder_30b-a3b-q4_K_M_cold_f05_environment_failure.csv",
+        "samples": 26,
+        "max_sample_gap_s": 1.303,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 95.0,
+          "mean": 43.6,
+          "min": 0.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14977.0,
+          "mean": 10229.4,
+          "min": 764.0
+        },
+        "gpu_power_w": {
+          "max": 227.08,
+          "mean": 114.1,
+          "min": 44.36
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2673.9,
+          "min": 1822.0
+        },
+        "gpu_temp_c": {
+          "max": 53.0,
+          "mean": 41.7,
+          "min": 37.0
+        },
+        "cpu_util_pct": {
+          "max": 68.6,
+          "mean": 20.4,
+          "min": 7.4
+        },
+        "ram_available_mb": {
+          "max": 54596,
+          "mean": 49165.0,
+          "min": 46694
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2205.2,
+        "decode_tok_s": 54.2,
+        "inference_only_ms": 13983.6
+      }
+    },
+    {
+      "fixture_id": "f01_repeated_assertion",
+      "stratum": "repeated_assertion",
+      "model": "qwen3-coder:30b-a3b-q4_K_M",
+      "model_load_state": "warm",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a353b721c5f02a5399964ca63a86d2d4d07947eb5613122f688305ff3f576c30",
+      "worker_view_hash": "05a208930006af5f9a6d8c816787abf8cb13596230c7dae5529488f4a8caac18",
+      "worker_view_input_tokens_estimated": 22079,
+      "worker_view_size_chars": 88313,
+      "worker_view_truncated": true,
+      "packet_content_hash": "02852d81d277ce673a91bd9eda4263782549e673cccbc58653dd73c677d44685",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d",
+        "redaction_output_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d"
+      },
+      "preflight_duration_ms": 506.5557999769226,
+      "model_load_duration_ms": 117.5215,
+      "prompt_prefill_duration_ms": 31.863,
+      "generation_duration_ms": 4612.896,
+      "local_total_duration_ms": 4814.6153,
+      "prompt_eval_count": 27308,
+      "generated_output_tokens": 249,
+      "classification": "cascade_from_single_root_cause",
+      "expected_classification": "cascade_from_single_root_cause",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 22076142384,
+        "vram_size_bytes": 14605027900,
+        "gpu_fraction": 0.6616,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 14977,
+          "vram_free_mib_at_start": 1001
+        },
+        "model": {
+          "tag": "qwen3-coder:30b-a3b-q4_K_M",
+          "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+          "family": "qwen3moe",
+          "parameter_size": "30.5B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 18556700761,
+          "total_layers": 48,
+          "native_context_length": 262144,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 22076142384,
+          "size_vram_bytes": 14605027900,
+          "gpu_fraction": 0.6616,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:26:18.4848842-07:00"
+        },
+        "prompt_eval_count": 27308,
+        "eval_count": 249
+      },
+      "client_wall_ms": 9551.7,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3-coder_30b-a3b-q4_K_M_warm_f01_repeated_assertion.csv",
+        "samples": 9,
+        "max_sample_gap_s": 1.299,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 55.0,
+          "mean": 20.8,
+          "min": 3.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14977.0,
+          "mean": 14977.0,
+          "min": 14977.0
+        },
+        "gpu_power_w": {
+          "max": 114.13,
+          "mean": 70.6,
+          "min": 40.41
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2872.0,
+          "mean": 2150.6,
+          "min": 1222.0
+        },
+        "gpu_temp_c": {
+          "max": 41.0,
+          "mean": 38.7,
+          "min": 37.0
+        },
+        "cpu_util_pct": {
+          "max": 67.3,
+          "mean": 33.7,
+          "min": 7.6
+        },
+        "ram_available_mb": {
+          "max": 46698,
+          "mean": 46666.2,
+          "min": 46634
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 857044.2,
+        "decode_tok_s": 54.0,
+        "inference_only_ms": 4697.1
+      }
+    },
+    {
+      "fixture_id": "f02_compiler_type",
+      "stratum": "compiler_type",
+      "model": "qwen3-coder:30b-a3b-q4_K_M",
+      "model_load_state": "warm",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a353b721c5f02a5399964ca63a86d2d4d07947eb5613122f688305ff3f576c30",
+      "worker_view_hash": "0a05793344f19fb2db90eaee31004a6399ad95c0b74b983c8aa9a615bfdbfadd",
+      "worker_view_input_tokens_estimated": 22107,
+      "worker_view_size_chars": 88426,
+      "worker_view_truncated": true,
+      "packet_content_hash": "d4df7f51e48b623d27ec1b782e46cba94bc0df4a72942ea92b56bb0105e9dd34",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "444f7b2ccd17d9ebcf535e5f806415b021c2b00a89dbf5a71d80eea4e332152e",
+        "redaction_output_hash": "7c35a5337f9a33d5f4a589cac5d22f39ed26ae5a66bb42ba06fb8665c11b9b9f"
+      },
+      "preflight_duration_ms": 510.0776999606751,
+      "model_load_duration_ms": 130.4613,
+      "prompt_prefill_duration_ms": 13165.59,
+      "generation_duration_ms": 3185.205,
+      "local_total_duration_ms": 17086.3302,
+      "prompt_eval_count": 28774,
+      "generated_output_tokens": 154,
+      "classification": "cascade_from_single_root_cause",
+      "expected_classification": "multiple_independent_failures",
+      "hypothesis_count": 1,
+      "abstention_reason": "evidence_outside_authority_boundary",
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 22076142384,
+        "vram_size_bytes": 14605027900,
+        "gpu_fraction": 0.6616,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 14977,
+          "vram_free_mib_at_start": 1001
+        },
+        "model": {
+          "tag": "qwen3-coder:30b-a3b-q4_K_M",
+          "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+          "family": "qwen3moe",
+          "parameter_size": "30.5B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 18556700761,
+          "total_layers": 48,
+          "native_context_length": 262144,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 22076142384,
+          "size_vram_bytes": 14605027900,
+          "gpu_fraction": 0.6616,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:26:42.5381082-07:00"
+        },
+        "prompt_eval_count": 28774,
+        "eval_count": 154
+      },
+      "client_wall_ms": 21842.7,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3-coder_30b-a3b-q4_K_M_warm_f02_compiler_type.csv",
+        "samples": 20,
+        "max_sample_gap_s": 1.271,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 96.0,
+          "mean": 62.6,
+          "min": 2.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14977.0,
+          "mean": 14977.0,
+          "min": 14977.0
+        },
+        "gpu_power_w": {
+          "max": 243.53,
+          "mean": 152.0,
+          "min": 37.25
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2872.0,
+          "mean": 2478.8,
+          "min": 855.0
+        },
+        "gpu_temp_c": {
+          "max": 56.0,
+          "mean": 45.7,
+          "min": 36.0
+        },
+        "cpu_util_pct": {
+          "max": 75.2,
+          "mean": 23.9,
+          "min": 10.3
+        },
+        "ram_available_mb": {
+          "max": 46628,
+          "mean": 44396.2,
+          "min": 43955
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2185.5,
+        "decode_tok_s": 48.3,
+        "inference_only_ms": 16955.9
+      }
+    },
+    {
+      "fixture_id": "f03_cascade_root_cause",
+      "stratum": "cascade_root_cause",
+      "model": "qwen3-coder:30b-a3b-q4_K_M",
+      "model_load_state": "warm",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a353b721c5f02a5399964ca63a86d2d4d07947eb5613122f688305ff3f576c30",
+      "worker_view_hash": "34e3e79d7ad2aab1225f417cc411335c466b9609a46b12ee46aa7e07845047bf",
+      "worker_view_input_tokens_estimated": 22092,
+      "worker_view_size_chars": 88366,
+      "worker_view_truncated": true,
+      "packet_content_hash": "1a51e812deed0d67079398c9e947e98ad98dad2ade461ba79800e0e0ea8a7d20",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41",
+        "redaction_output_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41"
+      },
+      "preflight_duration_ms": 526.8004999961704,
+      "model_load_duration_ms": 117.3095,
+      "prompt_prefill_duration_ms": 12407.229,
+      "generation_duration_ms": 3228.475,
+      "local_total_duration_ms": 16369.4551,
+      "prompt_eval_count": 27654,
+      "generated_output_tokens": 174,
+      "classification": "cascade_from_single_root_cause",
+      "expected_classification": "cascade_from_single_root_cause",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 22076142384,
+        "vram_size_bytes": 14605027900,
+        "gpu_fraction": 0.6616,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 14977,
+          "vram_free_mib_at_start": 1001
+        },
+        "model": {
+          "tag": "qwen3-coder:30b-a3b-q4_K_M",
+          "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+          "family": "qwen3moe",
+          "parameter_size": "30.5B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 18556700761,
+          "total_layers": 48,
+          "native_context_length": 262144,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 22076142384,
+          "size_vram_bytes": 14605027900,
+          "gpu_fraction": 0.6616,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:27:05.7511462-07:00"
+        },
+        "prompt_eval_count": 27654,
+        "eval_count": 174
+      },
+      "client_wall_ms": 21098.5,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3-coder_30b-a3b-q4_K_M_warm_f03_cascade_root_cause.csv",
+        "samples": 19,
+        "max_sample_gap_s": 1.3,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 95.0,
+          "mean": 62.6,
+          "min": 4.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14977.0,
+          "mean": 14977.0,
+          "min": 14977.0
+        },
+        "gpu_power_w": {
+          "max": 232.48,
+          "mean": 150.1,
+          "min": 39.68
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2872.0,
+          "mean": 2512.1,
+          "min": 1110.0
+        },
+        "gpu_temp_c": {
+          "max": 54.0,
+          "mean": 45.1,
+          "min": 37.0
+        },
+        "cpu_util_pct": {
+          "max": 65.4,
+          "mean": 22.4,
+          "min": 8.0
+        },
+        "ram_available_mb": {
+          "max": 44064,
+          "mean": 41888.1,
+          "min": 41382
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2228.9,
+        "decode_tok_s": 53.9,
+        "inference_only_ms": 16252.1
+      }
+    },
+    {
+      "fixture_id": "f04_multiple_independent",
+      "stratum": "multiple_independent",
+      "model": "qwen3-coder:30b-a3b-q4_K_M",
+      "model_load_state": "warm",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a353b721c5f02a5399964ca63a86d2d4d07947eb5613122f688305ff3f576c30",
+      "worker_view_hash": "1a8689bd3358a2498539c184a94ce433b928e4922678333b34a9263f7c9329e5",
+      "worker_view_input_tokens_estimated": 22094,
+      "worker_view_size_chars": 88374,
+      "worker_view_truncated": true,
+      "packet_content_hash": "31b9f6ccbd32f92c49a9f006bffe3829250692f32eb2429b53fe67082c2011bf",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091",
+        "redaction_output_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091"
+      },
+      "preflight_duration_ms": 531.4620000426657,
+      "model_load_duration_ms": 116.9781,
+      "prompt_prefill_duration_ms": 11963.71,
+      "generation_duration_ms": 6865.093,
+      "local_total_duration_ms": 19566.9787,
+      "prompt_eval_count": 26694,
+      "generated_output_tokens": 376,
+      "classification": "multiple_independent_failures",
+      "expected_classification": "multiple_independent_failures",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 22076142384,
+        "vram_size_bytes": 14605027900,
+        "gpu_fraction": 0.6616,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 14977,
+          "vram_free_mib_at_start": 1001
+        },
+        "model": {
+          "tag": "qwen3-coder:30b-a3b-q4_K_M",
+          "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+          "family": "qwen3moe",
+          "parameter_size": "30.5B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 18556700761,
+          "total_layers": 48,
+          "native_context_length": 262144,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 22076142384,
+          "size_vram_bytes": 14605027900,
+          "gpu_fraction": 0.6616,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:27:32.1549123-07:00"
+        },
+        "prompt_eval_count": 26694,
+        "eval_count": 376
+      },
+      "client_wall_ms": 24286.6,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3-coder_30b-a3b-q4_K_M_warm_f04_multiple_independent.csv",
+        "samples": 21,
+        "max_sample_gap_s": 1.45,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 95.0,
+          "mean": 56.6,
+          "min": 2.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14977.0,
+          "mean": 14977.0,
+          "min": 14977.0
+        },
+        "gpu_power_w": {
+          "max": 225.12,
+          "mean": 142.5,
+          "min": 35.42
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2872.0,
+          "mean": 2514.3,
+          "min": 502.0
+        },
+        "gpu_temp_c": {
+          "max": 55.0,
+          "mean": 44.7,
+          "min": 37.0
+        },
+        "cpu_util_pct": {
+          "max": 71.7,
+          "mean": 28.5,
+          "min": 11.2
+        },
+        "ram_available_mb": {
+          "max": 41428,
+          "mean": 39159.7,
+          "min": 38707
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2231.2,
+        "decode_tok_s": 54.8,
+        "inference_only_ms": 19450.0
+      }
+    },
+    {
+      "fixture_id": "f05_environment_failure",
+      "stratum": "environment_failure",
+      "model": "qwen3-coder:30b-a3b-q4_K_M",
+      "model_load_state": "warm",
+      "structurally_valid": true,
+      "citation_integrity": true,
+      "invocation_failure_kind": null,
+      "error": null,
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "a353b721c5f02a5399964ca63a86d2d4d07947eb5613122f688305ff3f576c30",
+      "worker_view_hash": "9a1e29268ea9dcb0057f45b4046a95537c76cc16c93715c262af46c1816c7b03",
+      "worker_view_input_tokens_estimated": 22090,
+      "worker_view_size_chars": 88357,
+      "worker_view_truncated": true,
+      "packet_content_hash": "9458883f38906728fc2eb9ecb43cae7e7dfa49ed2ff03595f23d2fea06c18e5b",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d",
+        "redaction_output_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d"
+      },
+      "preflight_duration_ms": 528.5039999871515,
+      "model_load_duration_ms": 149.6979,
+      "prompt_prefill_duration_ms": 10562.48,
+      "generation_duration_ms": 3497.092,
+      "local_total_duration_ms": 14915.1825,
+      "prompt_eval_count": 24376,
+      "generated_output_tokens": 192,
+      "classification": "environment_or_infrastructure_failure",
+      "expected_classification": "environment_or_infrastructure_failure",
+      "hypothesis_count": 1,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 22076142384,
+        "vram_size_bytes": 14605027900,
+        "gpu_fraction": 0.6616,
+        "fully_on_gpu": false
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 14977,
+          "vram_free_mib_at_start": 1001
+        },
+        "model": {
+          "tag": "qwen3-coder:30b-a3b-q4_K_M",
+          "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+          "family": "qwen3moe",
+          "parameter_size": "30.5B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 18556700761,
+          "total_layers": 48,
+          "native_context_length": 262144,
+          "has_vision_projector": false,
+          "capabilities": [
+            "completion",
+            "tools"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 22076142384,
+          "size_vram_bytes": 14605027900,
+          "gpu_fraction": 0.6616,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:27:53.8717025-07:00"
+        },
+        "prompt_eval_count": 24376,
+        "eval_count": 192
+      },
+      "client_wall_ms": 19596.5,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3-coder_30b-a3b-q4_K_M_warm_f05_environment_failure.csv",
+        "samples": 18,
+        "max_sample_gap_s": 1.206,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 96.0,
+          "mean": 53.9,
+          "min": 0.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 14977.0,
+          "mean": 14977.0,
+          "min": 14977.0
+        },
+        "gpu_power_w": {
+          "max": 226.15,
+          "mean": 137.7,
+          "min": 37.57
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2865.0,
+          "mean": 2413.8,
+          "min": 645.0
+        },
+        "gpu_temp_c": {
+          "max": 58.0,
+          "mean": 45.4,
+          "min": 37.0
+        },
+        "cpu_util_pct": {
+          "max": 63.5,
+          "mean": 24.0,
+          "min": 8.6
+        },
+        "ram_available_mb": {
+          "max": 38818,
+          "mean": 38787.8,
+          "min": 38750
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 2307.8,
+        "decode_tok_s": 54.9,
+        "inference_only_ms": 14765.5
+      }
+    },
+    {
+      "fixture_id": "f01_repeated_assertion",
+      "stratum": "repeated_assertion",
+      "model": "qwen3.5:9b",
+      "model_load_state": "cold",
+      "structurally_valid": false,
+      "citation_integrity": null,
+      "invocation_failure_kind": "unparseable",
+      "error": "response was not valid JSON: Expecting value: line 1 column 1 (char 0)",
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "ea67d5bad4188cca5a014e8a14d910f7b9811420f22a8f43ea39ca288ae170f9",
+      "worker_view_hash": "05a208930006af5f9a6d8c816787abf8cb13596230c7dae5529488f4a8caac18",
+      "worker_view_input_tokens_estimated": 22079,
+      "worker_view_size_chars": 88313,
+      "worker_view_truncated": true,
+      "packet_content_hash": "02852d81d277ce673a91bd9eda4263782549e673cccbc58653dd73c677d44685",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d",
+        "redaction_output_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d"
+      },
+      "preflight_duration_ms": 534.7070999559946,
+      "model_load_duration_ms": 17778.6436,
+      "prompt_prefill_duration_ms": 13946.968,
+      "generation_duration_ms": 8668.807,
+      "local_total_duration_ms": 40456.0081,
+      "prompt_eval_count": 27334,
+      "generated_output_tokens": 700,
+      "classification": null,
+      "expected_classification": "cascade_from_single_root_cause",
+      "hypothesis_count": 0,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 6584805620,
+        "vram_size_bytes": 6584805620,
+        "gpu_fraction": 1.0,
+        "fully_on_gpu": true
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 764,
+          "vram_free_mib_at_start": 15214
+        },
+        "model": {
+          "tag": "qwen3.5:9b",
+          "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+          "family": "qwen35",
+          "parameter_size": "9.7B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 6594474711,
+          "total_layers": 32,
+          "native_context_length": 262144,
+          "has_vision_projector": true,
+          "capabilities": [
+            "completion",
+            "vision",
+            "tools",
+            "thinking"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 34,
+          "total_layers": 34,
+          "overflowing_layers": 0,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 1024.0,
+          "n_ctx": 32768,
+          "projector_loaded": true,
+          "segment_chars": 41377
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 6584805620,
+          "size_vram_bytes": 6584805620,
+          "gpu_fraction": 1.0,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:28:55.5599135-07:00"
+        },
+        "prompt_eval_count": 27334,
+        "eval_count": 700
+      },
+      "client_wall_ms": 47270.3,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3.5_9b_cold_f01_repeated_assertion.csv",
+        "samples": 44,
+        "max_sample_gap_s": 1.097,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 35.8,
+          "min": 7.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 8345.0,
+          "mean": 6701.2,
+          "min": 764.0
+        },
+        "gpu_power_w": {
+          "max": 294.21,
+          "mean": 101.0,
+          "min": 41.73
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2268.2,
+          "min": 1455.0
+        },
+        "gpu_temp_c": {
+          "max": 57.0,
+          "mean": 41.0,
+          "min": 36.0
+        },
+        "cpu_util_pct": {
+          "max": 40.2,
+          "mean": 14.4,
+          "min": 7.3
+        },
+        "ram_available_mb": {
+          "max": 54481,
+          "mean": 53379.1,
+          "min": 52981
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 1959.9,
+        "decode_tok_s": 80.7,
+        "inference_only_ms": 22677.4
+      }
+    },
+    {
+      "fixture_id": "f02_compiler_type",
+      "stratum": "compiler_type",
+      "model": "qwen3.5:9b",
+      "model_load_state": "cold",
+      "structurally_valid": false,
+      "citation_integrity": null,
+      "invocation_failure_kind": "unparseable",
+      "error": "response was not valid JSON: Expecting value: line 1 column 1 (char 0)",
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "ea67d5bad4188cca5a014e8a14d910f7b9811420f22a8f43ea39ca288ae170f9",
+      "worker_view_hash": "0a05793344f19fb2db90eaee31004a6399ad95c0b74b983c8aa9a615bfdbfadd",
+      "worker_view_input_tokens_estimated": 22107,
+      "worker_view_size_chars": 88426,
+      "worker_view_truncated": true,
+      "packet_content_hash": "d4df7f51e48b623d27ec1b782e46cba94bc0df4a72942ea92b56bb0105e9dd34",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "444f7b2ccd17d9ebcf535e5f806415b021c2b00a89dbf5a71d80eea4e332152e",
+        "redaction_output_hash": "7c35a5337f9a33d5f4a589cac5d22f39ed26ae5a66bb42ba06fb8665c11b9b9f"
+      },
+      "preflight_duration_ms": 513.8489999808371,
+      "model_load_duration_ms": 3709.1226,
+      "prompt_prefill_duration_ms": 5478.792,
+      "generation_duration_ms": 7153.234,
+      "local_total_duration_ms": 16392.6256,
+      "prompt_eval_count": 29358,
+      "generated_output_tokens": 650,
+      "classification": null,
+      "expected_classification": "multiple_independent_failures",
+      "hypothesis_count": 0,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 6584805620,
+        "vram_size_bytes": 6584805620,
+        "gpu_fraction": 1.0,
+        "fully_on_gpu": true
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 764,
+          "vram_free_mib_at_start": 15214
+        },
+        "model": {
+          "tag": "qwen3.5:9b",
+          "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+          "family": "qwen35",
+          "parameter_size": "9.7B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 6594474711,
+          "total_layers": 32,
+          "native_context_length": 262144,
+          "has_vision_projector": true,
+          "capabilities": [
+            "completion",
+            "vision",
+            "tools",
+            "thinking"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 34,
+          "total_layers": 34,
+          "overflowing_layers": 0,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 1024.0,
+          "n_ctx": 32768,
+          "projector_loaded": true,
+          "segment_chars": 39563
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 6584805620,
+          "size_vram_bytes": 6584805620,
+          "gpu_fraction": 1.0,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:29:25.013321-07:00"
+        },
+        "prompt_eval_count": 29358,
+        "eval_count": 650
+      },
+      "client_wall_ms": 23229.5,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3.5_9b_cold_f02_compiler_type.csv",
+        "samples": 22,
+        "max_sample_gap_s": 1.23,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 56.8,
+          "min": 7.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 8349.0,
+          "mean": 5825.9,
+          "min": 764.0
+        },
+        "gpu_power_w": {
+          "max": 302.42,
+          "mean": 159.0,
+          "min": 41.83
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2651.3,
+          "min": 1552.0
+        },
+        "gpu_temp_c": {
+          "max": 57.0,
+          "mean": 45.6,
+          "min": 37.0
+        },
+        "cpu_util_pct": {
+          "max": 23.7,
+          "mean": 12.6,
+          "min": 6.6
+        },
+        "ram_available_mb": {
+          "max": 54448,
+          "mean": 53539.3,
+          "min": 53040
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 5358.5,
+        "decode_tok_s": 90.9,
+        "inference_only_ms": 12683.5
+      }
+    },
+    {
+      "fixture_id": "f03_cascade_root_cause",
+      "stratum": "cascade_root_cause",
+      "model": "qwen3.5:9b",
+      "model_load_state": "cold",
+      "structurally_valid": false,
+      "citation_integrity": null,
+      "invocation_failure_kind": "unparseable",
+      "error": "response was not valid JSON: Expecting value: line 1 column 1 (char 0)",
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "ea67d5bad4188cca5a014e8a14d910f7b9811420f22a8f43ea39ca288ae170f9",
+      "worker_view_hash": "34e3e79d7ad2aab1225f417cc411335c466b9609a46b12ee46aa7e07845047bf",
+      "worker_view_input_tokens_estimated": 22092,
+      "worker_view_size_chars": 88366,
+      "worker_view_truncated": true,
+      "packet_content_hash": "1a51e812deed0d67079398c9e947e98ad98dad2ade461ba79800e0e0ea8a7d20",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41",
+        "redaction_output_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41"
+      },
+      "preflight_duration_ms": 517.0849999994971,
+      "model_load_duration_ms": 3739.0703,
+      "prompt_prefill_duration_ms": 5283.664,
+      "generation_duration_ms": 7426.693,
+      "local_total_duration_ms": 16501.0232,
+      "prompt_eval_count": 27684,
+      "generated_output_tokens": 676,
+      "classification": null,
+      "expected_classification": "cascade_from_single_root_cause",
+      "hypothesis_count": 0,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 6584805620,
+        "vram_size_bytes": 6584805620,
+        "gpu_fraction": 1.0,
+        "fully_on_gpu": true
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 764,
+          "vram_free_mib_at_start": 15214
+        },
+        "model": {
+          "tag": "qwen3.5:9b",
+          "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+          "family": "qwen35",
+          "parameter_size": "9.7B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 6594474711,
+          "total_layers": 32,
+          "native_context_length": 262144,
+          "has_vision_projector": true,
+          "capabilities": [
+            "completion",
+            "vision",
+            "tools",
+            "thinking"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 34,
+          "total_layers": 34,
+          "overflowing_layers": 0,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 1024.0,
+          "n_ctx": 32768,
+          "projector_loaded": true,
+          "segment_chars": 39474
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 6584805620,
+          "size_vram_bytes": 6584805620,
+          "gpu_fraction": 1.0,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:29:54.5770788-07:00"
+        },
+        "prompt_eval_count": 27684,
+        "eval_count": 676
+      },
+      "client_wall_ms": 23324.7,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3.5_9b_cold_f03_cascade_root_cause.csv",
+        "samples": 22,
+        "max_sample_gap_s": 1.103,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 61.2,
+          "min": 8.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 8349.0,
+          "mean": 5886.0,
+          "min": 764.0
+        },
+        "gpu_power_w": {
+          "max": 295.58,
+          "mean": 161.1,
+          "min": 41.85
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2613.9,
+          "min": 1402.0
+        },
+        "gpu_temp_c": {
+          "max": 57.0,
+          "mean": 46.2,
+          "min": 37.0
+        },
+        "cpu_util_pct": {
+          "max": 22.0,
+          "mean": 12.8,
+          "min": 7.1
+        },
+        "ram_available_mb": {
+          "max": 54380,
+          "mean": 53494.2,
+          "min": 53014
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 5239.5,
+        "decode_tok_s": 91.0,
+        "inference_only_ms": 12762.0
+      }
+    },
+    {
+      "fixture_id": "f04_multiple_independent",
+      "stratum": "multiple_independent",
+      "model": "qwen3.5:9b",
+      "model_load_state": "cold",
+      "structurally_valid": false,
+      "citation_integrity": null,
+      "invocation_failure_kind": "unparseable",
+      "error": "response was not valid JSON: Expecting value: line 1 column 1 (char 0)",
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "ea67d5bad4188cca5a014e8a14d910f7b9811420f22a8f43ea39ca288ae170f9",
+      "worker_view_hash": "1a8689bd3358a2498539c184a94ce433b928e4922678333b34a9263f7c9329e5",
+      "worker_view_input_tokens_estimated": 22094,
+      "worker_view_size_chars": 88374,
+      "worker_view_truncated": true,
+      "packet_content_hash": "31b9f6ccbd32f92c49a9f006bffe3829250692f32eb2429b53fe67082c2011bf",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091",
+        "redaction_output_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091"
+      },
+      "preflight_duration_ms": 512.4577999813482,
+      "model_load_duration_ms": 3457.7152,
+      "prompt_prefill_duration_ms": 4904.453,
+      "generation_duration_ms": 2979.569,
+      "local_total_duration_ms": 11399.2541,
+      "prompt_eval_count": 26722,
+      "generated_output_tokens": 244,
+      "classification": null,
+      "expected_classification": "multiple_independent_failures",
+      "hypothesis_count": 0,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 6584805620,
+        "vram_size_bytes": 6584805620,
+        "gpu_fraction": 1.0,
+        "fully_on_gpu": true
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 764,
+          "vram_free_mib_at_start": 15214
+        },
+        "model": {
+          "tag": "qwen3.5:9b",
+          "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+          "family": "qwen35",
+          "parameter_size": "9.7B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 6594474711,
+          "total_layers": 32,
+          "native_context_length": 262144,
+          "has_vision_projector": true,
+          "capabilities": [
+            "completion",
+            "vision",
+            "tools",
+            "thinking"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 34,
+          "total_layers": 34,
+          "overflowing_layers": 0,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 1024.0,
+          "n_ctx": 32768,
+          "projector_loaded": true,
+          "segment_chars": 38941
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 6584805620,
+          "size_vram_bytes": 6584805620,
+          "gpu_fraction": 1.0,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:30:19.0144743-07:00"
+        },
+        "prompt_eval_count": 26722,
+        "eval_count": 244
+      },
+      "client_wall_ms": 18188.6,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3.5_9b_cold_f04_multiple_independent.csv",
+        "samples": 17,
+        "max_sample_gap_s": 1.088,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 52.2,
+          "min": 9.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 8349.0,
+          "mean": 5163.4,
+          "min": 764.0
+        },
+        "gpu_power_w": {
+          "max": 300.18,
+          "mean": 145.0,
+          "min": 42.68
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2591.2,
+          "min": 1560.0
+        },
+        "gpu_temp_c": {
+          "max": 57.0,
+          "mean": 45.5,
+          "min": 38.0
+        },
+        "cpu_util_pct": {
+          "max": 18.1,
+          "mean": 11.3,
+          "min": 6.2
+        },
+        "ram_available_mb": {
+          "max": 54381,
+          "mean": 53599.2,
+          "min": 53047
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 5448.5,
+        "decode_tok_s": 81.9,
+        "inference_only_ms": 7941.5
+      }
+    },
+    {
+      "fixture_id": "f05_environment_failure",
+      "stratum": "environment_failure",
+      "model": "qwen3.5:9b",
+      "model_load_state": "cold",
+      "structurally_valid": false,
+      "citation_integrity": null,
+      "invocation_failure_kind": "unparseable",
+      "error": "response was not valid JSON: Expecting value: line 1 column 1 (char 0)",
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "ea67d5bad4188cca5a014e8a14d910f7b9811420f22a8f43ea39ca288ae170f9",
+      "worker_view_hash": "9a1e29268ea9dcb0057f45b4046a95537c76cc16c93715c262af46c1816c7b03",
+      "worker_view_input_tokens_estimated": 22090,
+      "worker_view_size_chars": 88357,
+      "worker_view_truncated": true,
+      "packet_content_hash": "9458883f38906728fc2eb9ecb43cae7e7dfa49ed2ff03595f23d2fea06c18e5b",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d",
+        "redaction_output_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d"
+      },
+      "preflight_duration_ms": 527.0798999699764,
+      "model_load_duration_ms": 3547.7838,
+      "prompt_prefill_duration_ms": 4632.264,
+      "generation_duration_ms": 1294.243,
+      "local_total_duration_ms": 9526.7315,
+      "prompt_eval_count": 24400,
+      "generated_output_tokens": 87,
+      "classification": null,
+      "expected_classification": "environment_or_infrastructure_failure",
+      "hypothesis_count": 0,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 6584805620,
+        "vram_size_bytes": 6584805620,
+        "gpu_fraction": 1.0,
+        "fully_on_gpu": true
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 764,
+          "vram_free_mib_at_start": 15214
+        },
+        "model": {
+          "tag": "qwen3.5:9b",
+          "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+          "family": "qwen35",
+          "parameter_size": "9.7B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 6594474711,
+          "total_layers": 32,
+          "native_context_length": 262144,
+          "has_vision_projector": true,
+          "capabilities": [
+            "completion",
+            "vision",
+            "tools",
+            "thinking"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "true-cold",
+        "disk_cache_condition": "process-cold: model verified unloaded from Ollama via /api/ps before the request; Windows file cache NOT flushed (no admin cache flush performed) and all three model files were read earlier on 2026-09-06, so weights are very likely served from RAM page cache, not from NVMe. This is NOT a disk-cold measurement.",
+        "load": {
+          "offloaded_layers": 34,
+          "total_layers": 34,
+          "overflowing_layers": 0,
+          "flash_attn_logged": "enabled",
+          "kv_cache_k_type": "f16",
+          "kv_cache_v_type": "f16",
+          "kv_cache_mib": 1024.0,
+          "n_ctx": 32768,
+          "projector_loaded": true,
+          "segment_chars": 38408
+        },
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 6584805620,
+          "size_vram_bytes": 6584805620,
+          "gpu_fraction": 1.0,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:30:41.5789341-07:00"
+        },
+        "prompt_eval_count": 24400,
+        "eval_count": 87
+      },
+      "client_wall_ms": 16289.5,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3.5_9b_cold_f05_environment_failure.csv",
+        "samples": 16,
+        "max_sample_gap_s": 1.09,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 39.8,
+          "min": 11.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 8349.0,
+          "mean": 4964.2,
+          "min": 764.0
+        },
+        "gpu_power_w": {
+          "max": 290.71,
+          "mean": 126.5,
+          "min": 44.55
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2598.5,
+          "min": 1807.0
+        },
+        "gpu_temp_c": {
+          "max": 57.0,
+          "mean": 43.5,
+          "min": 38.0
+        },
+        "cpu_util_pct": {
+          "max": 24.0,
+          "mean": 11.9,
+          "min": 6.5
+        },
+        "ram_available_mb": {
+          "max": 54340,
+          "mean": 53603.1,
+          "min": 53015
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 5267.4,
+        "decode_tok_s": 67.2,
+        "inference_only_ms": 5978.9
+      }
+    },
+    {
+      "fixture_id": "f01_repeated_assertion",
+      "stratum": "repeated_assertion",
+      "model": "qwen3.5:9b",
+      "model_load_state": "warm",
+      "structurally_valid": false,
+      "citation_integrity": null,
+      "invocation_failure_kind": "unparseable",
+      "error": "response was not valid JSON: Expecting value: line 1 column 1 (char 0)",
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "ea67d5bad4188cca5a014e8a14d910f7b9811420f22a8f43ea39ca288ae170f9",
+      "worker_view_hash": "05a208930006af5f9a6d8c816787abf8cb13596230c7dae5529488f4a8caac18",
+      "worker_view_input_tokens_estimated": 22079,
+      "worker_view_size_chars": 88313,
+      "worker_view_truncated": true,
+      "packet_content_hash": "02852d81d277ce673a91bd9eda4263782549e673cccbc58653dd73c677d44685",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d",
+        "redaction_output_hash": "ba2e5b64f722db2c655bfa3250f1c7175d886401db6b30c2ee8a41972968ec3d"
+      },
+      "preflight_duration_ms": 502.6838000048883,
+      "model_load_duration_ms": 217.7719,
+      "prompt_prefill_duration_ms": 58.928,
+      "generation_duration_ms": 7754.602,
+      "local_total_duration_ms": 8087.7433,
+      "prompt_eval_count": 27334,
+      "generated_output_tokens": 700,
+      "classification": null,
+      "expected_classification": "cascade_from_single_root_cause",
+      "hypothesis_count": 0,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 6584805620,
+        "vram_size_bytes": 6584805620,
+        "gpu_fraction": 1.0,
+        "fully_on_gpu": true
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 8349,
+          "vram_free_mib_at_start": 7629
+        },
+        "model": {
+          "tag": "qwen3.5:9b",
+          "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+          "family": "qwen35",
+          "parameter_size": "9.7B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 6594474711,
+          "total_layers": 32,
+          "native_context_length": 262144,
+          "has_vision_projector": true,
+          "capabilities": [
+            "completion",
+            "vision",
+            "tools",
+            "thinking"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 6584805620,
+          "size_vram_bytes": 6584805620,
+          "gpu_fraction": 1.0,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:31:27.8633632-07:00"
+        },
+        "prompt_eval_count": 27334,
+        "eval_count": 700
+      },
+      "client_wall_ms": 12797.6,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3.5_9b_warm_f01_repeated_assertion.csv",
+        "samples": 12,
+        "max_sample_gap_s": 1.135,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 92.0,
+          "mean": 57.6,
+          "min": 8.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 8349.0,
+          "mean": 8349.0,
+          "min": 8349.0
+        },
+        "gpu_power_w": {
+          "max": 228.86,
+          "mean": 147.0,
+          "min": 43.04
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2561.1,
+          "min": 1552.0
+        },
+        "gpu_temp_c": {
+          "max": 50.0,
+          "mean": 45.0,
+          "min": 38.0
+        },
+        "cpu_util_pct": {
+          "max": 22.9,
+          "mean": 13.9,
+          "min": 9.1
+        },
+        "ram_available_mb": {
+          "max": 53047,
+          "mean": 53008.1,
+          "min": 52943
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 463854.2,
+        "decode_tok_s": 90.3,
+        "inference_only_ms": 7870.0
+      }
+    },
+    {
+      "fixture_id": "f02_compiler_type",
+      "stratum": "compiler_type",
+      "model": "qwen3.5:9b",
+      "model_load_state": "warm",
+      "structurally_valid": false,
+      "citation_integrity": null,
+      "invocation_failure_kind": "unparseable",
+      "error": "response was not valid JSON: Expecting value: line 1 column 1 (char 0)",
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "ea67d5bad4188cca5a014e8a14d910f7b9811420f22a8f43ea39ca288ae170f9",
+      "worker_view_hash": "0a05793344f19fb2db90eaee31004a6399ad95c0b74b983c8aa9a615bfdbfadd",
+      "worker_view_input_tokens_estimated": 22107,
+      "worker_view_size_chars": 88426,
+      "worker_view_truncated": true,
+      "packet_content_hash": "d4df7f51e48b623d27ec1b782e46cba94bc0df4a72942ea92b56bb0105e9dd34",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "444f7b2ccd17d9ebcf535e5f806415b021c2b00a89dbf5a71d80eea4e332152e",
+        "redaction_output_hash": "7c35a5337f9a33d5f4a589cac5d22f39ed26ae5a66bb42ba06fb8665c11b9b9f"
+      },
+      "preflight_duration_ms": 504.2995999683626,
+      "model_load_duration_ms": 211.5849,
+      "prompt_prefill_duration_ms": 5603.057,
+      "generation_duration_ms": 7264.077,
+      "local_total_duration_ms": 13278.6096,
+      "prompt_eval_count": 29358,
+      "generated_output_tokens": 650,
+      "classification": null,
+      "expected_classification": "multiple_independent_failures",
+      "hypothesis_count": 0,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 6584805620,
+        "vram_size_bytes": 6584805620,
+        "gpu_fraction": 1.0,
+        "fully_on_gpu": true
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 8349,
+          "vram_free_mib_at_start": 7629
+        },
+        "model": {
+          "tag": "qwen3.5:9b",
+          "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+          "family": "qwen35",
+          "parameter_size": "9.7B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 6594474711,
+          "total_layers": 32,
+          "native_context_length": 262144,
+          "has_vision_projector": true,
+          "capabilities": [
+            "completion",
+            "vision",
+            "tools",
+            "thinking"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 6584805620,
+          "size_vram_bytes": 6584805620,
+          "gpu_fraction": 1.0,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:31:47.9638196-07:00"
+        },
+        "prompt_eval_count": 29358,
+        "eval_count": 650
+      },
+      "client_wall_ms": 17997.0,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3.5_9b_warm_f02_compiler_type.csv",
+        "samples": 17,
+        "max_sample_gap_s": 1.103,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 64.8,
+          "min": 8.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 8349.0,
+          "mean": 8349.0,
+          "min": 8349.0
+        },
+        "gpu_power_w": {
+          "max": 297.78,
+          "mean": 187.2,
+          "min": 43.83
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2586.9,
+          "min": 1590.0
+        },
+        "gpu_temp_c": {
+          "max": 60.0,
+          "mean": 48.8,
+          "min": 38.0
+        },
+        "cpu_util_pct": {
+          "max": 19.7,
+          "mean": 13.0,
+          "min": 8.4
+        },
+        "ram_available_mb": {
+          "max": 53221,
+          "mean": 52375.2,
+          "min": 52144
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 5239.6,
+        "decode_tok_s": 89.5,
+        "inference_only_ms": 13067.0
+      }
+    },
+    {
+      "fixture_id": "f03_cascade_root_cause",
+      "stratum": "cascade_root_cause",
+      "model": "qwen3.5:9b",
+      "model_load_state": "warm",
+      "structurally_valid": false,
+      "citation_integrity": null,
+      "invocation_failure_kind": "unparseable",
+      "error": "response was not valid JSON: Expecting value: line 1 column 1 (char 0)",
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "ea67d5bad4188cca5a014e8a14d910f7b9811420f22a8f43ea39ca288ae170f9",
+      "worker_view_hash": "34e3e79d7ad2aab1225f417cc411335c466b9609a46b12ee46aa7e07845047bf",
+      "worker_view_input_tokens_estimated": 22092,
+      "worker_view_size_chars": 88366,
+      "worker_view_truncated": true,
+      "packet_content_hash": "1a51e812deed0d67079398c9e947e98ad98dad2ade461ba79800e0e0ea8a7d20",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41",
+        "redaction_output_hash": "affe7ffba5c4ff57bdc6efba5ae64a8a1c76c18f41759bd17640c9ed551d2e41"
+      },
+      "preflight_duration_ms": 514.0047999448143,
+      "model_load_duration_ms": 204.331,
+      "prompt_prefill_duration_ms": 5245.508,
+      "generation_duration_ms": 7518.707,
+      "local_total_duration_ms": 13183.8831,
+      "prompt_eval_count": 27684,
+      "generated_output_tokens": 676,
+      "classification": null,
+      "expected_classification": "cascade_from_single_root_cause",
+      "hypothesis_count": 0,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 6584805620,
+        "vram_size_bytes": 6584805620,
+        "gpu_fraction": 1.0,
+        "fully_on_gpu": true
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 8349,
+          "vram_free_mib_at_start": 7629
+        },
+        "model": {
+          "tag": "qwen3.5:9b",
+          "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+          "family": "qwen35",
+          "parameter_size": "9.7B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 6594474711,
+          "total_layers": 32,
+          "native_context_length": 262144,
+          "has_vision_projector": true,
+          "capabilities": [
+            "completion",
+            "vision",
+            "tools",
+            "thinking"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 6584805620,
+          "size_vram_bytes": 6584805620,
+          "gpu_fraction": 1.0,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:32:07.9933562-07:00"
+        },
+        "prompt_eval_count": 27684,
+        "eval_count": 676
+      },
+      "client_wall_ms": 17950.0,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3.5_9b_warm_f03_cascade_root_cause.csv",
+        "samples": 17,
+        "max_sample_gap_s": 1.088,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 65.1,
+          "min": 8.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 8349.0,
+          "mean": 8349.0,
+          "min": 8349.0
+        },
+        "gpu_power_w": {
+          "max": 293.17,
+          "mean": 185.7,
+          "min": 41.64
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2525.1,
+          "min": 1350.0
+        },
+        "gpu_temp_c": {
+          "max": 59.0,
+          "mean": 49.4,
+          "min": 39.0
+        },
+        "cpu_util_pct": {
+          "max": 21.8,
+          "mean": 11.6,
+          "min": 5.2
+        },
+        "ram_available_mb": {
+          "max": 52212,
+          "mean": 51311.6,
+          "min": 51038
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 5277.7,
+        "decode_tok_s": 89.9,
+        "inference_only_ms": 12979.6
+      }
+    },
+    {
+      "fixture_id": "f04_multiple_independent",
+      "stratum": "multiple_independent",
+      "model": "qwen3.5:9b",
+      "model_load_state": "warm",
+      "structurally_valid": false,
+      "citation_integrity": null,
+      "invocation_failure_kind": "unparseable",
+      "error": "response was not valid JSON: Expecting value: line 1 column 1 (char 0)",
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "ea67d5bad4188cca5a014e8a14d910f7b9811420f22a8f43ea39ca288ae170f9",
+      "worker_view_hash": "1a8689bd3358a2498539c184a94ce433b928e4922678333b34a9263f7c9329e5",
+      "worker_view_input_tokens_estimated": 22094,
+      "worker_view_size_chars": 88374,
+      "worker_view_truncated": true,
+      "packet_content_hash": "31b9f6ccbd32f92c49a9f006bffe3829250692f32eb2429b53fe67082c2011bf",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091",
+        "redaction_output_hash": "f976ab53c595a7e59f02c085f4c9a6b491000a1c8be3bdb4a1e35d9c03766091"
+      },
+      "preflight_duration_ms": 517.1367000439204,
+      "model_load_duration_ms": 206.3582,
+      "prompt_prefill_duration_ms": 5072.148,
+      "generation_duration_ms": 2917.226,
+      "local_total_duration_ms": 8402.8605,
+      "prompt_eval_count": 26722,
+      "generated_output_tokens": 244,
+      "classification": null,
+      "expected_classification": "multiple_independent_failures",
+      "hypothesis_count": 0,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 6584805620,
+        "vram_size_bytes": 6584805620,
+        "gpu_fraction": 1.0,
+        "fully_on_gpu": true
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 8349,
+          "vram_free_mib_at_start": 7629
+        },
+        "model": {
+          "tag": "qwen3.5:9b",
+          "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+          "family": "qwen35",
+          "parameter_size": "9.7B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 6594474711,
+          "total_layers": 32,
+          "native_context_length": 262144,
+          "has_vision_projector": true,
+          "capabilities": [
+            "completion",
+            "vision",
+            "tools",
+            "thinking"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 6584805620,
+          "size_vram_bytes": 6584805620,
+          "gpu_fraction": 1.0,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:32:23.2303627-07:00"
+        },
+        "prompt_eval_count": 26722,
+        "eval_count": 244
+      },
+      "client_wall_ms": 13128.8,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3.5_9b_warm_f04_multiple_independent.csv",
+        "samples": 13,
+        "max_sample_gap_s": 1.085,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 54.0,
+          "min": 7.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 8349.0,
+          "mean": 8349.0,
+          "min": 8349.0
+        },
+        "gpu_power_w": {
+          "max": 297.83,
+          "mean": 168.6,
+          "min": 41.91
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2422.3,
+          "min": 1357.0
+        },
+        "gpu_temp_c": {
+          "max": 59.0,
+          "mean": 48.5,
+          "min": 39.0
+        },
+        "cpu_util_pct": {
+          "max": 22.4,
+          "mean": 12.4,
+          "min": 5.3
+        },
+        "ram_available_mb": {
+          "max": 51103,
+          "mean": 50278.0,
+          "min": 49916
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 5268.4,
+        "decode_tok_s": 83.6,
+        "inference_only_ms": 8196.5
+      }
+    },
+    {
+      "fixture_id": "f05_environment_failure",
+      "stratum": "environment_failure",
+      "model": "qwen3.5:9b",
+      "model_load_state": "warm",
+      "structurally_valid": false,
+      "citation_integrity": null,
+      "invocation_failure_kind": "unparseable",
+      "error": "response was not valid JSON: Expecting value: line 1 column 1 (char 0)",
+      "failed_checks": [],
+      "validation_errors": [],
+      "invocation_configuration_id": "ea67d5bad4188cca5a014e8a14d910f7b9811420f22a8f43ea39ca288ae170f9",
+      "worker_view_hash": "9a1e29268ea9dcb0057f45b4046a95537c76cc16c93715c262af46c1816c7b03",
+      "worker_view_input_tokens_estimated": 22090,
+      "worker_view_size_chars": 88357,
+      "worker_view_truncated": true,
+      "packet_content_hash": "9458883f38906728fc2eb9ecb43cae7e7dfa49ed2ff03595f23d2fea06c18e5b",
+      "redaction": {
+        "redaction_policy_version": "v1",
+        "redaction_tool_version": "v1",
+        "redaction_input_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d",
+        "redaction_output_hash": "aef1425f0242a135366c45ebb17694b9653da466b5dfab2c2ab14327b14acb1d"
+      },
+      "preflight_duration_ms": 512.0358999702148,
+      "model_load_duration_ms": 205.348,
+      "prompt_prefill_duration_ms": 4617.364,
+      "generation_duration_ms": 1257.867,
+      "local_total_duration_ms": 6280.163,
+      "prompt_eval_count": 24400,
+      "generated_output_tokens": 87,
+      "classification": null,
+      "expected_classification": "environment_or_infrastructure_failure",
+      "hypothesis_count": 0,
+      "abstention_reason": null,
+      "residency": {
+        "resident": true,
+        "total_size_bytes": 6584805620,
+        "vram_size_bytes": 6584805620,
+        "gpu_fraction": 1.0,
+        "fully_on_gpu": true
+      },
+      "runtime_identity": {
+        "runtime_identity_version": "2026-09-06.1",
+        "server": {
+          "ollama_version": "0.32.14",
+          "flash_attention": "true",
+          "keep_alive": "30m0s",
+          "kv_cache_type": "",
+          "max_loaded_models": "0",
+          "log_banner_line_no": 1
+        },
+        "gpu": {
+          "name": "NVIDIA GeForce RTX 5080",
+          "driver_version": "616.56",
+          "vram_total_mib": 16303,
+          "vram_used_mib_at_start": 8349,
+          "vram_free_mib_at_start": 7629
+        },
+        "model": {
+          "tag": "qwen3.5:9b",
+          "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+          "family": "qwen35",
+          "parameter_size": "9.7B",
+          "quantization": "Q4_K_M",
+          "size_bytes": 6594474711,
+          "total_layers": 32,
+          "native_context_length": 262144,
+          "has_vision_projector": true,
+          "capabilities": [
+            "completion",
+            "vision",
+            "tools",
+            "thinking"
+          ]
+        },
+        "num_ctx_requested": 32768,
+        "max_output_tokens": 1800,
+        "benchmark_condition": "warm-resident",
+        "disk_cache_condition": "n/a (resident)",
+        "load": null,
+        "residency_after": {
+          "resident": true,
+          "size_bytes": 6584805620,
+          "size_vram_bytes": 6584805620,
+          "gpu_fraction": 1.0,
+          "context_length": 32768,
+          "expires_at": "2026-09-06T11:32:36.3093285-07:00"
+        },
+        "prompt_eval_count": 24400,
+        "eval_count": 87
+      },
+      "client_wall_ms": 10981.4,
+      "telemetry": {
+        "csv": "phase0_results\\telemetry\\operational_2026-09-06\\qwen3.5_9b_warm_f05_environment_failure.csv",
+        "samples": 11,
+        "max_sample_gap_s": 1.081,
+        "gpu_query_failures": 0,
+        "gpu_util_pct": {
+          "max": 99.0,
+          "mean": 53.8,
+          "min": 8.0
+        },
+        "gpu_mem_used_mib": {
+          "max": 8349.0,
+          "mean": 8349.0,
+          "min": 8349.0
+        },
+        "gpu_power_w": {
+          "max": 292.81,
+          "mean": 157.4,
+          "min": 42.56
+        },
+        "gpu_sm_clock_mhz": {
+          "max": 2880.0,
+          "mean": 2421.6,
+          "min": 1477.0
+        },
+        "gpu_temp_c": {
+          "max": 59.0,
+          "mean": 48.6,
+          "min": 40.0
+        },
+        "cpu_util_pct": {
+          "max": 19.4,
+          "mean": 10.9,
+          "min": 5.4
+        },
+        "ram_available_mb": {
+          "max": 49984,
+          "mean": 49266.0,
+          "min": 48933
+        }
+      },
+      "derived": {
+        "prefill_tok_s": 5284.4,
+        "decode_tok_s": 69.2,
+        "inference_only_ms": 6074.8
+      }
+    }
+  ]
+}

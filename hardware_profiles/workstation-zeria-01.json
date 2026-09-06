@@ -14,9 +14,12 @@
     "power_profile": "High performance",
     "cpu_cores": 16,
     "cpu_threads": 32,
-    "model_store_path": "C:\\Users\\Zeria\\.ollama\\models"
+    "model_store_path": "<HOME>\\.ollama\\models"
   },
-  "profile_hash": "b725633194a7841906100e3c7529dec0f5873531b10785659a4e28b8fc8c9ebf",
+  "profile_hash": "b0ee67f45e8165d56bb0741e34b60dfd4c3aac6b05b427c8e870c01a5e7f78b0",
+  "legacy_unredacted_profile_hash": "b725633194a7841906100e3c7529dec0f5873531b10785659a4e28b8fc8c9ebf",
+  "sanitized_profile_hash": "b0ee67f45e8165d56bb0741e34b60dfd4c3aac6b05b427c8e870c01a5e7f78b0",
+  "publication_redaction_note": "2026-09-06 publication redaction: the only field changed is profile.model_store_path, whose local home directory was replaced with <HOME>. No hardware fact and no benchmark measurement changed. legacy_unredacted_profile_hash is the SHA-256 the original file carried and the value every phase0_results JSON recorded as hardware_profile_hash at measurement time; sanitized_profile_hash is the SHA-256 of the redacted profile block.",
   "environment": {
     "installed_models": [
       {

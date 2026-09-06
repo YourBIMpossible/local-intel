@@ -11,4 +11,4 @@ development loop beyond deterministic log compression alone?
 - Running record of work and decisions: [WORKLOG.md](WORKLOG.md)
 - Phase 0 results and report: [phase0_results/](phase0_results/)
 
-**Status:** Phase 0 complete — `DEFER_LOCAL_MODEL_PATH` (see `WORKLOG.md`).
+**Status:** Phase 0 complete — `DEFER_LOCAL_MODEL_PATH`, revised 2026-09-06 to warm-session-only (local models approved for active use with flash attention on; 30 m is the server keep-alive policy, the batch itself ran with 10 m request keep_alive; cold start not guaranteed). See `decisions/2026-09-06-defer-revision-warm-session-only.md` and `WORKLOG.md`.
