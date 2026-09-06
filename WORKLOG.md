@@ -146,6 +146,23 @@ of committed server-log segments/JSON/report. 20 new focused tests
 No benchmark rerun. NORTHSTAR, §6/§9/§13, candidates, and the admission
 decision untouched. **No Phase 1a admission has been made.**
 
+**2026-09-06 — Final evidence-branch corrections (human decision recorded;
+stop for PR review).** Decision record amended verbatim: batch measured
+server keep-alive 30 m / request keep_alive 10 m; approved policy going
+forward is explicit client 30 m + server 30 m; the 2026-09-06 batch proves
+the 10 m window only; `qwen3-coder:30b-a3b` eligible for a future Phase 1a
+admission decision; `qwen2.5-coder:14b` not admitted pending a
+cache-controlled rerun (2 of 4 genuine warm runs > 20 s); `qwen3.5:9b`
+unresolved pending the committed diagnostic. Diagnostic committed:
+`phase0_results/diagnostics/2026-09-06_qwen3.5-9b_think-false.json` — `think:false` → structurally valid
+artifact, no `thinking` field, 19.8 s cold-of-model. Master-era files
+redacted (`hardware_profiles/workstation-zeria-01.json`,
+`phase0_results/phase0_smoke_workstation-zeria-01.json`): home path only;
+legacy hash `b725633194a7…` → sanitized `b0ee67f45e81…`, both recorded
+with a dated note. Harness `REQUEST_KEEP_ALIVE` still `10m` (policy change
+needs a dated pre-batch edit). 82 tests pass. Not pushed. **No Phase 1a
+admission has been made.**
+
 **2026-09-06 — DEFER revised to warm-session-only (human ruling, §17).**
 Recommendation B accepted. Local models approved for normal active use with
 flash attention on and 30-minute server keep-alive (measured with 10 m

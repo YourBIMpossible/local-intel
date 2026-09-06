@@ -53,3 +53,21 @@ Two statements in the ruling and limitation paragraphs above are not supported b
 2. The thinking-field explanation for `qwen3.5:9b` (tokens written to a top-level `thinking` field; `think: false` diagnostic "confirmed") has no committed evidence: the harness recorded only the JSON-decode error, and the diagnostic was not saved. The explanation is unverified. The classification "not a model failure" is retained as a non-classification; it is not evidence of a pass.
 
 Neither correction changes the measured latencies, the §6 pass/fail table for the two candidates, or the scope of this ruling. No Phase 1a admission is made by this note or by the corrective commit.
+
+## Final ruling amendment (2026-09-06, human decision, §17)
+
+The following replaces the affected statements in the Ruling and Limitation sections above. It is the human decision-maker's text, recorded verbatim by the final corrections commit.
+
+1. The operational batch measured server `OLLAMA_KEEP_ALIVE=30m` but `request_keep_alive=10m`.
+2. Going forward, the approved active-session operating policy is explicit client `request_keep_alive=30m` and server `OLLAMA_KEEP_ALIVE=30m`.
+3. The September 6 batch does not itself prove a 30-minute client window; it proves the 10-minute measured window.
+4. `qwen3-coder:30b-a3b` is eligible for a future Phase 1a admission decision.
+5. `qwen2.5-coder:14b` is borderline: two of four genuine warm runs exceeded 20 seconds, so it is not admitted pending a cache-controlled rerun.
+6. `qwen3.5:9b` remains unresolved pending the committed diagnostic.
+
+Facts of record accompanying this amendment (not decisions):
+
+- The committed diagnostic for item 6 is `phase0_results/diagnostics/2026-09-06_qwen3.5-9b_think-false.json`: one request, fixture f01, cold-of-model: `think:false` returned a 1,684-char `response` that passed all §8 checks (structurally valid), no `thinking` field in the response body, `done_reason` stop, total 19,820 ms of which load 9,094 ms, prefill 5,417 ms (27,336 tokens), generation 5,227 ms (434 tokens). It shows what `think:false` produces; the batch's failing raw responses were not captured, so it does not by itself show what the batch produced. Resolution of item 6 on that evidence is a separate human act.
+- The harness constant `REQUEST_KEEP_ALIVE` in `run_phase0_smoke.py` still reads `10m` as of this commit. Item 2 is policy; the harness change that implements it must be a dated edit made before the next measured batch (§9/§14 discipline), not part of this evidence PR.
+- "Eligible for a future Phase 1a admission decision" (item 4) is not an admission. **No Phase 1a admission has been made.** Candidate list unchanged. NORTHSTAR.md, §6, §9, §13 unchanged.
+- Publication redaction of the two remaining master-era files (`hardware_profiles/workstation-zeria-01.json`, `phase0_results/phase0_smoke_workstation-zeria-01.json`): only the local home path in `model_store_path` changed; measurements unchanged. Legacy unredacted profile hash `b725633194a7841906100e3c7529dec0f5873531b10785659a4e28b8fc8c9ebf`; sanitized profile hash `b0ee67f45e8165d56bb0741e34b60dfd4c3aac6b05b427c8e870c01a5e7f78b0`. Every `hardware_profile_hash` recorded in `phase0_results/*.json` equals the legacy value and is left as recorded.

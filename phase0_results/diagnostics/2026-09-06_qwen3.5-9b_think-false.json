@@ -1,0 +1,76 @@
+{
+  "kind": "single-request diagnostic",
+  "purpose": "Verify or refute the unverified explanation for qwen3.5:9b's 0/5 structural validity in the 2026-09-06 operational batch (thinking output diverted from `response`). Not a Phase 0 run; feeds no \u00a76 decision; candidate list unchanged.",
+  "started_utc": "2026-09-06T20:07:14.039474+00:00",
+  "local_intel_version": "0.1.0",
+  "ollama_version": "0.32.14",
+  "hardware_profile_id": "workstation-zeria-01",
+  "model": {
+    "tag": "qwen3.5:9b",
+    "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7"
+  },
+  "model_load_state": "cold-of-model (unloaded immediately before; page cache not controlled)",
+  "fixture_id": "f01_repeated_assertion",
+  "worker_view_hash": "05a208930006af5f9a6d8c816787abf8cb13596230c7dae5529488f4a8caac18",
+  "request_shape": {
+    "model": "qwen3.5:9b",
+    "stream": false,
+    "options": {
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "top_k": 1,
+      "num_ctx": 32768,
+      "num_predict": 1800,
+      "seed": 0
+    },
+    "keep_alive": "10m",
+    "think": false,
+    "prompt_sha256": "293aaa71d37cfce8ade71ef867734eba9f6a30c2bc57f69a188cc29626d163e6",
+    "prompt_chars": 89918,
+    "prompt_version": "v1",
+    "format_schema_hash": "ab7829ed499a2a200b18129c9d37d6059afe1f89f9406cde541ce4529adc1019",
+    "format_schema_version": "v1"
+  },
+  "difference_from_batch_request": "top-level `think: false` added; everything else identical",
+  "transport_error": null,
+  "timing_ms": {
+    "wall_clock": 21889.5,
+    "total_duration": 19819.821,
+    "load_duration": 9094.0993,
+    "prompt_eval_duration": 5416.97,
+    "eval_duration": 5227.285,
+    "prompt_eval_count": 27336,
+    "eval_count": 434
+  },
+  "response_fields_present": [
+    "context",
+    "created_at",
+    "done",
+    "done_reason",
+    "eval_count",
+    "eval_duration",
+    "load_duration",
+    "model",
+    "prompt_eval_count",
+    "prompt_eval_duration",
+    "response",
+    "total_duration"
+  ],
+  "raw_response": "{\n\"classification\": \"multiple_independent_failures\",\n\"hypotheses\": [\n    {\n        \"statement\": \"The test suite contains multiple independent failures across different test modules (invoice, ledger, tenant, shipment, catalog, pricing, roster, dispatch, carrier, customs, reconcile, forecast, allocation, rebate, surcharge, tariff) and different test scenarios (empty, multi_currency, zero_qty).\",\n        \"supporting_spans\": [\n            {\n                \"source_id\": \"log:f01_repeated_assertion\",\n                \"start_line\": 9,\n                \"end_line\": 12013\n            }\n        ],\n        \"contradicting_spans\": [],\n        \"status\": \"unlikely\"\n    },\n    {\n        \"statement\": \"The failures are not caused by a single root cause or environment failure, as the failures occur in diverse test files and scenarios without a common pattern indicating a shared infrastructure issue.\",\n        \"supporting_spans\": [\n            {\n                \"source_id\": \"log:f01_repeated_assertion\",\n                \"start_line\": 9,\n                \"end_line\": 12013\n            }\n        ],\n        \"contradicting_spans\": [],\n        \"status\": \"unlikely\"\n    },\n    {\n        \"statement\": \"The failures are not caused by a single root cause or environment failure, as the failures occur in diverse test files and scenarios without a common pattern indicating a shared infrastructure issue.\",\n        \"supporting_spans\": [\n            {\n                \"source_id\": \"log:f01_repeated_assertion\",\n                \"start_line\": 9,\n                \"end_line\": 12013\n            }\n        ],\n        \"contradicting_spans\": [],\n        \"status\": \"unlikely\"\n    }\n],\n\"abstention_reason\": null\n}",
+  "raw_response_chars": 1684,
+  "thinking_field": null,
+  "thinking_field_chars": null,
+  "done_reason": "stop",
+  "json_parse_error": null,
+  "validation": {
+    "ok": true,
+    "failed_checks": [],
+    "errors": []
+  },
+  "structurally_valid": true,
+  "validator_version": "v1",
+  "limitations": [
+    "One request, one fixture, one model-load state. Not a validity rate.",
+    "The batch's failing responses were not captured raw, so this shows what `think:false` produces, not what the batch produced."
+  ]
+}

@@ -5,7 +5,7 @@ State: committed locally only. **Not pushed. No PR opened. Nothing merged.**
 
 ## PR title
 
-`Phase 0 evidence: FA-on re-measure, operational batch, DEFER revision to warm-session-only (+ post-review corrections)`
+`Phase 0 evidence: FA-on re-measure, operational batch, DEFER revision to warm-session-only, post-review corrections and final ruling amendment`
 
 ## PR description
 
@@ -22,6 +22,8 @@ It does **not** begin Phase 1a. It does not modify `NORTHSTAR.md`, the frozen §
 | `9c13ba3` | evidence | operational batch: 30 requests, 3 models × cold/warm × 5 fixtures, per-run telemetry CSVs, 18 server-log segments, `PHASE0_OPERATIONAL_REPORT_2026-09-06.md` |
 | `459d7b0` | decision (human ruling, §17) | `decisions/2026-09-06-defer-revision-warm-session-only.md` |
 | `7681d4c` | **corrective** | see below |
+| `bd1ed47`, `f54804f` | review record | PR summary, `/review-all` findings, north-star direction analysis committed under `reviews/` |
+| final corrections | **decision + evidence** | master-era redaction with hash mapping; committed `qwen3.5:9b` `think:false` diagnostic; human ruling amendment recorded verbatim (see "Final corrections" below) |
 
 ### Corrective commit `7681d4c`
 
@@ -43,6 +45,12 @@ It does **not** begin Phase 1a. It does not modify `NORTHSTAR.md`, the frozen §
 - 14B warm margin: "2–4 s under the gate" was computed on 5-run medians including the warm f01 prompt-cache hit (prefill 71 ms). Genuine warm runs: 14B 20,336 / 21,175 / 17,977 / 16,364 ms (median 19,157 ms, 2 of 4 over 20,000 ms); 30B-A3B 17,086 / 16,369 / 19,567 / 14,915 ms (median 16,728 ms, 0 over). The margin claim is removed.
 - `qwen3.5:9b` 0/5 validity: the thinking-field explanation and the `think:false` diagnostic are not in committed evidence and are now marked **unverified**. Not treated as a model failure and not as a pass.
 - Decision record: human ruling text left as written; a corrective note is appended recording both corrections for the decision-maker to adopt or reword.
+
+### Final corrections commit
+
+- **Redaction of the last two master-era files.** `hardware_profiles/workstation-zeria-01.json` and `phase0_results/phase0_smoke_workstation-zeria-01.json`: home path in `model_store_path` → `<HOME>`, nothing else. Both carry `legacy_unredacted_profile_hash` = `b725633194a7841906100e3c7529dec0f5873531b10785659a4e28b8fc8c9ebf`, `sanitized_profile_hash` = `b0ee67f45e8165d56bb0741e34b60dfd4c3aac6b05b427c8e870c01a5e7f78b0`, and a dated `publication_redaction_note`. The profile file's `profile_hash` is now the sanitized value; every `hardware_profile_hash` already recorded in results JSON is the legacy value and is left as recorded. No tracked file contains the account path.
+- **Committed diagnostic** `phase0_results/diagnostics/2026-09-06_qwen3.5-9b_think-false.json` (driver `run_diagnostic_think_false.py`): one request, fixture f01, cold-of-model: `think:false` returned a 1,684-char `response` that passed all §8 checks (structurally valid), no `thinking` field in the response body, `done_reason` stop, total 19,820 ms of which load 9,094 ms, prefill 5,417 ms (27,336 tokens), generation 5,227 ms (434 tokens). One request; not a Phase 0 run; candidate list unchanged.
+- **Human ruling amendment** appended verbatim to the decision record: measured 30 m server / 10 m request; approved policy going forward explicit client 30 m + server 30 m; batch proves the 10 m window only; `qwen3-coder:30b-a3b` eligible for a future Phase 1a admission decision; `qwen2.5-coder:14b` not admitted pending a cache-controlled rerun; `qwen3.5:9b` unresolved pending the diagnostic.
 
 ### Diff summary (`git diff --stat master...HEAD`)
 
@@ -82,11 +90,11 @@ Redaction verification: `git grep` for the account path over HEAD finds it only 
 
 ### Known limitations that remain
 
-1. **Two master-era files still contain the account path**: `hardware_profiles/workstation-zeria-01.json` (`model_store_path`) and `phase0_results/phase0_smoke_workstation-zeria-01.json` (FA-off DEFER evidence). Not touched: the smoke JSON is the byte-preserved DEFER basis and the profile feeds `hardware_profile_hash`.
-2. **`hardware_profile_hash`** in both 2026-09-06 JSON files was computed over the unredacted profile. Redacting the profile would change the hash and break the link.
+1. ~~Two master-era files still contain the account path~~ Resolved in the final corrections commit (redacted, hash mapping recorded).
+2. **`hardware_profile_hash`** in all results JSON is the legacy (unredacted-profile) value; the mapping to the sanitized hash is recorded in both redacted files, the report §10.1, and the decision record. Future captures will hash the redacted profile.
 3. **Warm medians in the JSON `summaries`** (14B 17,977 / 30B 16,369 / 9B 8,403 ms) still include the f01 prompt-cache-hit run. The reports now state the genuine 4-run figures; the JSON is left as measured.
-4. **No committed evidence for the `qwen3.5:9b` output-handling cause.** Harness stores neither raw `response` nor a `thinking` field.
-5. **No 30-minute client keep-alive condition was ever measured**; the ruling's "30 m keep-alive" refers to server policy.
+4. **`qwen3.5:9b` cause partly evidenced.** The committed diagnostic shows `think:false` yields a valid artifact; the batch's failing raw responses were never captured, so what they contained remains unknown. Status: unresolved pending human reading of the diagnostic.
+5. **No 30-minute client keep-alive condition was ever measured.** The amended ruling states this and sets explicit client 30 m + server 30 m as policy going forward; the harness constant `REQUEST_KEEP_ALIVE` still reads `10m` and must be changed by a dated edit before the next measured batch.
 6. **Two `total_layers` semantics** coexist in the residency data (Ollama `ps` vs. server-log `offloaded N/M`); documented, not reconciled.
 7. Existing 2026-09-06 artifacts keep the old `RUN_DATE`-keyed naming; only future batches get run-id paths.
 8. The profile id `workstation-zeria-01` (in filenames and content) is a chosen identifier, not a filesystem path, and was left as-is.
@@ -95,13 +103,11 @@ Redaction verification: `git grep` for the account path over HEAD finds it only 
 
 **No Phase 1a admission has been made.** This PR records evidence and a human ruling on DEFER scope; the §6 pass/fail table on 5-run medians stands as measured, with the genuine-warm caveat for 14B stated in the report.
 
-## Remaining decision questions (yours)
+## Remaining human decision
 
-1. **Redact the two master-era files?** Doing so changes `hardware_profile_hash` and touches the byte-preserved FA-off DEFER evidence. Options: leave (current), redact + recompute hash + note in report, or redact only the profile.
-2. **Run and commit a single `qwen3.5:9b` `think:false` diagnostic** so the unverified explanation becomes evidence? One request, ~30 s; not a benchmark rerun.
-3. **Reword ruling text 1 and the limitation paragraph** in the decision record yourself, or adopt the appended corrective note as-is (human-owned file; I did not edit the ruling body).
-4. **Make 30 m an explicit client `keep_alive` going forward**, or keep 10 m and change the ruling wording to "10 m measured window"?
-5. **Should the 14B genuine-warm finding (2 of 4 over the gate) change the ruling?** The ruling relies on 5-run medians that include the cache hit; §17 makes that your call.
+Questions 1–5 of the earlier version of this section were answered by the human on 2026-09-06 and are implemented in the final corrections commit. One decision remains:
+
+**Whether to open the evidence PR** (push `claude/project-pause-status-f34b4e` and open it against `master` with the title and description above).
 
 ## Not done (by instruction)
 
