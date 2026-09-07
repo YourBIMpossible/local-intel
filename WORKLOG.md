@@ -175,6 +175,18 @@ not a model failure; retest requires top-level
 investigation opened. Record:
 `decisions/2026-09-06-defer-revision-warm-session-only.md`.
 
+**2026-09-06 — Evidence-and-decision PR merged; local master synced.** PR #1
+(`Phase 0 evidence: FA-on re-measure, operational batch, DEFER revision to
+warm-session-only, post-review corrections and final ruling amendment`) was
+merged into `master` by the human owner after review, via merge commit
+`c182aa3` (merge-commit method, so the full evidence trail is preserved and
+every branch SHA `cbbbd6f`…`3583cba` stays reachable). Local `master` was
+fast-forwarded `e68d040` → `c182aa3` and is in sync with `origin/master`
+(0 ahead / 0 behind). The lane branch `claude/project-pause-status-f34b4e`
+is preserved on the remote at `3583cba` (not deleted). No Phase 1a work was
+begun; `NORTHSTAR.md`, protocol §6/§9/§13, and the candidate list are
+untouched; the two protected untracked Phase 1a drafts were never staged.
+
 ## Roadmap
 
 **Coherence between `status` and hypothesis text is unmeasured.** In the
