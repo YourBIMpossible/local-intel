@@ -14,11 +14,17 @@ exactly one request, identical in shape to `local_intel.ollama_client.invoke`
 (same prompt builder, same `format` schema, same frozen §9 options, same
 request keep_alive) plus the top-level `think: false` field, then runs the
 same §8 validator on whatever comes back and writes a small artifact.
+
+On a transport/timeout/malformed-response failure it writes no success
+artifact, records a sanitized failure artifact under a distinct FAILED path,
+and exits non-zero -- leaving the date-only success path free for a later
+same-day retry with no manual cleanup.
 """
 
 from __future__ import annotations
 
 import hashlib
+import http.client
 import json
 import sys
 import time
@@ -115,6 +121,7 @@ def main(argv: list[str] | None = None) -> int:
 
     t0 = time.perf_counter()
     error = None
+    failure_kind: str | None = None
     response: dict | None = None
     try:
         data = json.dumps(payload).encode("utf-8")
@@ -124,9 +131,91 @@ def main(argv: list[str] | None = None) -> int:
         )
         with urllib.request.urlopen(req, timeout=INVOCATION_TIMEOUT_MS / 1000) as resp:
             response = json.loads(resp.read().decode("utf-8"))
-    except (TimeoutError, urllib.error.URLError, OSError) as exc:
+    except TimeoutError as exc:
+        error, failure_kind = f"{type(exc).__name__}: {exc}", "timeout"
+    except urllib.error.URLError as exc:
+        # URLError subclasses OSError and wraps a socket timeout as its reason.
+        # Mirror local_intel.ollama_client.invoke's classification so the two
+        # code paths bucket timeouts identically.
+        reason = getattr(exc, "reason", None)
+        is_timeout = isinstance(reason, TimeoutError) or "timed out" in str(exc).lower()
         error = f"{type(exc).__name__}: {exc}"
+        failure_kind = "timeout" if is_timeout else "transport"
+    except (json.JSONDecodeError, UnicodeDecodeError, http.client.HTTPException) as exc:
+        # The HTTP call returned, but the body could not be read/decoded into a
+        # usable JSON envelope (invalid JSON, non-UTF-8 bytes, or a connection
+        # dropped mid-body -> IncompleteRead). No usable response was obtained,
+        # so treat it as a request failure, not a diagnostic result.
+        error, failure_kind = f"{type(exc).__name__}: {exc}", "malformed_response"
+    except OSError as exc:
+        error, failure_kind = f"{type(exc).__name__}: {exc}", "transport"
     wall_ms = (time.perf_counter() - t0) * 1000
+
+    if error is None and not isinstance(response, dict):
+        # A valid JSON body that is not an object (list/scalar) is not a usable
+        # Ollama envelope; the success path indexes it as a dict, so route it
+        # through the failure branch instead of crashing on `.get`.
+        error = f"non-dict response envelope: {type(response).__name__}"
+        failure_kind = "malformed_response"
+
+    if error is not None:
+        # The request yielded no diagnostic signal. Do NOT write the normal
+        # success artifact and do NOT occupy the date-only success path (`out`),
+        # so a later same-day run can still produce a genuine diagnostic with no
+        # manual cleanup. Persist a sanitized, self-describing failure artifact
+        # under a distinct run-id path and exit non-zero.
+        failed = datetime.now(timezone.utc)
+        failure_document = {
+            "kind": "single-request diagnostic (FAILED)",
+            "outcome": "failure",
+            "purpose": (
+                "Attempted to verify or refute the unverified explanation for "
+                "qwen3.5:9b's 0/5 structural validity in the 2026-09-06 "
+                "operational batch. The generate request did not complete, so no "
+                "diagnostic signal was obtained. Not a Phase 0 run; feeds no §6 "
+                "decision; candidate list unchanged."
+            ),
+            "failure_kind": failure_kind,
+            "failure_reason": error,
+            "started_utc": started.isoformat(),
+            "failed_utc": failed.isoformat(),
+            "wall_clock_ms": round(wall_ms, 1),
+            # Runtime identity gathered before the request (all pre-failure).
+            "local_intel_version": __version__,
+            "ollama_version": ollama_version,
+            "hardware_profile_id": profile_id,
+            "model": {"tag": MODEL, "digest": digest},
+            "model_load_state": "cold-of-model (unloaded immediately before; page cache not controlled)",
+            "fixture_id": spec.fixture_id,
+            "worker_view_hash": view.worker_view_hash,
+            "request_shape": request_shape,
+            "difference_from_batch_request": "top-level `think: false` added; everything else identical",
+            "note": (
+                "This artifact records a failed attempt only. It is NOT a "
+                "diagnostic result, occupies a distinct FAILED path, and leaves "
+                f"the success path free for a retry: {out.name}"
+            ),
+        }
+        OUT_DIR.mkdir(parents=True, exist_ok=True)
+        fail_out = OUT_DIR / (
+            f"{started.strftime('%Y-%m-%dT%H%M%S-%f')}_qwen3.5-9b_think-false.FAILED.json"
+        )
+        fail_out.write_text(
+            redact_local_paths(json.dumps(failure_document, indent=2)) + "\n",
+            encoding="utf-8",
+        )
+        # unload_model never raises (returns False on a down server), so this
+        # best-effort cleanup is safe even when the failure was a dead server.
+        unload_model(MODEL)
+        print(json.dumps({
+            "outcome": "failure",
+            "failure_kind": failure_kind,
+            "failure_reason": error,
+            "wall_clock_ms": round(wall_ms, 1),
+        }, indent=2))
+        print(f"Request failed ({failure_kind}); wrote failure artifact {fail_out}")
+        print(f"Success path {out} left free for a later retry.")
+        return 1
 
     def _ns(key: str) -> float | None:
         v = (response or {}).get(key)
