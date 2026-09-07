@@ -187,6 +187,31 @@ is preserved on the remote at `3583cba` (not deleted). No Phase 1a work was
 begun; `NORTHSTAR.md`, protocol §6/§9/§13, and the candidate list are
 untouched; the two protected untracked Phase 1a drafts were never staged.
 
+**2026-09-06 — Draft disposition: four untracked drafts resolved.** All four
+untracked draft files (two per worktree) were dispositioned so neither worktree
+carries an ambiguous untracked draft. Three carried unique but **unapproved**
+planning/analysis material and were filed, verbatim, under the new
+non-authoritative `docs/drafts/` folder (each with an explicit "Draft only — not
+approved policy, decision, admission, or authorization" header and a folder
+`README`): `docs/drafts/phase0-reconsideration.md`,
+`docs/drafts/phase1-protocol-amendment.draft.md`, and
+`docs/drafts/PHASE1A-ADMISSION-KICKOFF.draft.md` (the last *requests* a §17
+admission ruling; it is not a decision). The fourth,
+`PHASE1A-EVIDENCE-CORRECTIONS.draft.md`, was **fully superseded** by merged
+records — its item 2/4 were already done, item 3 redaction is applied on `master`
+(both profile JSONs now `<HOME>` with a `publication_redaction_note`), item 5's
+`think:false` diagnostic is committed at
+`phase0_results/diagnostics/2026-09-06_qwen3.5-9b_think-false.json`, and item 1's
+keep-alive nuance is captured in the decision record and the readiness assessment
+§1.4 — so it was archived outside the repo and its untracked copy deleted (it also
+carried a local username path, so it was never committed). A repo-wide
+sensitive-data scan before push is clean: no user-path leak in tracked files;
+only the self-chosen `workstation-zeria-01` machine handle remains (accepted).
+No model admitted; Phase 1a/1b remain unstarted; `NORTHSTAR.md`, the protocol,
+`decisions/`, and candidate status are untouched. Earlier references above to
+`phase0-reconsideration.md` / `phase1-protocol-amendment.draft.md` now resolve
+under `docs/drafts/`.
+
 ## Roadmap
 
 **Coherence between `status` and hypothesis text is unmeasured.** In the
