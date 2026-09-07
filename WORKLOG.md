@@ -296,3 +296,25 @@ C reopen candidate selection (not needed; the 9B control only fails on a
 harness think-flag gap, which would itself need a §9 edit). Human-only
 decision (§17); nothing modified. If B: it needs a dated, versioned decision
 record before any Phase 1a work.
+
+**2026-09-06 — Phase 1a is prepared and needs the admission decision.** A full
+Phase 1a preparation pass was requested. Grounding in the governing documents,
+the Phase 1a evaluation harness cannot be built-and-merged or run yet, for two
+independent reasons: (1) no Phase 1a admission decision exists, and three
+sources gate the full harness behind that human-only act — §6's DEFER outcome
+("stop before building the full harness"), `NORTHSTAR.md` ("no implementation
+beyond the current admitted phase"), and the decision record ("Admission to
+Phase 1a … remain separate, versioned human decisions"); (2) no real fixture
+corpus exists — only 5 synthetic fixtures, where §11 requires 30–50 real
+redacted logs with dual labels and primary-evidence spans, and synthetic-as-real
+is disallowed. Prepared instead (no state change): a readiness/gap/governance
+assessment plus a ready-to-implement build spec —
+`reviews/2026-09-06-phase1a-preparation-readiness.md`. Needs your call: **a
+dated, versioned Phase 1a admission decision** naming the admitted
+configuration(s) (30B eligible; 14B needs a cache-controlled rerun; 9B needs
+resolution + a §3/§9 amendment), the measured-batch keep-alive policy (ratify
+request+server `30m` and authorize the dated `REQUEST_KEEP_ALIVE` harness edit
+before collection), and whether/how real redacted fixtures may be sourced. The
+protected `PHASE1A-ADMISSION-KICKOFF.draft.md` was left untouched; § 5 of the
+assessment is a checklist to fold into it. Nothing modified in NORTHSTAR.md,
+§§6/9/13, the candidate list, or any historical decision language.
