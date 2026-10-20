@@ -229,8 +229,34 @@ def test_keyboard_interrupt_preserves_partial_results_and_exits_130(harness):
 
 # --- sampler cleanup / partial-artifact persistence ---------------------------
 
-def test_sampler_stopped_and_csv_flushed_when_run_one_raises(harness):
-    harness.install(FakeRunOne(lambda i, spec, tag, state: KeyboardInterrupt() if i == 2 else None))
+def _wait_for(predicate, timeout_s: float = 5.0, what: str = "condition") -> None:
+    import time as _t
+    deadline = _t.monotonic() + timeout_s
+    while not predicate():
+        if _t.monotonic() >= deadline:
+            pytest.fail(f"timed out after {timeout_s}s waiting for {what}")
+        _t.sleep(0.005)
+
+
+def test_sampler_stopped_and_csv_flushed_when_run_one_raises(harness, monkeypatch):
+    started: list[op.Sampler] = []
+
+    class TrackingSampler(op.Sampler):
+        def start(self):
+            started.append(self)
+            return super().start()
+
+    monkeypatch.setattr(op, "Sampler", TrackingSampler)
+
+    def interrupt_run_2_after_first_tick(i, spec, tag, state):
+        if i != 2:
+            return None
+        # Raise only once the in-flight sampler has a row; otherwise stop() can
+        # win the race against the sampler thread's first tick.
+        _wait_for(lambda: len(started[-1].rows) >= 1, what="the in-flight sampler's first row")
+        return KeyboardInterrupt()
+
+    harness.install(FakeRunOne(interrupt_run_2_after_first_tick))
     op.main(["test-box"])
     csvs = harness.csvs()
     assert len(csvs) == 2  # run 1 complete + the in-flight run 2 sampler
@@ -258,13 +284,18 @@ def test_sampler_join_timeout_is_recorded_and_is_a_stop_condition(tmp_path, monk
     monkeypatch.setattr(op, "SAMPLER_JOIN_TIMEOUT_S", 0.05)
     import threading
     release = threading.Event()
+    entered = threading.Event()
 
     def wedged(self):
+        entered.set()
         release.wait(5)
         return None
 
     monkeypatch.setattr(op.Sampler, "_gpu", wedged)
     s = op.Sampler(tmp_path / "t.csv", interval_s=0.01).start()
+    # Stop only once the thread is inside the query; otherwise stop() can win
+    # the race against its first tick and the join never times out.
+    assert entered.wait(5), "sampler thread never reached the GPU query"
     summary = s.stop()
     release.set()
     assert summary["sampler_join_timed_out"] is True
